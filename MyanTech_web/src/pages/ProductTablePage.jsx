@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, Modal, Form, Input, InputNumber, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts, addProduct } from "../redux/productSlice";
+import { fetchProducts, addProduct } from "../redux/ProductSlice";
 
 const { Option } = Select;
 
@@ -21,23 +21,26 @@ const ProductTablePage = () => {
     fetchCategories();
   }, [dispatch]);
 
-  // Fetch brands from local JSON
   const fetchBrands = async () => {
     const response = await fetch("http://localhost:3000/brand");
     const data = await response.json();
     setBrands(data);
   };
 
-  // Fetch categories from local JSON
   const fetchCategories = async () => {
     const response = await fetch("http://localhost:3000/category");
     const data = await response.json();
     setCategories(data);
-    console.log(data)
   };
 
-  const handleAddProduct = (values) => {
-    dispatch(addProduct(values));
+  const handleAddProduct = async (values) => {
+    const newProduct = {
+      id: Date.now(), // Generate unique ID
+      ...values,
+    };
+
+    dispatch(addProduct(newProduct));
+
     setIsModalVisible(false);
     form.resetFields();
   };
@@ -65,7 +68,7 @@ const ProductTablePage = () => {
 
       <Table
         columns={columns}
-        dataSource={products.length ? products : []}
+        dataSource={products}
         loading={loading}
         rowKey="id"
         locale={{ emptyText: "No items yet" }}
@@ -86,7 +89,7 @@ const ProductTablePage = () => {
           <Form.Item name="brand" label="Choose Brand" rules={[{ required: true }]}>
             <Select placeholder="Select a brand">
               {brands.map((brand) => (
-                <Option key={brand.id} value={brand.brand_name}>{brand.brand_name}</Option>
+                <Option key={brand.id} value={brand.name}>{brand.name}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -94,7 +97,7 @@ const ProductTablePage = () => {
           <Form.Item name="type" label="Choose Type" rules={[{ required: true }]}>
             <Select placeholder="Select a category">
               {categories.map((category) => (
-                <Option key={category.id} value={category.category_name}>{category.category_name}</Option>
+                <Option key={category.id} value={category.name}>{category.name}</Option>
               ))}
             </Select>
           </Form.Item>
