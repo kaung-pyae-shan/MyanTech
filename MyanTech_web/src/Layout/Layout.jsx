@@ -122,26 +122,13 @@ const AppLayout = () => {
             />
             <h2 className='text-xl font-bold text-gradient'> Sales Department </h2>
           </div>
+        
+         
+
          
           <div className="mr-[3rem]">
           <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
-            Logout
-
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
-         
-          <div className="mr-[3rem]">
-          <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
-            <UserOutlined />
-
+           Logout
             
           </Button>
           {username}
