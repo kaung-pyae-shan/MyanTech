@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, Modal, Form, Input, InputNumber, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts, addProduct } from "../redux/ProductSlice";
+import { fetchProducts, addProduct } from "../redux/productSlice";
 
 const { Option } = Select;
 
@@ -89,7 +89,7 @@ const ProductTablePage = () => {
           <Form.Item name="brand" label="Choose Brand" rules={[{ required: true }]}>
             <Select placeholder="Select a brand">
               {brands.map((brand) => (
-                <Option key={brand.id} value={brand.name}>{brand.name}</Option>
+                <Option key={brand.id} value={brand.brand_name}>{brand.brand_name}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -97,7 +97,7 @@ const ProductTablePage = () => {
           <Form.Item name="type" label="Choose Type" rules={[{ required: true }]}>
             <Select placeholder="Select a category">
               {categories.map((category) => (
-                <Option key={category.id} value={category.name}>{category.name}</Option>
+                <Option key={category.id} value={category.category_name}>{category.category_name}</Option>
               ))}
             </Select>
           </Form.Item>
