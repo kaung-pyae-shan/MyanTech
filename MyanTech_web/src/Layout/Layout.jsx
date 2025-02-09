@@ -31,27 +31,45 @@ const AppLayout = () => {
     <Layout className="min-h-screen ">
       <Sider className='relative w-[100%] bg-dark ' trigger={null} collapsible collapsed={collapsed} >
         <div className="demo-logo-vertical" />  
-        <div className='mx-[3rem] mt-5'>
+        <div className='mx-[3rem] mt-5 h-[50px]'>
          
-          {/* <img src = {Logo} className='w-[70px]  '/> */}
-        </div>
+          <h2 className={`text-xl font-bold text-white ${collapsed ? ' hidden' : ' '}`} >Myan Tech </h2>
+        </div>  
         <Menu
+          theme='dark'
           mode="inline"
-          className="mt-[2rem] text-[18px]"
-          defaultSelectedKeys={['1']}
+          className="mt-[2rem] bg-dark  hover:bg-none   px-4 "
+           
+          type = 'primary'
+       
           items={[
             {
               key: '1',
-              icon: <FormOutlined />,
-
-              label: <Link to="/" className=' text-[15px]'>Dashboard</Link>,
-
+              icon: <FormOutlined style={{color:'white'}} />,
+              defaultSelectedKeys: ['1'],
+              
+              label: <Link to="/" style={{color: 'white'}}>abcd </Link>,
+              
+              style: { 
+                border: '1px solid gray', marginBottom: '20px ',
+                padding: !collapsed? '25px 20px': '', borderRadius: '10px', color: 'white',
+                background: '#52525233'
+              },
+             
             },
-            // {
-            //   key: '2',
-            //   icon: <FolderOutlined />,
-            //   label: <Link to="/vocab/revise" className=' text-[15px]'>Revised Words</Link>,
-            // },
+            {
+              key: '2',
+              icon: <FolderOutlined />,
+              defaultSelectedKeys: ['2'],
+
+              label: <Link to="/test" className=' text-[15px]'>Test</Link>,
+              style: { 
+                border: '1px solid gray', marginBottom: '20px ',
+                padding: !collapsed? '25px 20px': '', borderRadius: '10px', color: 'white',
+                background: '#52525233'
+
+              },
+            },
             
           
           ]}
@@ -88,20 +106,23 @@ const AppLayout = () => {
           }}
           className="flex justify-between w-full"
         >
-          <Button
-            type="text"
-            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
-            style={{
-              fontSize: '16px',
-              width: 64,
-              height: 64,
-            }}
-          />
+          <div className="flex items-center">
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: '16px',
+                width: 64,
+                height: 64,
+              }}
+            />
+            <h2 className='text-xl font-bold text-gradient'> Sales Department </h2>
+          </div>
          
           <div className="mr-[3rem]">
           <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
-            <UserOutlined />
+            Logout
             
           </Button>
           {username}

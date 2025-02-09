@@ -17,6 +17,7 @@ module.exports = {
         accent: "#FE9256", // Orange
         success: "#7ABD3A", // Green
         info: "#52AFF0", // Blue
+        gradient: "linear-gradient(to right, #6B39FC, #52AFF0)"
       },
       backgroundImage: {
         "gradient-purple": "linear-gradient(to bottom, #AC95F8, #703FFE)", 

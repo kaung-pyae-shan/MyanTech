@@ -5,7 +5,18 @@ import Router from './router/router';
 
 function App() {
   return (
-    <ConfigProvider>
+    <ConfigProvider
+    theme={{
+    
+      token: {
+        // Seed Token
+        colorPrimary: '',
+        borderRadius: 2,
+
+        // Alias Token
+      },
+    }}
+    >
      
         <Router/>
     

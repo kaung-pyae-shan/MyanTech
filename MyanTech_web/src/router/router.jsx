@@ -17,7 +17,7 @@ const Router = () => {
                     element: <Home />
                 },   
                 {
-                    path: '/',
+                    path: '/test',
                     element: <Test />
                 },       
             // {
