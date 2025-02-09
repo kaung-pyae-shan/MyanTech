@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
 import Test from "../pages/Test";
+import ProductTablePage from "../pages/ProductTablePage";
 
 
 
@@ -19,7 +20,11 @@ const Router = () => {
                 {
                     path: '/',
                     element: <Test />
-                },       
+                },   
+                {
+                    path: '/product',  // Route for ProductTablePage
+                    element: <ProductTablePage />
+                },    
             // {
 
             //     path:"/vocab/note",
