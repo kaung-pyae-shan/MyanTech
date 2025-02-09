@@ -31,6 +31,7 @@ const AppLayout = () => {
     <Layout className="min-h-screen ">
       <Sider className='relative w-[100%] bg-dark ' trigger={null} collapsible collapsed={collapsed} >
         <div className="demo-logo-vertical" />  
+
         <div className='mx-[3rem] mt-5 h-[50px]'>
          
           <h2 className={`text-xl font-bold text-white ${collapsed ? ' hidden' : ' '}`} >Myan Tech </h2>
@@ -70,6 +71,7 @@ const AppLayout = () => {
 
               },
             },
+
             
           
           ]}
@@ -106,6 +108,7 @@ const AppLayout = () => {
           }}
           className="flex justify-between w-full"
         >
+
           <div className="flex items-center">
             <Button
               type="text"
@@ -123,6 +126,22 @@ const AppLayout = () => {
           <div className="mr-[3rem]">
           <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
             Logout
+
+          <Button
+            type="text"
+            icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+            onClick={() => setCollapsed(!collapsed)}
+            style={{
+              fontSize: '16px',
+              width: 64,
+              height: 64,
+            }}
+          />
+         
+          <div className="mr-[3rem]">
+          <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
+            <UserOutlined />
+
             
           </Button>
           {username}

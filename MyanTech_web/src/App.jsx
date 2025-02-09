@@ -5,6 +5,7 @@ import Router from './router/router';
 
 function App() {
   return (
+
     <ConfigProvider
     theme={{
     
@@ -17,7 +18,9 @@ function App() {
       },
     }}
     >
-     
+
+    <ConfigProvider>
+
         <Router/>
     
       
