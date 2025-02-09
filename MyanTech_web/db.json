@@ -1,0 +1,122 @@
+{
+    "category": [
+        {
+            "category_id": 1,
+            "category_name": "Accessories "
+        },
+        {
+            "category_id": 2,
+            "category_name": "Desktop PC "
+        },
+        {
+            "category_id": 3,
+            "category_name": "Laptop"
+        },
+        {
+            "category_id": 4,
+            "category_name": "Memory "
+        },
+        {
+            "category_id": 5,
+            "category_name": "Monitor "
+        },
+        {
+            "category_id": 6,
+            "category_name": "Networking Device "
+        },
+        {
+            "category_id": 7,
+            "category_name": "Power Supply "
+        },
+        {
+            "category_id": 8,
+            "category_name": "Printer"
+        },
+        {
+            "category_id": 9,
+            "category_name": "Processor "
+        },
+        {
+            "category_id": 10,
+            "category_name": "Storage Device "
+        }
+    ],
+    "brand": [
+        {
+            "brand_id": 1,
+            "brand_name": "Acer"
+        },
+        {
+            "brand_id": 2,
+            "brand_name": "APC"
+        },
+        {
+            "brand_id": 3,
+            "brand_name": "Apple"
+        },
+        {
+            "brand_id": 4,
+            "brand_name": "Asus"
+        },
+        {
+            "brand_id": 5,
+            "brand_name": "Canon "
+        },
+        {
+            "brand_id": 6,
+            "brand_name": "Cisco "
+        },
+        {
+            "brand_id": 7,
+            "brand_name": "Dell "
+        },
+        {
+            "brand_id": 8,
+            "brand_name": "Epson"
+        },
+        {
+            "brand_id": 9,
+            "brand_name": "G Skill"
+        },
+        {
+            "brand_id": 10,
+            "brand_name": "HP"
+        },
+        {
+            "brand_id": 11,
+            "brand_name": "HyperX"
+        },
+        {
+            "brand_id": 12,
+            "brand_name": "Intel "
+        },
+        {
+            "brand_id": 13,
+            "brand_name": "LG"
+        },
+        {
+            "brand_id": 14,
+            "brand_name": "Logitech"
+        },
+        {
+            "brand_id": 15,
+            "brand_name": "Microsoft "
+        },
+        {
+            "brand_id": 16,
+            "brand_name": "Samsung"
+        },
+        {
+            "brand_id": 17,
+            "brand_name": "Seagate "
+        },
+        {
+            "brand_id": 18,
+            "brand_name": "TP-link "
+        },
+        {
+            "brand_id": 19,
+            "brand_name": "WD"
+        }
+    ]
+}

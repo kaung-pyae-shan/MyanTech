@@ -12,6 +12,7 @@ import { Button, Layout, Menu, theme } from 'antd';
 import { Outlet, Link } from 'react-router-dom';
 // import Logout from '../pages/User/Logout';
 import { FormOutlined } from '@ant-design/icons';
+import { UnorderedListOutlined } from '@ant-design/icons';
 import { FolderOutlined } from '@ant-design/icons';
 import { LogoutOutlined } from '@ant-design/icons';
 // import Logo from "../assets/Images/Logo.png";
@@ -72,6 +73,28 @@ const AppLayout = () => {
               },
             },
 
+            
+          
+          ]}
+        />
+
+<Menu
+          mode="inline"
+          className="mt-[2rem] text-[18px]"
+          defaultSelectedKeys={['1']}
+          items={[
+            {
+              key: '1',
+              icon: <UnorderedListOutlined />,
+
+              label: <Link to="/product" className=' text-[15px]'>Product</Link>,
+
+            },
+            // {
+            //   key: '2',
+            //   icon: <FolderOutlined />,
+            //   label: <Link to="/vocab/revise" className=' text-[15px]'>Revised Words</Link>,
+            // },
             
           
           ]}
