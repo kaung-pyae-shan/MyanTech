@@ -1,0 +1,21 @@
+
+.ant-menu-item-selected {
+    background: linear-gradient(to right, #6b39fc, #52aff0) !important;
+}
+  
+  .ant-menu-item-selected a {
+    color: #ffffff !important;
+  }
+  
+  .ant-menu-item:hover {
+    background: linear-gradient(to right, rgba(107, 57, 252, 0.1), rgba(82, 175, 240, 0.1)) !important;
+}
+  
+  .ant-menu-item-selected::after {
+    background: linear-gradient(to right, rgba(107, 57, 252, 0.1), rgba(82, 175, 240, 0.1)) !important;
+  }
+  
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
