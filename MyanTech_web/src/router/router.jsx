@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
+import Test from "../pages/Test";
 
 
 
@@ -14,7 +15,11 @@ const Router = () => {
                 {
                     path: '/',
                     element: <Home />
-                },         
+                },   
+                {
+                    path: '/',
+                    element: <Test />
+                },       
             // {
 
             //     path:"/vocab/note",
