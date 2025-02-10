@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Table, Button, Modal, Form, Input, InputNumber, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchProducts, addProduct } from "../redux/productSlice";
+import { fetchProducts, addProduct, updateProduct } from "../redux/productSlice";
 
 const { Option } = Select;
 
@@ -10,7 +10,9 @@ const ProductTablePage = () => {
   const { products, loading } = useSelector((state) => state.products);
 
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false);
   const [form] = Form.useForm();
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
@@ -34,19 +36,39 @@ const ProductTablePage = () => {
   };
 
   const handleAddProduct = async (values) => {
-    const newProduct = {
-      id: Date.now(), // Generate unique ID
-      ...values,
-    };
-
-    dispatch(addProduct(newProduct));
-
+    console.log("Updating product:", values);
+  
+    if (isEditMode) {
+      dispatch(updateProduct({ ...selectedProduct, ...values }))
+        .unwrap()
+        .then(() => {
+          console.log("Product updated successfully");
+          dispatch(fetchProducts()); // Ensure table refreshes
+        })
+        .catch((error) => console.error("Update error:", error));
+    } else {
+      dispatch(addProduct({ product_id: Date.now(), ...values }))
+        .unwrap()
+        .then(() => console.log("Product added successfully"))
+        .catch((error) => console.error("Add error:", error));
+    }
+  
     setIsModalVisible(false);
     form.resetFields();
+    setIsEditMode(false);
+    setSelectedProduct(null);
+  };
+  
+
+  const handleEdit = (product) => {
+    setSelectedProduct(product);
+    setIsEditMode(true);
+    form.setFieldsValue(product);
+    setIsModalVisible(true);
   };
 
   const columns = [
-    { title: "No.", dataIndex: "id", key: "id" },
+    { title: "No.", dataIndex: "product_id", key: "product_id" },
     { title: "Product Name", dataIndex: "name", key: "name" },
     { title: "Brand", dataIndex: "brand", key: "brand" },
     { title: "Type", dataIndex: "type", key: "type" },
@@ -54,29 +76,35 @@ const ProductTablePage = () => {
     { title: "Stock", dataIndex: "stock", key: "stock" },
     { title: "Cash Back", dataIndex: "cashBack", key: "cashBack" },
     { title: "Serial No", dataIndex: "serialNo", key: "serialNo" },
-    { title: "Details", key: "details", render: (_, record) => (
-        <Button type="link" onClick={() => console.log(record)}>View</Button>
-      )
-    }
+    {
+      title: "Actions",
+      key: "actions",
+      render: (_, record) => (
+        <Button type="link" onClick={() => handleEdit(record)}>
+          Edit
+        </Button>
+      ),
+    },
   ];
 
   return (
     <div style={{ padding: "20px" }}>
-      <Button type="primary" onClick={() => setIsModalVisible(true)} style={{ marginBottom: "16px" }}>
+      <Button
+        type="primary"
+        onClick={() => {
+          setIsEditMode(false);
+          setIsModalVisible(true);
+          form.resetFields();
+        }}
+        style={{ marginBottom: "16px" }}
+      >
         Create Product
       </Button>
 
-      <Table
-        columns={columns}
-        dataSource={products}
-        loading={loading}
-        rowKey="id"
-        locale={{ emptyText: "No items yet" }}
-      />
+      <Table columns={columns} dataSource={products} loading={loading} rowKey="product_id" locale={{ emptyText: "No items yet" }} />
 
-      {/* Modal Form */}
       <Modal
-        title="Create Product"
+        title={isEditMode ? "Edit Product" : "Create Product"}
         open={isModalVisible}
         onCancel={() => setIsModalVisible(false)}
         footer={null}
@@ -106,6 +134,10 @@ const ProductTablePage = () => {
             <InputNumber min={1} style={{ width: "100%" }} />
           </Form.Item>
 
+          <Form.Item name="stock" label="Stock" rules={[{ required: true }]}>
+            <InputNumber min={0} style={{ width: "100%" }} />
+          </Form.Item>
+
           <Form.Item name="cashBack" label="Cash Back">
             <InputNumber min={0} style={{ width: "100%" }} />
           </Form.Item>
@@ -115,7 +147,9 @@ const ProductTablePage = () => {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" htmlType="submit">Add Product</Button>
+            <Button type="primary" htmlType="submit">
+              {isEditMode ? "Update Product" : "Add Product"}
+            </Button>
           </Form.Item>
         </Form>
       </Modal>

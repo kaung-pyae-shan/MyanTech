@@ -4,15 +4,15 @@ import {
   MenuUnfoldOutlined,
   UserOutlined,
   FolderOpenOutlined,
-  LayoutOutlined 
-  
-  
+  LayoutOutlined,
+  ShoppingOutlined
+
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
 import { Outlet, Link } from 'react-router-dom';
 // import Logout from '../pages/User/Logout';
-import { FormOutlined } from '@ant-design/icons';
-import { UnorderedListOutlined } from '@ant-design/icons';
+import { FormOutlined, TruckOutlined } from '@ant-design/icons';
+// import { UnorderedListOutlined } from '@ant-design/icons';
 import { FolderOutlined } from '@ant-design/icons';
 import { LogoutOutlined } from '@ant-design/icons';
 // import Logo from "../assets/Images/Logo.png";
@@ -26,98 +26,105 @@ const AppLayout = () => {
 
   const username = localStorage.getItem('user')
 
-  
+
 
   return (
     <Layout className="min-h-screen ">
       <Sider className='relative w-[100%] bg-dark ' trigger={null} collapsible collapsed={collapsed} >
-        <div className="demo-logo-vertical" />  
+        <div className="demo-logo-vertical" />
+        {
+          collapsed ?
 
-        <div className='mx-[3rem] mt-5 h-[50px]'>
-         
-          <h2 className={`text-xl font-bold text-white ${collapsed ? ' hidden' : ' '}`} >Myan Tech </h2>
-        </div>  
+            <div className='mx-[1.5rem] mt-5 h-[50px] w-[100%]'>
+              <h2
+                className={` z-10 text-xl font-bold bg-gradient-purple bg-clip-text text-transparent`}>MT</h2>
+            </div>
+            :
+            <div className='mx-[3rem] mt-5 h-[50px]'>
+              <h2
+                className={`w-[100%] z-10 text-xl font-bold bg-gradient-purple bg-clip-text text-transparent`}>Myan Tech</h2>
+            </div>
+        }
+
+
+
+
+
         <Menu
           theme='dark'
           mode="inline"
-          className="mt-[2rem] bg-dark  hover:bg-none   px-4 "
-           
-          type = 'primary'
-       
+          className="mt-[2rem] bg-dark  hover:bg-none   px-2 "
+
+          type='primary'
+
           items={[
             {
               key: '1',
-              icon: <FormOutlined style={{color:'white'}} />,
+              icon: <FormOutlined style={{ color: 'white' }} />,
               defaultSelectedKeys: ['1'],
-              
-              label: <Link to="/" style={{color: 'white'}}>abcd </Link>,
-              
-              style: { 
+
+              label: <Link to="/" style={{ color: 'white' }}>Dashboard </Link>,
+
+              style: {
                 border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed? '25px 20px': '', borderRadius: '10px', color: 'white',
+                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
                 background: '#52525233'
               },
-             
+
             },
+
+
             {
               key: '2',
-              icon: <FolderOutlined />,
+              icon: <ShoppingOutlined />,
               defaultSelectedKeys: ['2'],
+              
 
-              label: <Link to="/test" className=' text-[15px]'>Test</Link>,
-              style: { 
+              label: <Link to="/create-order" className=' text-[15px]'>Orders</Link>,
+              style: {
                 border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed? '25px 20px': '', borderRadius: '10px', color: 'white',
+                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
                 background: '#52525233'
 
               },
             },
 
-            
-          
-          ]}
-        />
-
-<Menu
-          mode="inline"
-          className="mt-[2rem] text-[18px]"
-          defaultSelectedKeys={['1']}
-          items={[
             {
-              key: '1',
-              icon: <UnorderedListOutlined />,
+              key: '3',
+              icon: <FolderOutlined />,
+              defaultSelectedKeys: ['3'],
 
-              label: <Link to="/product" className=' text-[15px]'>Product</Link>,
+              label: <Link to="/product" className=' text-[15px]'>Products</Link>,
+              style: {
+                border: '1px solid gray', marginBottom: '20px ',
+                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
+                background: '#52525233'
 
+              },
             },
-            // {
-            //   key: '2',
-            //   icon: <FolderOutlined />,
-            //   label: <Link to="/vocab/revise" className=' text-[15px]'>Revised Words</Link>,
-            // },
-            
-          
+
+            {
+              key: '4',
+              icon: <TruckOutlined />,
+              defaultSelectedKeys: ['4'],
+
+              label: <Link to="/delivery" className=' text-[15px]'>Delivery</Link>,
+              style: {
+                border: '1px solid gray', marginBottom: '20px ',
+                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
+                background: '#52525233'
+
+              },
+            },
+
           ]}
         />
 
 
-      <Menu
-         
-          mode="inline"
-          className=" w-full top-[150px] hover:bg-none mt-[400px] bg-button"  // Push to the bottom
-        >
-          <Menu.Item
-            key="logout"
-            className=''
-            icon={<LogoutOutlined className=' hover:bg-none' />}
-           
-          >
-           
-            {/* <Logout /> */}
-          </Menu.Item>
-        </Menu>
 
-        
+
+
+
         {/* <div className="fixed bottom-0 mx-5">
           <LogoutOutlined />
          <Logout />
@@ -127,7 +134,8 @@ const AppLayout = () => {
         <Header
           style={{
             padding: 0,
-            background: colorBgContainer,
+            background: '#1C1C25',
+
           }}
           className="flex justify-between w-full"
         >
@@ -141,25 +149,25 @@ const AppLayout = () => {
                 fontSize: '16px',
                 width: 64,
                 height: 64,
+                color: "white",
               }}
             />
-            <h2 className='text-xl font-bold text-gradient'> Sales Department </h2>
+            <h2 className='bg-gradient-purple bg-clip-text text-transparent text-3xl'> Sales Department </h2>
           </div>
-        
-         
 
-         
+
+
+
           <div className="mr-[3rem]">
-          <Button className="mr-[8px] bg-gray-300 h-10 rounded-full mt-3">
-           Logout
-            
-          </Button>
-          {username}
+            <Button className="mr-[8px] h-10 rounded-xl mt-3 bg-button px-[25px] hover:bg-none">
+              Logout<LogoutOutlined/> 
+            </Button>
+            {username}
 
-          {/* <Logout /> */}
+            {/* <Logout /> */}
           </div>
-          
-         
+
+
         </Header>
         <Content
           style={{
