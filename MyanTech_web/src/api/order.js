@@ -1,4 +1,4 @@
-// import axios from "./axios";
+ import axios from "./axios";
 
 axios.get('/order')
   .then(response => {
