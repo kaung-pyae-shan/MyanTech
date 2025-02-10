@@ -118,5 +118,75 @@
             "brand_id": 19,
             "brand_name": "WD"
         }
-    ]
+    ],
+
+    "shops":[
+        {
+          "shop_id": 1,
+          "shop_name": "Golden Mart",
+          "shop_address": "No. 123, Main Road",
+          "township_name": "Sanchaung",
+          "region_id": 1,
+          "region_name": "Yangon",
+          "available_status": true
+        },
+        {
+          "shop_id": 2,
+          "shop_name": "Sunrise Supermarket",
+          "shop_address": "45, Insein Road",
+          "township_name": "Hlaing",
+          "region_id": 1,
+          "region_name": "Yangon",
+          "available_status": false
+        },
+        {
+          "shop_id": 3,
+          "shop_name": "City Corner Store",
+          "shop_address": "78, Baho Street",
+          "township_name": "Kamayut",
+          "region_id": 1,
+          "region_name": "Yangon",
+          "available_status": true
+        },
+        {
+          "shop_id": 4,
+          "shop_name": "Evergreen Mini Mart",
+          "shop_address": "56, University Avenue",
+          "township_name": "Bahan",
+          "region_id": 1,
+          "region_name": "Yangon",
+          "available_status": true
+        },
+        {
+          "shop_id": 5,
+          "shop_name": "Metro Convenience Store",
+          "shop_address": "101, Strand Road",
+          "township_name": "Pazundaung",
+          "region_id": 1,
+          "region_name": "Yangon",
+          "available_status": false
+        }
+      ],
+
+      "orders": [
+    { 
+    "id": 1, 
+    "name": "MAc 14", 
+    "price": 2000, 
+    "stock": 19, 
+    "cashBack": 19, 
+    "qty":1, 
+    "sub_total": 2000,
+
+    "shop_name": "Metro Convenience Store",
+    "shop_address": "101, Strand Road",
+    "township_name": "Pazundaung",
+    "region_id": 1,
+    "region_name": "Yangon",
+    "available_status": false
+   }
+]
+      
+
+
 }

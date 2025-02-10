@@ -59,12 +59,14 @@ const AppLayout = () => {
               },
              
             },
+          
+
             {
               key: '2',
               icon: <FolderOutlined />,
               defaultSelectedKeys: ['2'],
 
-              label: <Link to="/test" className=' text-[15px]'>Test</Link>,
+              label: <Link to="/create-order" className=' text-[15px]'>Orders</Link>,
               style: { 
                 border: '1px solid gray', marginBottom: '20px ',
                 padding: !collapsed? '25px 20px': '', borderRadius: '10px', color: 'white',
@@ -101,21 +103,7 @@ const AppLayout = () => {
         />
 
 
-      <Menu
-         
-          mode="inline"
-          className=" w-full top-[150px] hover:bg-none mt-[400px] bg-button"  // Push to the bottom
-        >
-          <Menu.Item
-            key="logout"
-            className=''
-            icon={<LogoutOutlined className=' hover:bg-none' />}
-           
-          >
-           
-            {/* <Logout /> */}
-          </Menu.Item>
-        </Menu>
+    
 
         
         {/* <div className="fixed bottom-0 mx-5">
