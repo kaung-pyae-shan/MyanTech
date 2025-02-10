@@ -1,73 +1,57 @@
 {
-    
-    "shops":[
-        {
-          "shop_id": 1,
-          "shop_name": "Golden Mart",
-          "shop_address": "No. 123, Main Road",
-          "township_name": "Sanchaung",
-          "region_id": 1,
-          "region_name": "Yangon",
-          "available_status": true
-        },
-        {
-          "shop_id": 2,
-          "shop_name": "Sunrise Supermarket",
-          "shop_address": "45, Insein Road",
-          "township_name": "Hlaing",
-          "region_id": 1,
-          "region_name": "Yangon",
-          "available_status": false
-        },
-        {
-          "shop_id": 3,
-          "shop_name": "City Corner Store",
-          "shop_address": "78, Baho Street",
-          "township_name": "Kamayut",
-          "region_id": 1,
-          "region_name": "Yangon",
-          "available_status": true
-        },
-        {
-          "shop_id": 4,
-          "shop_name": "Evergreen Mini Mart",
-          "shop_address": "56, University Avenue",
-          "township_name": "Bahan",
-          "region_id": 1,
-          "region_name": "Yangon",
-          "available_status": true
-        },
-        {
-          "shop_id": 5,
-          "shop_name": "Metro Convenience Store",
-          "shop_address": "101, Strand Road",
-          "township_name": "Pazundaung",
-          "region_id": 1,
-          "region_name": "Yangon",
-          "available_status": false
-        }
-      ],
-
-      "orders": [
-    { 
-    "id": 1, 
-    "name": "MAc 14", 
-    "price": 2000, 
-    "stock": 19, 
-    "cashBack": 19, 
-    "qty":1, 
-    "sub_total": 2000,
-
-    "shop_name": "Metro Convenience Store",
-    "shop_address": "101, Strand Road",
-    "township_name": "Pazundaung",
-    "region_id": 1,
-    "region_name": "Yangon",
-    "available_status": false
-   }
-],
-
-"category": [
+  "shops": [
+    {
+      "shop_id": 1,
+      "shop_name": "Golden Mart",
+      "shop_address": "No. 123, Main Road",
+      "township_name": "Sanchaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": true,
+      "id": "9b32"
+    },
+    {
+      "shop_id": 2,
+      "shop_name": "Sunrise Supermarket",
+      "shop_address": "45, Insein Road",
+      "township_name": "Hlaing",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": false,
+      "id": "9ab9"
+    },
+    {
+      "shop_id": 3,
+      "shop_name": "City Corner Store",
+      "shop_address": "78, Baho Street",
+      "township_name": "Kamayut",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": true,
+      "id": "f537"
+    },
+    {
+      "shop_id": 4,
+      "shop_name": "Evergreen Mini Mart",
+      "shop_address": "56, University Avenue",
+      "township_name": "Bahan",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": true,
+      "id": "ccbb"
+    },
+    {
+      "shop_id": 5,
+      "shop_name": "Metro Convenience Store",
+      "shop_address": "101, Strand Road",
+      "township_name": "Pazundaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": false,
+      "id": "040e"
+    }
+  ],
+  "category": [
     {
       "category_id": 1,
       "category_name": "Accessories ",
@@ -238,12 +222,131 @@
       "stock": 2,
       "cashBack": 30,
       "serialNo": "5555-55555-5555-55555"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "10c4"
+    },
+    {
+      "0": {
+        "product_id": "4e92",
+        "product_name": "A",
+        "quantity": "2",
+        "unit_price": 100,
+        "subtotal": 200
+      },
+      "id": "cb9d"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "unit_price": 2500,
+        "subtotal": null
+      },
+      "id": "853f"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "1918"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "5b4c"
+    },
+    {
+      "0": {
+        "product_id": "4e92",
+        "product_name": "A",
+        "quantity": "2",
+        "unit_price": 100,
+        "subtotal": 200
+      },
+      "id": "bb92"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "6e90"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "1678"
+    },
+    {
+      "id": "33bc",
+      "product_id": "c4e4",
+      "product_name": "2",
+      "quantity": "2",
+      "unit_price": 2500,
+      "subtotal": 5000
+    },
+    {
+      "id": "1363",
+      "product_id": "c4e4",
+      "product_name": "2",
+      "quantity": "2",
+      "unit_price": 2500,
+      "subtotal": 5000
+    },
+    {
+      "id": "a596",
+      "product_id": "c4e4",
+      "product_name": "2",
+      "quantity": "2",
+      "unit_price": 2500,
+      "subtotal": 5000
+    }
+  ],
+  "orders": [
+    {
+      "id": "372e",
+      "shop_id": "f537",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "2",
+          "unit_price": 100,
+          "subtotal": 200
+        }
+      ]
     }
   ]
 }
-
-
-
-
-
-  
