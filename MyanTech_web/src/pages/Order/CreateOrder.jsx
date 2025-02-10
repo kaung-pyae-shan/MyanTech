@@ -26,9 +26,9 @@ const CreateOrder = () => {
 
       <div className="flex flex-col items-end justify-start">
         <div className="flex justify-end">
-       { order.length > 0 && <Button 
+       <Button 
         onClick={createProduct}
-        className='px-4 py-2 mt-3 text-white bg-button'>Create Order</Button>}
+        className='px-4 py-2 mt-3 text-white bg-button'>Create Order</Button>
         </div>
      
       <OrderTable />
