@@ -1,5 +1,5 @@
 {
-
+    
     "shops":[
         {
           "shop_id": 1,
@@ -65,13 +65,9 @@
     "region_name": "Yangon",
     "available_status": false
    }
-]
-      
+],
 
-
-}
-
-  "category": [
+"category": [
     {
       "category_id": 1,
       "category_name": "Accessories ",
@@ -246,3 +242,8 @@
   ]
 }
 
+
+
+
+
+  
