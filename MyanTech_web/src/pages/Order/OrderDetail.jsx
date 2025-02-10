@@ -1,9 +1,23 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { AiOutlineFile } from 'react-icons/ai'
+import html2canvas from "html2canvas"
+
 
 const OrderDetail = ({order}) => {
+    const invoiceRef = useRef(null)
+
+    const saveAsImage = () => {
+        html2canvas(invoiceRef.current).then((canvas) => {
+          const image = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream")
+          const link = document.createElement("a")
+          link.download = "invoice.png"
+          link.href = image
+          link.click()
+        })
+      }
   return (
-    <div className="flex items-center justify-center bg-gray-100">
+    <>
+    <div ref={invoiceRef} className="flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-3xl bg-gradient-to-b from-blue-50 to-white">
         {/* Header Section */}
         <div className="p-6 bg-blue-100 rounded-t-lg">
@@ -82,23 +96,27 @@ const OrderDetail = ({order}) => {
         {/* Footer */}
         <div className="p-6">
           <div className="grid grid-cols-2 gap-6">
-            <div className="p-4 rounded-lg bg-gray-50">
-              <p className="mb-2 font-medium">NOTE:</p>
-              <p className="text-sm text-gray-600"></p>
-              <p className="text-sm text-gray-600">Late payments may incur a 5% late fee.</p>
-              <p className="text-sm text-gray-600">Please reference Invoice No. 12345 when making the payment.</p>
-            </div>
+           <div className=""></div>
             <div className="text-right">
-              <div className="inline-block p-4 rounded-lg bg-blue-50">
+              <div className="flex items-center gap-5 px-4 py-2 ml-auto mr-0 rounded-lg ">
                 <p className="mb-1 text-lg font-medium">TOTAL</p>
-                <p className="text-3xl font-bold text-blue-600">
+                <p className="text-3xl font-bold !text-gradient">
                      {order.products.reduce((sum, product) => sum + product.subtotal, 0)}</p>
               </div>
             </div>
           </div>
+
+          
         </div>
       </div>
     </div>
+
+    <div className="mt-5 mb-3 text-center ">
+            <button onClick={saveAsImage} className="px-4 py-2 font-bold text-white rounded bg-button hover:bg-blue-700">
+            Save as Image
+            </button>
+      </div>
+    </>
   )
 }
 
