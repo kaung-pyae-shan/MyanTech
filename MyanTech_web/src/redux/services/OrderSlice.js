@@ -29,9 +29,13 @@ export const orderSlice = createSlice({
         },
         resetOrder : (state, action) =>{
             state.order = initialState.order;
+        },
+        delProduct: (state, action) => {
+            state.order.products = state.order.products.filter(product => product.id !== action.payload);
         }
+
     }
 });
 
-export const { addOrder, addShop, addProductOrder, resetOrder } = orderSlice.actions;
+export const { addOrder, addShop, addProductOrder, resetOrder, delProduct } = orderSlice.actions;
 export default orderSlice.reducer;
