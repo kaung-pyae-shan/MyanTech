@@ -2,13 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Fetch products from JSON Server
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
-  const response = await fetch("http://localhost:3000/products");
+  const response = await fetch("http://localhost:3001/products");
   return response.json();
 });
 
 // Add new product to JSON Server
 export const addProduct = createAsyncThunk("products/addProduct", async (newProduct, { dispatch }) => {
-  const response = await fetch("http://localhost:3000/products", {
+  const response = await fetch("http://localhost:3001/products", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newProduct),

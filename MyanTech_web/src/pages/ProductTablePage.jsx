@@ -22,13 +22,13 @@ const ProductTablePage = () => {
   }, [dispatch]);
 
   const fetchBrands = async () => {
-    const response = await fetch("http://localhost:3000/brand");
+    const response = await fetch("http://localhost:3001/brand");
     const data = await response.json();
     setBrands(data);
   };
 
   const fetchCategories = async () => {
-    const response = await fetch("http://localhost:3000/category");
+    const response = await fetch("http://localhost:3001/category");
     const data = await response.json();
     setCategories(data);
   };
