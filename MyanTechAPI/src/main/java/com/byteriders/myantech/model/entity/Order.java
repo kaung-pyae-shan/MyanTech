@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -20,6 +22,7 @@ import lombok.NoArgsConstructor;
 public class Order {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private int invoiceNo;
 	@ManyToOne(optional = false)
@@ -30,10 +33,10 @@ public class Order {
 	private Segment productSegment;
 
 	@ManyToOne
-	private User createdUserId;
+	private User createdUser;
 	private LocalDate createdDate;
 	@ManyToOne
-	private User updatedUserId;
+	private User updatedUser;
 	private LocalDate updatedDate;
 
 	public enum Status {
