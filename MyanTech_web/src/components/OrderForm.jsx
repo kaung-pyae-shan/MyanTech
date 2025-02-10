@@ -1,11 +1,11 @@
 import { Button, Form, Input, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrder, addProductOrder, addShop } from '../redux/services/OrderSlice'; // Import Redux action
+import { addOrder, addProductOrder, addShop, resetOrder } from '../redux/services/OrderSlice'; // Import Redux action
 import axios from '../api/axios';
 import { addProduct } from '../redux/productSlice';
 
-const OrderForm = () => {
+const OrderForm = ({resetField, setResetField}) => {
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.orders); // Get orders from Redux store
@@ -43,8 +43,21 @@ const OrderForm = () => {
         fetchProducts();
     }, []);
 
-    const handleProductChange = (productId) => {
-        const product = products.find(p => p.id === productId);
+    if (resetField) {
+        form.resetFields();
+        dispatch(resetOrder());
+        setResetField(false);   
+      
+
+        
+        
+    }
+
+    const handleProductChange = (productName) => {
+        
+        const product = products.find(p => p.name === productName);
+
+        console.log(products)
         setSelectedProduct(product || null);
 
         if (product) {
@@ -107,7 +120,15 @@ const OrderForm = () => {
         dispatch(addShop(shop))
 
         
+        form.setFieldsValue({
+            product_name: 'Select Product',
+            qty: '',
+            price: '',
+            remark: ''
+        })
+
     
+        setSelectedProduct(null);
         // form.resetFields();
         // setSelectedProduct(null);
         // setSelectedShop(null);
@@ -183,7 +204,7 @@ const OrderForm = () => {
 
                 {/* Price Display */}
                 <Form.Item label="Price" name="price">
-                    <Input />
+                    <Input disabled />
                 </Form.Item>
 
                 {/* Remark Input */}
