@@ -123,7 +123,7 @@
       "brand_id": 4,
       "brand_name": "Asus",
       "id": "ae1c"
-    },
+    },  
     {
       "brand_id": 5,
       "brand_name": "Canon ",
@@ -384,5 +384,4 @@
         }
       ]
     }
-  ]
-}
+

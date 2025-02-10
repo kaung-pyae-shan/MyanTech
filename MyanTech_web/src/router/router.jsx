@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
 import ProductTablePage from "../pages/ProductTablePage";
 import CreateOrder from "../pages/Order/CreateOrder";
+import DeliAssign from "../pages/delivery/DeliAssign";
 
 
 
@@ -26,6 +27,10 @@ const Router = () => {
                 {
                     path: '/product',  // Route for ProductTablePage
                     element: <ProductTablePage />
+                }, 
+                {
+                    path: '/delivery',  // Route for ProductTablePage
+                    element: <DeliAssign />
                 },    
             // {
 
