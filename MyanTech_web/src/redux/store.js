@@ -1,6 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './services/CounterSlice'
 import productReducer from "./productSlice";
+import orderReducer from './services/OrderSlice'
+import deliReducer from './deliSLice'
+
 
 
 export const store = configureStore({
@@ -8,6 +11,6 @@ export const store = configureStore({
     orders: orderReducer,
    counter : counterReducer,
    products: productReducer,
-   orders: deliReducer,
+   delis: deliReducer,
   },
 })

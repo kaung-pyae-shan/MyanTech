@@ -73,14 +73,29 @@ const AppLayout = () => {
 
             },
 
-
             {
               key: '2',
               icon: <ShoppingOutlined />,
               defaultSelectedKeys: ['2'],
               
 
-              label: <Link to="/create-order" className=' text-[15px]'>Orders</Link>,
+              label: <Link to="/order-list" className=' text-[15px]'>Order List</Link>,
+              style: {
+                border: '1px solid gray', marginBottom: '20px ',
+                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
+                background: '#52525233'
+
+              },
+            },
+
+
+            {
+              key: '3',
+              icon: <ShoppingOutlined />,
+              defaultSelectedKeys: ['23'],
+              
+
+              label: <Link to="/create-order" className=' text-[15px]'>Create Orders</Link>,
               style: {
                 border: '1px solid gray', marginBottom: '20px ',
                 padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
@@ -90,9 +105,9 @@ const AppLayout = () => {
             },
 
             {
-              key: '3',
+              key: '4',
               icon: <FolderOutlined />,
-              defaultSelectedKeys: ['3'],
+              defaultSelectedKeys: ['4'],
 
               label: <Link to="/product" className=' text-[15px]'>Products</Link>,
               style: {
@@ -152,7 +167,7 @@ const AppLayout = () => {
                 color: "white",
               }}
             />
-            <h2 className='bg-gradient-purple bg-clip-text text-transparent text-3xl'> Sales Department </h2>
+            <h2 className='text-3xl text-transparent bg-gradient-purple bg-clip-text'> Sales Department </h2>
           </div>
 
 
