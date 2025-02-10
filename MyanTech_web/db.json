@@ -123,7 +123,7 @@
       "brand_id": 4,
       "brand_name": "Asus",
       "id": "ae1c"
-    },  
+    },
     {
       "brand_id": 5,
       "brand_name": "Canon ",
@@ -383,5 +383,60 @@
           "remark": "dfdf"
         }
       ]
+    },
+    {
+      "id": "6d8a",
+      "invoice_no": "INV-20250210-6750",
+      "shop_id": "9b32",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "3",
+          "unit_price": 2500,
+          "subtotal": 7500,
+          "remark": "dfgfhfd"
+        }
+      ]
+    },
+    {
+      "id": "0272",
+      "invoice_no": "INV-20250210-2882",
+      "shop_id": "9b32",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "3",
+          "unit_price": 2500,
+          "subtotal": 7500,
+          "remark": "dfgfhfd"
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "5",
+          "unit_price": 100,
+          "subtotal": 500,
+          "remark": ""
+        }
+      ]
     }
-
+  ],
+  "assign_truck": [
+    {
+      "id": "5b2f",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "BB-5678",
+      "delivery_date": "2025-02-19"
+    },
+    {
+      "id": "05ec",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "BB-5678",
+      "delivery_date": "2025-02-19"
+    }
+  ]
+}
