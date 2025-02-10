@@ -21,23 +21,26 @@ const ProductTablePage = () => {
     fetchCategories();
   }, [dispatch]);
 
-  // Fetch brands from local JSON
   const fetchBrands = async () => {
-    const response = await fetch("http://localhost:3000/brand");
+    const response = await fetch("http://localhost:3001/brand");
     const data = await response.json();
     setBrands(data);
   };
 
-  // Fetch categories from local JSON
   const fetchCategories = async () => {
-    const response = await fetch("http://localhost:3000/category");
+    const response = await fetch("http://localhost:3001/category");
     const data = await response.json();
     setCategories(data);
-    console.log(data)
   };
 
-  const handleAddProduct = (values) => {
-    dispatch(addProduct(values));
+  const handleAddProduct = async (values) => {
+    const newProduct = {
+      id: Date.now(), // Generate unique ID
+      ...values,
+    };
+
+    dispatch(addProduct(newProduct));
+
     setIsModalVisible(false);
     form.resetFields();
   };
@@ -65,7 +68,7 @@ const ProductTablePage = () => {
 
       <Table
         columns={columns}
-        dataSource={products.length ? products : []}
+        dataSource={products}
         loading={loading}
         rowKey="id"
         locale={{ emptyText: "No items yet" }}
