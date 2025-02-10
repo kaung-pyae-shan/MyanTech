@@ -80,24 +80,25 @@ const OrderForm = () => {
             product_name: selectedProductData.name,
             quantity: values.qty,
             unit_price: selectedProductData.price,
-            subtotal: values.qty * selectedProductData.price
+            subtotal: values.qty * selectedProductData.price,
+            remark: values.remark
         }
 
         console.log(newproducts);
         
-        const newOrder = {
-            id: Date.now(), // Unique ID
+        // const newOrder = {
+        //     id: Date.now(), // Unique ID
             
-            products: [{
-                product_id: selectedProductData.id,
-                product_name: selectedProductData.name,
-                quantity: values.qty,
-                unit_price: selectedProductData.price,
-                subtotal: values.qty * selectedProductData.price
-            }],
-            total_price: values.qty * selectedProductData.price,
-            remarks: values.remark || ''
-        };
+        //     products: [{
+        //         product_id: selectedProductData.id,
+        //         product_name: selectedProductData.name,
+        //         quantity: values.qty,
+        //         unit_price: selectedProductData.price,
+        //         subtotal: values.qty * selectedProductData.price
+        //     }],
+        //     total_price: values.qty * selectedProductData.price,
+        //     remarks: values.remark || ''
+        // };
 
         console.log();
         
@@ -124,6 +125,8 @@ const OrderForm = () => {
             }); 
         } 
     };
+
+   
 
     return (
         <div className='w-[400px] border border-gray-300 rounded-lg bg-white shadow-md'>

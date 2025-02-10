@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     order: {
+        invoice_no: 0,
         shop_id: 0,
         products: []
     },
@@ -18,6 +19,7 @@ export const orderSlice = createSlice({
         },
         addShop: (state, action) => {
             console.log(action.payload);
+            state.order.invoice_no = `INV-${new Date().toISOString().slice(0,10).replace(/-/g,"")}-${Math.floor(1000 + Math.random() * 9000)}`;
             state.order.shop_id = action.payload.shop_id;
             // state.order.shop = action.payload;
         },
