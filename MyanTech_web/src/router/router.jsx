@@ -1,8 +1,8 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
-import Test from "../pages/Test";
 import ProductTablePage from "../pages/ProductTablePage";
+import CreateOrder from "../pages/Order/CreateOrder";
 
 
 
@@ -19,9 +19,9 @@ const Router = () => {
                 },   
                 {
 
-                    path: '/test',
+                    path: '/create-order',
 
-                    element: <Test />
+                    element: <CreateOrder />
                 },   
                 {
                     path: '/product',  // Route for ProductTablePage
