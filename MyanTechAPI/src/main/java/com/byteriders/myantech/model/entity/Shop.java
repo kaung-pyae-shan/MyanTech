@@ -1,5 +1,7 @@
 package com.byteriders.myantech.model.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -21,9 +23,9 @@ public class Shop {
 	@Column(nullable = false)
 	private String address;
 	@OneToMany
-	private Township township;
+	private List<Township> township;
 	@OneToMany
-	private Region region;
+	private List<Region> region;
 	private Status availableStatus;
 	
 	public enum Status{

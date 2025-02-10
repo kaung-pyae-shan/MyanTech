@@ -1,7 +1,10 @@
 package com.byteriders.myantech.model.entity;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -18,9 +21,10 @@ public class OrderItemIssue {
 	@Id
 	private int id;
 	@OneToOne
+	@JoinColumn(name = "order_id", nullable = false)
 	private Order order;
 	@OneToMany
-	private Product product;
+	private List<Product> product;
 	private Status status;
 	
 	private String remark;
