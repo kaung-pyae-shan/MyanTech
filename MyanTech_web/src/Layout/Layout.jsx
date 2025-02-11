@@ -123,7 +123,7 @@ const AppLayout = () => {
               icon: <TruckOutlined />,
               defaultSelectedKeys: ['4'],
 
-              label: <Link to="/delivery" className=' text-[15px]'>Delivery</Link>,
+              label: <Link to="/order-list" className=' text-[15px]'>Delivery</Link>,
               style: {
                 border: '1px solid gray', marginBottom: '20px ',
                 padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',

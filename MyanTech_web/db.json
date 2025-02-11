@@ -328,7 +328,137 @@
     }
   ],
   "orders": [
+  
+  ],
+  "drivers": [
     {
+      "driver_id": 1,
+      "vehicle_plate_no": "YGN-1A/3456",
+      "driver_name": "Ko Tun Lin",
+      "contact": "09-xxxxxxxxxx",
+      "id": "4fe3"
+    },
+    {
+      "driver_id": 2,
+      "vehicle_plate_no": "MDY-4B/7890",
+      "driver_name": "Ko Min Thant",
+      "contact": "09-xxxxxxxxxx",
+      "id": "3663"
+    },
+    {
+      "driver_id": 3,
+      "vehicle_plate_no": "BGO-6D/4852",
+      "driver_name": "Ko Hla Oo",
+      "contact": "09-xxxxxxxxxx",
+      "id": "fa77"
+    },
+    {
+      "driver_id": 4,
+      "vehicle_plate_no": "NPT-2C/1789",
+      "driver_name": "Ko Soe Aung",
+      "contact": "09-xxxxxxxxxx",
+      "id": "1a08"
+    }
+  ],
+  "assign_truck": [
+    {
+      "id": "5b2f",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "BB-5678",
+      "delivery_date": "2025-02-19"
+    },
+    {
+      "id": "05ec",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "BB-5678",
+      "delivery_date": "2025-02-19"
+    },
+    {
+      "id": "c56c",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-25"
+    },
+    {
+      "id": "850a",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-25"
+    },
+    {
+      "id": "54eb",
+      "order_id": "372e",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "e4ae",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "2d6a",
+      "order_id": "372e",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-12"
+    },
+    {
+      "id": "167f",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-12"
+    },
+    {
+      "id": "cc1b",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-12"
+    },
+    {
+      "id": "4936",
+      "order_id": "372e",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "b239",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "2915",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "02c3",
+      "order_id": "6d8a",
+      "driver_id": 2,
+      "vehicle_plate_no": "MDY-4B/7890",
+      "delivery_date": "2025-02-18"
+    },
+    {
+      "id": "5e90",
+      "order_id": "0272",
+      "driver_id": 2,
+      "vehicle_plate_no": "MDY-4B/7890",
+      "delivery_date": "2025-02-18"
+=======
       "id": "372e",
       "shop_id": "f537",
       "products": [
