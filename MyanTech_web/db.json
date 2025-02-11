@@ -1,122 +1,578 @@
 {
-    "category": [
+  "shops": [
+    {
+      "shop_id": 1,
+      "shop_name": "Golden Mart",
+      "shop_address": "No. 123, Main Road",
+      "township_name": "Sanchaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": true,
+      "id": "9b32"
+    },
+    {
+      "shop_id": 2,
+      "shop_name": "Sunrise Supermarket",
+      "shop_address": "45, Insein Road",
+      "township_name": "Hlaing",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": false,
+      "id": "9ab9"
+    },
+    {
+      "shop_id": 3,
+      "shop_name": "City Corner Store",
+      "shop_address": "78, Baho Street",
+      "township_name": "Kamayut",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": true,
+      "id": "f537"
+    },
+    {
+      "shop_id": 4,
+      "shop_name": "Evergreen Mini Mart",
+      "shop_address": "56, University Avenue",
+      "township_name": "Bahan",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": true,
+      "id": "ccbb"
+    },
+    {
+      "shop_id": 5,
+      "shop_name": "Metro Convenience Store",
+      "shop_address": "101, Strand Road",
+      "township_name": "Pazundaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "available_status": false,
+      "id": "040e"
+    }
+  ],
+  "category": [
+    {
+      "category_id": 1,
+      "category_name": "Accessories ",
+      "id": "ea1b"
+    },
+    {
+      "category_id": 2,
+      "category_name": "Desktop PC ",
+      "id": "461f"
+    },
+    {
+      "category_id": 3,
+      "category_name": "Laptop",
+      "id": "7d86"
+    },
+    {
+      "category_id": 4,
+      "category_name": "Memory ",
+      "id": "9fb0"
+    },
+    {
+      "category_id": 5,
+      "category_name": "Monitor ",
+      "id": "e220"
+    },
+    {
+      "category_id": 6,
+      "category_name": "Networking Device ",
+      "id": "fcdd"
+    },
+    {
+      "category_id": 7,
+      "category_name": "Power Supply ",
+      "id": "642d"
+    },
+    {
+      "category_id": 8,
+      "category_name": "Printer",
+      "id": "7152"
+    },
+    {
+      "category_id": 9,
+      "category_name": "Processor ",
+      "id": "66a4"
+    },
+    {
+      "category_id": 10,
+      "category_name": "Storage Device ",
+      "id": "2b99"
+    }
+  ],
+  "brand": [
+    {
+      "brand_id": 1,
+      "brand_name": "Acer",
+      "id": "40bb"
+    },
+    {
+      "brand_id": 2,
+      "brand_name": "APC",
+      "id": "205d"
+    },
+    {
+      "brand_id": 3,
+      "brand_name": "Apple",
+      "id": "accc"
+    },
+    {
+      "brand_id": 4,
+      "brand_name": "Asus",
+      "id": "ae1c"
+    },
+    {
+      "brand_id": 5,
+      "brand_name": "Canon ",
+      "id": "1f6a"
+    },
+    {
+      "brand_id": 6,
+      "brand_name": "Cisco ",
+      "id": "fa68"
+    },
+    {
+      "brand_id": 7,
+      "brand_name": "Dell ",
+      "id": "7c8e"
+    },
+    {
+      "brand_id": 8,
+      "brand_name": "Epson",
+      "id": "8436"
+    },
+    {
+      "brand_id": 9,
+      "brand_name": "G Skill",
+      "id": "03ef"
+    },
+    {
+      "brand_id": 10,
+      "brand_name": "HP",
+      "id": "56e5"
+    },
+    {
+      "brand_id": 11,
+      "brand_name": "HyperX",
+      "id": "d331"
+    },
+    {
+      "brand_id": 12,
+      "brand_name": "Intel ",
+      "id": "ea0d"
+    },
+    {
+      "brand_id": 13,
+      "brand_name": "LG",
+      "id": "eb0b"
+    },
+    {
+      "brand_id": 14,
+      "brand_name": "Logitech",
+      "id": "2802"
+    },
+    {
+      "brand_id": 15,
+      "brand_name": "Microsoft ",
+      "id": "e568"
+    },
+    {
+      "brand_id": 16,
+      "brand_name": "Samsung",
+      "id": "714a"
+    },
+    {
+      "brand_id": 17,
+      "brand_name": "Seagate ",
+      "id": "34d6"
+    },
+    {
+      "brand_id": 18,
+      "brand_name": "TP-link ",
+      "id": "b632"
+    },
+    {
+      "brand_id": 19,
+      "brand_name": "WD",
+      "id": "5074"
+    }
+  ],
+  "products": [
+    {
+      "id": "4e92",
+      "product_id": 1739161756298,
+      "name": "A",
+      "brand": "Acer",
+      "type": "Accessories ",
+      "price": 100,
+      "stock": 500,
+      "cashBack": 20,
+      "serialNo": "XXXX-XXXXX-XXXX-XXXXX"
+    },
+    {
+      "id": "c4e4",
+      "product_id": 1739161781604,
+      "name": "2",
+      "brand": "Asus",
+      "type": "Laptop",
+      "price": 2500,
+      "stock": 2,
+      "cashBack": 30,
+      "serialNo": "5555-55555-5555-55555"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "10c4"
+    },
+    {
+      "0": {
+        "product_id": "4e92",
+        "product_name": "A",
+        "quantity": "2",
+        "unit_price": 100,
+        "subtotal": 200
+      },
+      "id": "cb9d"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "unit_price": 2500,
+        "subtotal": null
+      },
+      "id": "853f"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "1918"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "5b4c"
+    },
+    {
+      "0": {
+        "product_id": "4e92",
+        "product_name": "A",
+        "quantity": "2",
+        "unit_price": 100,
+        "subtotal": 200
+      },
+      "id": "bb92"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "6e90"
+    },
+    {
+      "0": {
+        "product_id": "c4e4",
+        "product_name": "2",
+        "quantity": "2",
+        "unit_price": 2500,
+        "subtotal": 5000
+      },
+      "id": "1678"
+    },
+    {
+      "id": "33bc",
+      "product_id": "c4e4",
+      "product_name": "2",
+      "quantity": "2",
+      "unit_price": 2500,
+      "subtotal": 5000
+    },
+    {
+      "id": "1363",
+      "product_id": "c4e4",
+      "product_name": "2",
+      "quantity": "2",
+      "unit_price": 2500,
+      "subtotal": 5000
+    },
+    {
+      "id": "a596",
+      "product_id": "c4e4",
+      "product_name": "2",
+      "quantity": "2",
+      "unit_price": 2500,
+      "subtotal": 5000
+    }
+  ],
+  "orders": [
+    {
+      "id": "372e",
+      "shop_id": "f537",
+      "products": [
         {
-            "category_id": 1,
-            "category_name": "Accessories "
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000
         },
         {
-            "category_id": 2,
-            "category_name": "Desktop PC "
-        },
-        {
-            "category_id": 3,
-            "category_name": "Laptop"
-        },
-        {
-            "category_id": 4,
-            "category_name": "Memory "
-        },
-        {
-            "category_id": 5,
-            "category_name": "Monitor "
-        },
-        {
-            "category_id": 6,
-            "category_name": "Networking Device "
-        },
-        {
-            "category_id": 7,
-            "category_name": "Power Supply "
-        },
-        {
-            "category_id": 8,
-            "category_name": "Printer"
-        },
-        {
-            "category_id": 9,
-            "category_name": "Processor "
-        },
-        {
-            "category_id": 10,
-            "category_name": "Storage Device "
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "2",
+          "unit_price": 100,
+          "subtotal": 200
         }
-    ],
-    "brand": [
+      ]
+    },
+    {
+      "id": "0865",
+      "invoice_no": "INV-20250210-7002",
+      "shop_id": "9ab9",
+      "products": [
         {
-            "brand_id": 1,
-            "brand_name": "Acer"
-        },
-        {
-            "brand_id": 2,
-            "brand_name": "APC"
-        },
-        {
-            "brand_id": 3,
-            "brand_name": "Apple"
-        },
-        {
-            "brand_id": 4,
-            "brand_name": "Asus"
-        },
-        {
-            "brand_id": 5,
-            "brand_name": "Canon "
-        },
-        {
-            "brand_id": 6,
-            "brand_name": "Cisco "
-        },
-        {
-            "brand_id": 7,
-            "brand_name": "Dell "
-        },
-        {
-            "brand_id": 8,
-            "brand_name": "Epson"
-        },
-        {
-            "brand_id": 9,
-            "brand_name": "G Skill"
-        },
-        {
-            "brand_id": 10,
-            "brand_name": "HP"
-        },
-        {
-            "brand_id": 11,
-            "brand_name": "HyperX"
-        },
-        {
-            "brand_id": 12,
-            "brand_name": "Intel "
-        },
-        {
-            "brand_id": 13,
-            "brand_name": "LG"
-        },
-        {
-            "brand_id": 14,
-            "brand_name": "Logitech"
-        },
-        {
-            "brand_id": 15,
-            "brand_name": "Microsoft "
-        },
-        {
-            "brand_id": 16,
-            "brand_name": "Samsung"
-        },
-        {
-            "brand_id": 17,
-            "brand_name": "Seagate "
-        },
-        {
-            "brand_id": 18,
-            "brand_name": "TP-link "
-        },
-        {
-            "brand_id": 19,
-            "brand_name": "WD"
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000
         }
-    ]
+      ]
+    },
+    {
+      "id": "f147",
+      "invoice_no": "INV-20250210-8559",
+      "shop_id": "9ab9",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "2",
+          "unit_price": 100,
+          "subtotal": 200,
+          "remark": "dfdf"
+        }
+      ]
+    },
+    {
+      "id": "54b8",
+      "invoice_no": "INV-20250210-2753",
+      "shop_id": "9ab9",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "hi"
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "1",
+          "unit_price": 100,
+          "subtotal": 100,
+          "remark": "3"
+        }
+      ]
+    },
+    {
+      "id": "217f",
+      "invoice_no": "INV-20250210-2753",
+      "shop_id": "9ab9",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "hi"
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "1",
+          "unit_price": 100,
+          "subtotal": 100,
+          "remark": "3"
+        }
+      ]
+    },
+    {
+      "id": "b62b",
+      "invoice_no": "INV-20250210-6458",
+      "shop_id": "f537",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "black"
+        },
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "3",
+          "unit_price": 2500,
+          "subtotal": 7500,
+          "remark": "dfdf"
+        }
+      ]
+    },
+    {
+      "id": "4848",
+      "invoice_no": "INV-20250210-4992",
+      "shop_id": "f537",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "3",
+          "unit_price": 2500,
+          "subtotal": 7500,
+          "remark": "dfd"
+        }
+      ]
+    },
+    {
+      "id": "73ee",
+      "invoice_no": "INV-20250210-8033",
+      "shop_id": "9ab9",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "abcd"
+        }
+      ]
+    },
+    {
+      "id": "d5ba",
+      "invoice_no": "INV-20250210-6911",
+      "shop_id": "f537",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "abcd"
+        }
+      ]
+    },
+    {
+      "id": "5016",
+      "invoice_no": "INV-20250210-5622",
+      "shop_id": "f537",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "abcd"
+        }
+      ]
+    },
+    {
+      "id": "c7ee",
+      "invoice_no": "INV-20250210-5451",
+      "shop_id": "ccbb",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "20",
+          "unit_price": 2500,
+          "subtotal": 50000,
+          "remark": "yamone"
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "2",
+          "unit_price": 100,
+          "subtotal": 200,
+          "remark": "yamone"
+        }
+      ]
+    },
+    {
+      "id": "07aa",
+      "invoice_no": "INV-20250210-5338",
+      "shop_id": "f537",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "2",
+          "unit_price": 2500,
+          "subtotal": 5000,
+          "remark": "black, white"
+        }
+      ]
+    },
+    {
+      "id": "a51b",
+      "invoice_no": "INV-20250210-7174",
+      "shop_id": "9ab9",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "1",
+          "unit_price": 2500,
+          "subtotal": 2500,
+          "remark": "abcd"
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "3",
+          "unit_price": 100,
+          "subtotal": 300,
+          "remark": "adfdf"
+        }
+      ]
+    }
+  ]
 }

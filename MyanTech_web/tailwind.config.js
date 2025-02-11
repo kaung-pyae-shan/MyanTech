@@ -22,7 +22,7 @@ module.exports = {
 
       },
       backgroundImage: {
-        "gradient-purple": "linear-gradient(to bottom, #AC95F8, #703FFE)", 
+        "gradient-purple": "linear-gradient(to right, #AC95F8, #703FFE)", 
         "gradient-teal": "linear-gradient(to bottom, #8CC5C3, #2E9D95)",
         "gradient-orange": "linear-gradient(to bottom, #F5C0A6, #FE9256)",     
         "gradient-green": "linear-gradient(to bottom, #B3D694, #7ABD3A)",

@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
@@ -18,10 +20,11 @@ import lombok.NoArgsConstructor;
 public class AssignedTruck {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@OneToMany
 	private List<Order> order;
-	@OneToOne
+	@OneToOne(mappedBy = "truck")
 	private Driver driver;
 	private LocalDate deliveryDate;
 }

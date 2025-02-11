@@ -3,6 +3,8 @@ package com.byteriders.myantech.model.entity;
 import java.util.List;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -16,15 +18,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItemIssue {
+public class ProductOrder {
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@OneToOne
 	@JoinColumn(name = "order_id", nullable = false)
 	private Order order;
-	@OneToMany
-	private List<Product> product;
+	@ManyToOne
+	private Product product;
 	private Status status;
 	
 	private String remark;

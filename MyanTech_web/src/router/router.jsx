@@ -1,8 +1,10 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
-import Test from "../pages/Test";
 import ProductTablePage from "../pages/ProductTablePage";
+import CreateOrder from "../pages/Order/CreateOrder";
+import DeliAssign from "../pages/delivery/DeliAssign";
+import OrderList from "../pages/Order/OrderList";
 
 
 
@@ -19,13 +21,23 @@ const Router = () => {
                 },   
                 {
 
-                    path: '/test',
+                    path: '/order-list',
 
-                    element: <Test />
+                    element: <OrderList />
+                }, 
+                {
+
+                    path: '/create-order',
+
+                    element: <CreateOrder />
                 },   
                 {
                     path: '/product',  // Route for ProductTablePage
                     element: <ProductTablePage />
+                }, 
+                {
+                    path: '/delivery',  // Route for ProductTablePage
+                    element: <DeliAssign />
                 },    
             // {
 
