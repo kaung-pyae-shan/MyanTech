@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Table, Button, Modal,Checkbox, Form, Select, DatePicker, message } from "antd";
+import { Table, Button, Modal, Checkbox, Form, Select, DatePicker, message } from "antd";
 
 const { Option } = Select;
 
 const OrderTablePage = () => {
   const [orders, setOrders] = useState([]);
+  const [drivers, setDrivers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedOrders, setSelectedOrders] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -13,6 +14,7 @@ const OrderTablePage = () => {
   useEffect(() => {
     setLoading(true);
     fetchOrders();
+    fetchDrivers();
   }, []);
 
   const fetchOrders = async () => {
@@ -27,6 +29,23 @@ const OrderTablePage = () => {
     }
   };
 
+  const fetchDrivers = async () => {
+    try {
+      const response = await fetch("http://localhost:3001/drivers");
+      const data = await response.json();
+      setDrivers(data || []);
+    } catch (error) {
+      console.error("Failed to fetch drivers:", error);
+    }
+  };
+
+  const handleDriverChange = (driverId) => {
+    const selectedDriver = drivers.find(driver => driver.driver_id === driverId);
+    if (selectedDriver) {
+      form.setFieldsValue({ vehicle_plate_no: selectedDriver.vehicle_plate_no });
+    }
+  };
+
   const handleBulkAssignClick = () => {
     if (selectedOrders.length === 0) {
       message.warning("Please select at least one order.");
@@ -37,7 +56,7 @@ const OrderTablePage = () => {
 
   const handleAssignTruck = async (values) => {
     try {
-      const assignRequests = selectedOrders.map((orderId) => {
+      const assignRequests = selectedOrders.map(async (orderId) => {
         const assignData = {
           order_id: orderId,
           driver_id: values.driver_id,
@@ -45,10 +64,16 @@ const OrderTablePage = () => {
           delivery_date: values.delivery_date.format("YYYY-MM-DD"),
         };
 
-        return fetch(`http://localhost:3001/assign_truck`, {
+        await fetch(`http://localhost:3001/assign_truck`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(assignData),
+        });
+
+        await fetch(`http://localhost:3001/orders/${orderId}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: "Assigned" }),
         });
       });
 
@@ -57,10 +82,18 @@ const OrderTablePage = () => {
       setIsModalVisible(false);
       form.resetFields();
       setSelectedOrders([]);
-      fetchOrders(); // Refresh order list
+      fetchOrders();
     } catch (error) {
       console.error("Failed to assign truck:", error);
       message.error("Failed to assign the truck.");
+    }
+  };
+
+  const handleCheckboxChange = (e, orderId) => {
+    if (e.target.checked) {
+      setSelectedOrders((prev) => [...prev, orderId]);
+    } else {
+      setSelectedOrders((prev) => prev.filter((id) => id !== orderId));
     }
   };
 
@@ -90,22 +123,22 @@ const OrderTablePage = () => {
       title: "Address",
       dataIndex: "address",
       key: "address",
+      render: (text, record) => `${text}, ${record.region}`,
     },
     {
       title: "Status",
       dataIndex: "status",
       key: "status",
-      render: (status) => status || "Pending",
+      render: (status) => (
+        <Select defaultValue={status || "Pending"} style={{ width: 120 }}>
+          <Option value="Pending">Pending</Option>
+          <Option value="Processing">Processing</Option>
+          <Option value="Shipped">Shipped</Option>
+          <Option value="Delivered">Delivered</Option>
+        </Select>
+      ),
     },
   ];
-
-  const handleCheckboxChange = (e, orderId) => {
-    if (e.target.checked) {
-      setSelectedOrders((prev) => [...prev, orderId]);
-    } else {
-      setSelectedOrders((prev) => prev.filter((id) => id !== orderId));
-    }
-  };
 
   return (
     <div style={{ padding: "20px" }}>
@@ -135,19 +168,25 @@ const OrderTablePage = () => {
             label="Driver Name"
             rules={[{ required: true, message: "Please select a driver" }]}
           >
-            <Select placeholder="Select Driver">
-              <Option value="1">John Doe</Option>
-              <Option value="2">Jane Smith</Option>
+            <Select placeholder="Select Driver" onChange={handleDriverChange}>
+              {drivers.map(driver => (
+                <Option key={driver.driver_id} value={driver.driver_id}>
+                  {driver.driver_name}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item
             name="vehicle_plate_no"
             label="Vehicle Plate No"
-            rules={[{ required: true, message: "Please select a vehicle" }]}
+            rules={[{ required: true, message: "Vehicle plate number is required" }]}
           >
-            <Select placeholder="Select Vehicle">
-              <Option value="AA-1234">AA-1234</Option>
-              <Option value="BB-5678">BB-5678</Option>
+            <Select placeholder="Select Vehicle" disabled>
+              {drivers.map(driver => (
+                <Option key={driver.vehicle_plate_no} value={driver.vehicle_plate_no}>
+                  {driver.vehicle_plate_no}
+                </Option>
+              ))}
             </Select>
           </Form.Item>
           <Form.Item
