@@ -68,7 +68,8 @@ const OrderForm = ({resetField, setResetField}) => {
         if (product) {
             form.setFieldsValue({
                 price: product.price || '',
-                stock: product.stock || ''
+                stock: product.stock || '',
+            
                 
             });
         }
@@ -90,6 +91,7 @@ const OrderForm = ({resetField, setResetField}) => {
         const shop ={
             shop_id: selectedShop?.id || 0,
             shop_name: values.shop_name,
+            contact: selectedShop?.contact,
             shop_address: selectedShop?.shop_address || '',
             township_id: selectedShop?.township_id || '',
             township_name: selectedShop?.township_name || '',
@@ -131,8 +133,9 @@ const OrderForm = ({resetField, setResetField}) => {
         
         form.setFieldsValue({
             product_name: 'Select Product',
-            qty: '',
+            qty: 0,
             price: '',
+            stock: '',
             remark: ''
         })
 
@@ -153,6 +156,7 @@ const OrderForm = ({resetField, setResetField}) => {
         if (shop) { 
             form.setFieldsValue({ 
                 shop_address: shop.shop_address || '', 
+                contact: shop.contact || '',
                 township_id: shop.township_id || '',
                 township_name: shop.township_name || '', 
                 region_id: shop.region_id || '',

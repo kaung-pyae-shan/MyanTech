@@ -5,6 +5,7 @@ import ProductTablePage from "../pages/ProductTablePage";
 import CreateOrder from "../pages/Order/CreateOrder";
 import DeliAssign from "../pages/delivery/DeliAssign";
 import OrderList from "../pages/Order/OrderList";
+import EditOrder from "../pages/Order/EditOrder";
 
 
 
@@ -30,7 +31,13 @@ const Router = () => {
                     path: '/create-order',
 
                     element: <CreateOrder />
-                },   
+                }, 
+                {
+
+                    path: '/edit-order',
+
+                    element: <EditOrder />
+                },  
                 {
                     path: '/product',  // Route for ProductTablePage
                     element: <ProductTablePage />

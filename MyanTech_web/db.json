@@ -4,6 +4,7 @@
       "shop_id": 1,
       "shop_name": "Golden Mart",
       "shop_address": "No. 123, Main Road",
+      "contact": "+951-376448",
       "township_name": "Sanchaung",
       "region_id": 1,
       "township_id": 1,
@@ -15,6 +16,7 @@
       "shop_id": 2,
       "shop_name": "Sunrise Supermarket",
       "shop_address": "45, Insein Road",
+      "contact": "+951-376448",
       "township_name": "Hlaing",
       "region_id": 1,
       "township_id": 1,
@@ -26,6 +28,7 @@
       "shop_id": 3,
       "shop_name": "City Corner Store",
       "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
       "township_name": "Kamayut",
       "region_id": 1,
       "township_id": 1,
@@ -37,6 +40,7 @@
       "shop_id": 4,
       "shop_name": "Evergreen Mini Mart",
       "shop_address": "56, University Avenue",
+      "contact": "+951-376448",
       "township_name": "Bahan",
       "region_id": 1,
       "township_id": 1,
@@ -48,6 +52,7 @@
       "shop_id": 5,
       "shop_name": "Metro Convenience Store",
       "shop_address": "101, Strand Road",
+      "contact": "+951-376448",
       "township_name": "Pazundaung",
       "region_id": 1,
       "township_id": 1,
@@ -334,146 +339,47 @@
   ],
   "orders": [
     {
-      "id": "152b",
-      "invoice_no": "INV-20250211-8186",
+      "id": "11d7",
+      "invoice_no": "INV-20250211-8022",
       "shop_id": "9ab9",
       "shop_name": "Sunrise Supermarket",
       "shop_address": "45, Insein Road",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "remark": "abc"
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "2",
-          "unit_price": 100,
-          "subtotal": 200,
-          "remark": ""
-        }
-      ]
-    },
-    {
-      "id": "47b7",
-      "invoice_no": "INV-20250211-7394",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abc"
-        }
-      ]
-    },
-    {
-      "id": "e9ef",
-      "invoice_no": "INV-20250211-1202",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "township_id": "",
-      "region_id": "Yangon",
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "1"
-        }
-      ]
-    },
-    {
-      "id": "f50b",
-      "invoice_no": "INV-20250211-1346",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "township_id": "",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abc"
-        }
-      ]
-    },
-    {
-      "id": "b17c",
-      "invoice_no": "INV-20250211-2595",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": "",
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "remark": "abc"
-        }
-      ]
-    },
-    {
-      "id": "688b",
-      "invoice_no": "INV-20250211-3904",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": "",
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "1",
-          "unit_price": 100,
-          "subtotal": 100,
-          "remark": "abc"
-        }
-      ]
-    },
-    {
-      "id": "fc9f",
-      "invoice_no": "INV-20250211-1123",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
       "township_id": 1,
-      "township_name": "Kamayut",
+      "township_name": "Hlaing",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "pending",
+      "order_status": "PENDING",
+      "products": [
+        {
+          "product_id": "c4e4",
+          "product_name": "2",
+          "quantity": "1",
+          "unit_price": 2500,
+          "subtotal": 2500
+        },
+        {
+          "product_id": "4e92",
+          "product_name": "A",
+          "quantity": "3",
+          "unit_price": 100,
+          "subtotal": 300
+        }
+      ],
+      "order_id": "11d7"
+    },
+    {
+      "id": "0a5c",
+      "invoice_no": "INV-20250211-7068",
+      "shop_id": "9ab9",
+      "shop_name": "Sunrise Supermarket",
+      "shop_address": "45, Insein Road",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Hlaing",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "DELIVERED",
       "products": [
         {
           "product_id": "c4e4",
@@ -482,16 +388,31 @@
           "unit_price": 2500,
           "subtotal": 5000,
           "remark": "abc"
-        },
+        }
+      ]
+    },
+    {
+      "id": "2601",
+      "invoice_no": "INV-20250211-8315",
+      "shop_id": "040e",
+      "shop_name": "Metro Convenience Store",
+      "shop_address": "101, Strand Road",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Pazundaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "DELIVERED",
+      "products": [
         {
           "product_id": "c4e4",
           "product_name": "2",
           "quantity": "3",
           "unit_price": 2500,
-          "subtotal": 7500,
-          "remark": "abc"
+          "subtotal": 7500
         }
-      ]
+      ],
+      "order_id": "2601"
     }
   ]
 }
