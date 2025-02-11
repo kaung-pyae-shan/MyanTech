@@ -6,11 +6,12 @@ import deliReducer from './deliSLice'
 
 
 
+
 export const store = configureStore({
   reducer: {
     orders: orderReducer,
    counter : counterReducer,
    products: productReducer,
-   delis: deliReducer,
+
   },
 })
