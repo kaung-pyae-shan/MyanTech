@@ -24,6 +24,7 @@ public class Shop {
 	private int id;
 	@Column(nullable = false, unique = true)
 	private String name;
+	private String contact;
 	@Column(nullable = false)
 	private String address;
 	@ManyToOne

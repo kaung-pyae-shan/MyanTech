@@ -24,7 +24,7 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	private String model;
+	private String name;
 	@ManyToOne(optional = false)
 	private Category category;
 	@ManyToOne(optional = false)
@@ -33,6 +33,7 @@ public class Product {
 	private int cashback;
 	private String serialNumber;
 	private int stock;
+	@Column(nullable = true)
 	private int stockFaulty;
 	
 	@ManyToOne

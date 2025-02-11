@@ -1,5 +1,7 @@
 package com.byteriders.myantech.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
-import com.byteriders.myantech.model.dto.output.ShopProductDTO;
+import com.byteriders.myantech.model.dto.output.ProductInfo;
+import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.service.OrderService;
 
 @RestController
@@ -19,10 +22,15 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService service;
-
-	@GetMapping("/form")
-	public ResponseEntity<ShopProductDTO> getFormData() {
-		return ResponseEntity.ok(service.getFormData());
+	
+	@GetMapping("/form/shops")
+	public List<ShopInfo> getShopFormData() {
+		return service.getShopFormData();
+	}
+	
+	@GetMapping("/form/products")
+	public List<ProductInfo> getProductFormData() {
+		return service.getProductFormData();
 	}
 	
 	@PostMapping("/create")

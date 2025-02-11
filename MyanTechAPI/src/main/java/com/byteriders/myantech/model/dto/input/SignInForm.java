@@ -1,4 +1,4 @@
-package com.byteriders.myantech.input;
+package com.byteriders.myantech.model.dto.input;
 
 public record SignInForm(
 		String username,
