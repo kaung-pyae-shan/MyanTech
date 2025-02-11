@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
-import com.byteriders.myantech.model.dto.output.CreateOrderForm;
+import com.byteriders.myantech.model.dto.output.ShopProductDTO;
 import com.byteriders.myantech.model.service.OrderService;
 
 @RestController
@@ -21,8 +21,8 @@ public class OrderController {
 	private OrderService service;
 
 	@GetMapping("/form")
-	public CreateOrderForm getFormData() {
-		return null;
+	public ResponseEntity<ShopProductDTO> getFormData() {
+		return ResponseEntity.ok(service.getFormData());
 	}
 	
 	@PostMapping("/create")
