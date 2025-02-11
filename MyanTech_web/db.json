@@ -6,6 +6,7 @@
       "shop_address": "No. 123, Main Road",
       "township_name": "Sanchaung",
       "region_id": 1,
+      "township_id": 1,
       "region_name": "Yangon",
       "available_status": true,
       "id": "9b32"
@@ -16,6 +17,7 @@
       "shop_address": "45, Insein Road",
       "township_name": "Hlaing",
       "region_id": 1,
+      "township_id": 1,
       "region_name": "Yangon",
       "available_status": false,
       "id": "9ab9"
@@ -26,6 +28,7 @@
       "shop_address": "78, Baho Street",
       "township_name": "Kamayut",
       "region_id": 1,
+      "township_id": 1,
       "region_name": "Yangon",
       "available_status": true,
       "id": "f537"
@@ -36,6 +39,7 @@
       "shop_address": "56, University Avenue",
       "township_name": "Bahan",
       "region_id": 1,
+      "township_id": 1,
       "region_name": "Yangon",
       "available_status": true,
       "id": "ccbb"
@@ -46,6 +50,7 @@
       "shop_address": "101, Strand Road",
       "township_name": "Pazundaung",
       "region_id": 1,
+      "township_id": 1,
       "region_name": "Yangon",
       "available_status": false,
       "id": "040e"
@@ -452,257 +457,7 @@
       "vehicle_plate_no": "MDY-4B/7890",
       "delivery_date": "2025-02-18"
     },
-    {
-      "id": "5e90",
-      "order_id": "0272",
-      "driver_id": 2,
-      "vehicle_plate_no": "MDY-4B/7890",
-      "delivery_date": "2025-02-18"
-=======
-      "id": "372e",
-      "shop_id": "f537",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "2",
-          "unit_price": 100,
-          "subtotal": 200
-        }
-      ]
-    },
-    {
-      "id": "0865",
-      "invoice_no": "INV-20250210-7002",
-      "shop_id": "9ab9",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000
-        }
-      ]
-    },
-    {
-      "id": "f147",
-      "invoice_no": "INV-20250210-8559",
-      "shop_id": "9ab9",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "2",
-          "unit_price": 100,
-          "subtotal": 200,
-          "remark": "dfdf"
-        }
-      ]
-    },
-    {
-      "id": "54b8",
-      "invoice_no": "INV-20250210-2753",
-      "shop_id": "9ab9",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "hi"
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "1",
-          "unit_price": 100,
-          "subtotal": 100,
-          "remark": "3"
-        }
-      ]
-    },
-    {
-      "id": "217f",
-      "invoice_no": "INV-20250210-2753",
-      "shop_id": "9ab9",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "hi"
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "1",
-          "unit_price": 100,
-          "subtotal": 100,
-          "remark": "3"
-        }
-      ]
-    },
-    {
-      "id": "b62b",
-      "invoice_no": "INV-20250210-6458",
-      "shop_id": "f537",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "black"
-        },
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "3",
-          "unit_price": 2500,
-          "subtotal": 7500,
-          "remark": "dfdf"
-        }
-      ]
-    },
-    {
-      "id": "4848",
-      "invoice_no": "INV-20250210-4992",
-      "shop_id": "f537",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "3",
-          "unit_price": 2500,
-          "subtotal": 7500,
-          "remark": "dfd"
-        }
-      ]
-    },
-    {
-      "id": "73ee",
-      "invoice_no": "INV-20250210-8033",
-      "shop_id": "9ab9",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abcd"
-        }
-      ]
-    },
-    {
-      "id": "d5ba",
-      "invoice_no": "INV-20250210-6911",
-      "shop_id": "f537",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abcd"
-        }
-      ]
-    },
-    {
-      "id": "5016",
-      "invoice_no": "INV-20250210-5622",
-      "shop_id": "f537",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abcd"
-        }
-      ]
-    },
-    {
-      "id": "c7ee",
-      "invoice_no": "INV-20250210-5451",
-      "shop_id": "ccbb",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "20",
-          "unit_price": 2500,
-          "subtotal": 50000,
-          "remark": "yamone"
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "2",
-          "unit_price": 100,
-          "subtotal": 200,
-          "remark": "yamone"
-        }
-      ]
-    },
-    {
-      "id": "07aa",
-      "invoice_no": "INV-20250210-5338",
-      "shop_id": "f537",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "black, white"
-        }
-      ]
-    },
-    {
-      "id": "a51b",
-      "invoice_no": "INV-20250210-7174",
-      "shop_id": "9ab9",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "remark": "abcd"
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "3",
-          "unit_price": 100,
-          "subtotal": 300,
-          "remark": "adfdf"
-        }
-      ]
+   
     }
   ]
 }
