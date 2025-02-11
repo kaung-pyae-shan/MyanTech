@@ -1,11 +1,12 @@
-import { Button, Form, Input, Select } from 'antd';
+import { Button, Form, Input, message, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrder, addProductOrder, addShop } from '../redux/services/OrderSlice'; // Import Redux action
+import { addOrder, addProductOrder, addShop, resetOrder } from '../redux/services/OrderSlice'; // Import Redux action
 import axios from '../api/axios';
 import { addProduct } from '../redux/productSlice';
+import { Color } from 'antd/es/color-picker';
 
-const OrderForm = () => {
+const OrderForm = ({resetField, setResetField}) => {
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.orders); // Get orders from Redux store
@@ -15,6 +16,8 @@ const OrderForm = () => {
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedShop, setSelectedShop] = useState(null); 
+
+    const [inputMessage, setInputMessage] = useState(null)
 
     console.log(orders);
     console.log(order);
@@ -43,13 +46,29 @@ const OrderForm = () => {
         fetchProducts();
     }, []);
 
-    const handleProductChange = (productId) => {
-        const product = products.find(p => p.id === productId);
+    if (resetField) {
+        form.resetFields();
+        dispatch(resetOrder());
+        setResetField(false);   
+      
+
+        
+        
+    }
+
+    const handleProductChange = (productName) => {
+        
+        const product = products.find(p => p.name === productName);
+
+        
+
+        console.log(products)
         setSelectedProduct(product || null);
 
         if (product) {
             form.setFieldsValue({
                 price: product.price || '',
+                stock: product.stock || ''
             });
         }
     };
@@ -107,7 +126,15 @@ const OrderForm = () => {
         dispatch(addShop(shop))
 
         
+        form.setFieldsValue({
+            product_name: 'Select Product',
+            qty: '',
+            price: '',
+            remark: ''
+        })
+
     
+        setSelectedProduct(null);
         // form.resetFields();
         // setSelectedProduct(null);
         // setSelectedShop(null);
@@ -126,6 +153,17 @@ const OrderForm = () => {
         } 
     };
 
+    const checkStock = (e) =>{
+
+      console.log(selectedProduct);
+      
+        const product = products.find(product => product.name === selectedProduct.name); 
+      
+        if (product) {
+            e.target.value > product.stock ? setInputMessage('Out of Stock !') : setInputMessage(null)
+        }
+
+    }
    
 
     return (
@@ -168,23 +206,37 @@ const OrderForm = () => {
                 </div> 
 
                 {/* Product & Quantity Selection */}
-                <div className="flex gap-4">
-                    <Form.Item label="Choose Product" name="product_name" rules={[{ required: true }]}>
-                        <Select className="w-full" onChange={handleProductChange} options={products.map(product => ({
+                <div className="flex items-center gap-3">
+                    <Form.Item label="Choose Product" style={{width: '100%'}} name="product_name" rules={[{ required: true }]}>
+                        <Select
+                        
+                         onChange={handleProductChange} options={products.map(product => ({
                             value: product.name,
                             label: product.name
                         }))} />
                     </Form.Item>
 
-                    <Form.Item label="Qty" name="qty" >
-                        <Input type='number' placeholder='Qty' />
+                    <Form.Item label="Qty"
+                    onChange={(e) => {
+                        form.setFieldsValue({ qty: e.target.value }); // Ensure Form updates qty
+                        checkStock(e);
+                    }} 
+                     name="qty" className='relative' style={{width: '100%'}}>
+                        <Input  type='number' style={{width: '100%'}} onChange={checkStock} placeholder='Qty' rules={[{ required: true   }]} />
+                       <p className='absolute text-red-600'>{inputMessage}</p>   
                     </Form.Item>
                 </div>
 
-                {/* Price Display */}
-                <Form.Item label="Price" name="price">
-                    <Input />
-                </Form.Item>
+               <div className="flex gap-3">
+                         {/* Price Display */}
+                    <Form.Item label="Price" name="price">
+                        <Input disabled color='black '/>
+                    </Form.Item>
+
+                    <Form.Item label="Stock" name="stock">
+                        <Input disabled />
+                    </Form.Item>
+               </div>
 
                 {/* Remark Input */}
                 <Form.Item label="Remark" name="remark">

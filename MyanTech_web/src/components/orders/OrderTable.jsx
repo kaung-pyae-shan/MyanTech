@@ -1,11 +1,16 @@
 import { Button, Table } from 'antd';
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../api/axios';
+import { delProduct } from '../../redux/services/OrderSlice';
+import { CloseOutlined } from '@ant-design/icons';
+import { AiOutlineClose } from "react-icons/ai";
+
 
 const OrderTable = () => {
     const order = useSelector(state => state.orders.order);
 
+    const dispatch = useDispatch()
    useEffect(() =>{
     console.log(order);
     
@@ -31,7 +36,24 @@ const OrderTable = () => {
         { title: "Unit Price", dataIndex: "unit_price", key: "unit_price" },
         { title: "Subtotal", dataIndex: "subtotal", key: "subtotal" },
         { title: "Remark", dataIndex: "remark", key: "remark" },
+        {
+            title: 'operation',
+            dataIndex: 'operation',
+            render: (_, record) =>
+                order.products.length >= 1 ? (
+                <Button className='border-0 '  onClick={() => productDel(record.id)}>
+                    <AiOutlineClose className='font-bold text-red-600' />
+                </Button>
+                ) : null,
+            }, 
+         
+
+        
     ];
+
+    const productDel = (id)=>{
+        dispatch(delProduct(id))
+    }
 
     return (
         <div style={{ padding: "20px" }}>

@@ -3,7 +3,8 @@ import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
 import ProductTablePage from "../pages/ProductTablePage";
 import CreateOrder from "../pages/Order/CreateOrder";
-import OrderPage from "../pages/OrderPage";
+import DeliAssign from "../pages/delivery/DeliAssign";
+import OrderList from "../pages/Order/OrderList";
 
 
 
@@ -18,6 +19,12 @@ const Router = () => {
                     path: '/',
                     element: <Home />
                 },   
+                {
+
+                    path: '/order-list',
+
+                    element: <OrderList />
+                }, 
                 {
 
                     path: '/create-order',

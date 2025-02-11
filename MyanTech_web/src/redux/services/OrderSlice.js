@@ -26,9 +26,16 @@ export const orderSlice = createSlice({
         addProductOrder: (state, action) => {
             console.log(action.payload);
             state.order.products.push(action.payload);
+        },
+        resetOrder : (state, action) =>{
+            state.order = initialState.order;
+        },
+        delProduct: (state, action) => {
+            state.order.products = state.order.products.filter(product => product.id !== action.payload);
         }
+
     }
 });
 
-export const { addOrder, addShop, addProductOrder } = orderSlice.actions;
+export const { addOrder, addShop, addProductOrder, resetOrder, delProduct } = orderSlice.actions;
 export default orderSlice.reducer;
