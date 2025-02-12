@@ -85,7 +85,9 @@ const OrderTable = () => {
 
     return (
         <div style={{ padding: "20px" }}>
-            <Table columns={columns} dataSource={order.products} rowKey="id" locale={{ emptyText: "No orders yet" }} />
+            <Table
+             className="custom-table"
+             columns={columns} dataSource={order.products} rowKey="id" locale={{ emptyText: "No orders yet" }} />
              {/* <Button
             onClick={createProduct}
              className='px-4 py-2 mt-3 bg-button'>Create Order</Button>*/}

@@ -58,11 +58,11 @@ const OrderTable = () => {
     try {
       setLoading(true);
   
-      // Update order status to 'delivering'
+      // Update order status to 'DELIVERING'
       await Promise.all(
         selectedOrders.map(async (orderId) => {
           await axios.patch(`http://localhost:3001/orders/${orderId}`, {
-            order_status: "delivering"
+            order_status: "DELIVERING"
           });
         })
       );
@@ -84,7 +84,7 @@ const OrderTable = () => {
       setOrders((prevOrders) =>
         prevOrders.map((order) =>
           selectedOrders.includes(order.id)
-            ? { ...order, order_status: "delivering" }
+            ? { ...order, order_status: "DELIVERING" }
             : order
         )
       );
@@ -155,7 +155,7 @@ const OrderTable = () => {
                   {(order.products || []).reduce((sum, product) => sum + Number(product.quantity), 0)}
                 </td>
                 <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                  {order.order_status || "Pending"}
+                  {order.order_status || "PENDING"}
                 </td>
                 <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                   <AiOutlineArrowRight className="cursor-pointer" />
@@ -176,11 +176,11 @@ const OrderTable = () => {
       </div>
 
       <Tabs defaultActiveKey="1">
-        <TabPane tab="Pending Orders" key="1">
-          {renderOrdersTable("pending")}
+        <TabPane tab="PENDING Orders" key="1">
+          {renderOrdersTable("PENDING")}
         </TabPane>
-        <TabPane tab="Delivering Orders" key="2">
-          {renderOrdersTable("delivering")}
+        <TabPane tab="DELIVERING Orders" key="2">
+          {renderOrdersTable("DELIVERING")}
         </TabPane>
       </Tabs>
 

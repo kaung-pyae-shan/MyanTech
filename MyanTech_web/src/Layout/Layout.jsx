@@ -63,7 +63,7 @@ const AppLayout = () => {
               icon: <FormOutlined style={{ color: 'white' }} />,
               defaultSelectedKeys: ['1'],
 
-              label: <Link to="/" style={{ color: 'white' }}>Dashboard </Link>,
+              label: <Link to="/sales/dashboard" style={{ color: 'white' }}>Dashboard </Link>,
 
               style: {
                 border: '1px solid gray', marginBottom: '20px ',

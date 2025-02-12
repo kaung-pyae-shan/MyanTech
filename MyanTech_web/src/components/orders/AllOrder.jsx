@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
+import { Table, Button, Drawer, Pagination } from 'antd';
 import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
-import { Button, Drawer, Pagination } from "antd";
-import OrderDetail from '../../pages/Order/OrderDetail';
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
+import SearchForm from '../SearchForm';
+import OrderDetail from '../../pages/Order/OrderDetail';
 
 const AllOrder = () => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
-    const [openOrder, setOpenOrder] = useState(null); 
+    const [openOrder, setOpenOrder] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize] = useState(10); // Adjust page size here
+    const [pageSize] = useState(10);
     const navigate = useNavigate();
-
-    const orderStatus = [
-        { value: "PENDING", label: "PENDING", color: "bg-yellow-100 border-yellow-500 text-yellow-700" },
-        { value: "DELIVERED", label: "DELIVERED", color: "bg-blue-100 border-blue-500 text-blue-700" },
-        { value: "CANCELED", label: "CANCELED", color: "bg-green-100 border-green-500 text-green-700" },
-    ];
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`/orders?page=${currentPage}&limit=${pageSize}`);
+                const response = await axios.get(`/orders`);
                 setOrders(response.data);
             } catch (error) {
                 console.error("Error fetching orders:", error);
@@ -43,36 +38,15 @@ const AllOrder = () => {
         fetchOrders();
     }, [currentPage, pageSize]);
 
-    const handlePageChange = (page) => {
-        setCurrentPage(page);
-    };
-
-    // const handleStatusChange = async (order, newStatus) => {
-    //     const updatedOrders = orders.map((o) =>
-    //         o.id === order.id ? { ...o, status: newStatus } : o
-    //     );
-    //     setOrders(updatedOrders);
-    //     await updateOrderStatus(order.id, newStatus);
-    // };
-
-    // const updateOrderStatus = async (orderId, newStatus) => {
-    //     try {
-    //         const response = await axios.patch(`/orders/${orderId}`, { order_status: newStatus });
-    //         console.log("Order status updated", response.data);
-    //     } catch (error) {
-    //         console.error("Failed to update order status", error);
-    //     }
-    // };
-
     const exportToExcel = () => {
-        const dataForExcel = orders.map((order) => {
+        const dataForExcel = orders.map(order => {
             const shop = shops.find(s => s.id === order.shop_id);
             return {
                 'Invoice No': order.invoice_no,
                 'Shop Name': shop ? shop.shop_name : 'Unknown',
                 'Total Quantity': order.products.reduce((sum, product) => sum + product.quantity, 0),
                 'Total Price': order.products.reduce((sum, product) => sum + product.subtotal, 0),
-                'Order Status': orderStatus.find(status => status.value === order.order_status)?.label || order.order_status,
+                'Order Status': order.order_status,
             };
         });
 
@@ -82,92 +56,71 @@ const AllOrder = () => {
         XLSX.writeFile(workbook, 'orders.xlsx');
     };
 
-    return (
-        <>
-            <div className='flex items-center justify-between'>
-                <div className="">
-                    <Button className='border border-purple-900 bg-none' type="light" onClick={exportToExcel}>
-                        Export to Excel <AiOutlineArrowUp className=' text-gradient' />
-                    </Button>
-                </div>
-            </div>
-            <div className="p-1.5 min-w-full inline-block align-middle shadow-md">
-                <div className="overflow-hidden">
-                    <table className="min-w-full divide-y divide-gray-200">
-                        <thead style={{ background: "linear-gradient(to right, #6b39fc, #52aff0)" }}>
-                            <tr>
-                                <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Invoice No</th>
-                                <th className="px-6 py-3 text-xs font-medium text-white uppercase text-end">Shop Name</th>
-                                <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Total Quantity</th>
-                                <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Total Price</th>
-                                <th className="px-6 py-3 text-xs font-medium text-white uppercase text-end">Order Status</th>
-                                <th className="px-6 py-3 text-xs font-medium text-white uppercase text-end"> Details</th>
-                            </tr>
-                        </thead>
-                        <tbody className="divide-y divide-gray-200">
-                            {orders.map((order) => {
-                                const shop = shops.find((s) => s.id === order.shop_id);
-                                return (
-                                    <tr key={order.id}>
-                                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">{order.invoice_no}</td>
-                                        <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
-                                            {shop?.shop_name || "Unknown"}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                            {order?.products?.reduce((sum, product) => sum + parseInt(product.quantity, 10), 0)}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
-                                            {order?.products?.reduce((sum, product) => sum + product.subtotal, 0)}
-                                        </td>
-                                        <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <select
-                                                value={order.order_status}
-                                                // onChange={(e) => handleStatusChange(order, e.target.value)}
-                                                className={`block w-full px-3 py-1 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 border`}
-                                            >
-                                                {orderStatus.map((status) => (
-                                                    <option key={status.value} value={status.value}>
-                                                        {status.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </td>
-                                        <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
-                                            <AiOutlineArrowRight className="cursor-pointer " onClick={() => setOpenOrder(order.id)} />
-                                            <Drawer
-                                                style={{ 'padding': '0' }}
-                                                title={order.invoice_no}
-                                                width={600}
-                                                onClose={() => setOpenOrder(null)}
-                                                open={openOrder === order.id}
-                                            >
-                                                <div className="absolute top-2 right-3">
-                                                    <button
-                                                        onClick={() => navigate(`/edit-order`, { state: { orderData: order } })}
-                                                        className='inline-block px-4 py-2 border-2 border-yellow-600 rounded-md text-blue'> Edit Order</button>
-                                                </div>
+    const columns = [
+        { title: 'Invoice No', dataIndex: 'invoice_no', key: 'invoice_no' },
+        { 
+            title: 'Shop Name', 
+            dataIndex: 'shop_id', 
+            key: 'shop_id',
+            render: (shop_id) => shops.find(shop => shop.id === shop_id)?.shop_name || 'Unknown'
+        },
+        { 
+            title: 'Total Quantity', 
+            key: 'total_quantity',
+            render: (_, order) => order.products.reduce((sum, product) => sum + product.quantity, 0)
+        },
+        { 
+            title: 'Total Price', 
+            key: 'total_price',
+            render: (_, order) => order.products.reduce((sum, product) => sum + product.subtotal, 0)
+        },
+        { title: 'Order Status', dataIndex: 'order_status', key: 'order_status' },
+        {
+            title: 'Details',
+            key: 'details',
+            render: (_, order) => (
+                <AiOutlineArrowRight className="cursor-pointer" onClick={() => setOpenOrder(order.id)} />
+            )
+        }
+    ];
+    console.log(openOrder);
+    
 
-                                                <OrderDetail order={order} />
-                                            </Drawer>
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                </div>
-                {/* Pagination */}
-                <div className="mt-4">
-                    <Pagination
-                        current={currentPage}
-                        pageSize={pageSize}
-                        total={1} // Update the total based on your backend
-                        onChange={handlePageChange}
-                        showSizeChanger={false} // Hide the page size changer if you want to restrict the page size
-                    />
-                </div>
+    return (
+        <div>
+            <div className='flex items-center justify-between mb-4'>
+                <SearchForm onSearch={() => {}} />
+                <Button className='border border-purple-900' onClick={exportToExcel}>
+                    Export to Excel <AiOutlineArrowUp className='ml-2' />
+                </Button>
             </div>
-        </>
+            <Table 
+                columns={columns} 
+                dataSource={orders} 
+                rowKey="id"
+                pagination={{
+                    current: currentPage,
+                    pageSize: pageSize,
+                    total: orders.length, 
+                    onChange: setCurrentPage,
+                }}
+            />
+            <Drawer
+                className='relative '
+                title="Order Details"
+                width={600}
+                onClose={() => setOpenOrder(null)}
+                open={openOrder !== null}
+            >
+                {openOrder && <OrderDetail order={orders.find(order => order.id === openOrder)} />}
+               { orders.find(order => order.id === openOrder)?.order_status == 'pending'&& <Button 
+                    onClick={() => navigate(`/edit-order`, { state: { orderData: orders.find(order => order.id === openOrder) } })} 
+                    className='absolute mt-3 border-2 border-yellow-600 rounded-md right-4 text-blue top-1'
+                >
+                    Edit Order
+                </Button>}
+            </Drawer>
+        </div>
     );
 };
 
