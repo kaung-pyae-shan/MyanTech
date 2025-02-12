@@ -1,29 +1,70 @@
 import { Button, Form, Input, message, Select } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addOrder, addProductOrder, addShop, resetOrder } from '../redux/services/OrderSlice'; // Import Redux action
-import axios from '../api/axios';
-import { addProduct } from '../redux/productSlice';
-import { Color } from 'antd/es/color-picker';
+import { addProductOrder, addProductToEdit, addShop, oldOrder, resetOrder, updateOrder } from '../../redux/services/OrderSlice';
+import axios from '../../api/axios';
+import { useLocation, useNavigate } from 'react-router-dom';
 
-const OrderForm = ({ resetField, setResetField }) => {
+const EditOrderForm = ({ resetField, setResetField }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    const orderToEdit = location.state?.orderData;
     const [form] = Form.useForm();
     const dispatch = useDispatch();
-    const orders = useSelector(state => state.orders.orders); // Get orders from Redux store
-    const order = useSelector(state => state.orders.order); // Get orders from Redux store
+    const [inputMessage, setInputMessage] = useState(null)
+    const order = useSelector(state => state.orders.editOrders);
+
 
     const [shops, setShops] = useState([]);
     const [products, setProducts] = useState([]);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedShop, setSelectedShop] = useState(null);
 
-    const [inputMessage, setInputMessage] = useState(null)
-
-    console.log(orders);
-    console.log(order);
-
-
     useEffect(() => {
+        if (orderToEdit) {
+
+            console.log(orderToEdit);
+
+
+            form.setFieldsValue({
+                order_id: orderToEdit.id,
+                invoice_no: orderToEdit.invoice_no,
+                shop_id: orderToEdit.shop_id,
+                shop_name: orderToEdit.shop_name,
+                shop_address: orderToEdit.shop_address,
+                contact: orderToEdit.contact,
+                township_id: orderToEdit.township_id,
+                township_name: orderToEdit.township_name,
+                region_name: orderToEdit.region_name,
+                order_status: orderToEdit.order_status,
+
+
+            });
+
+            const shop = {
+                order_id: orderToEdit.id,
+                invoice_no: orderToEdit.invoice_no,
+                shop_id: orderToEdit.shop_id,
+                shop_name: orderToEdit.shop_name,
+                shop_address: orderToEdit.shop_address,
+                contact: orderToEdit.contact,
+                township_id: orderToEdit.township_id,
+                township_name: orderToEdit.township_name,
+                region_name: orderToEdit.region_name,
+                order_status: orderToEdit.order_status,
+
+            }
+
+            dispatch(oldOrder(shop))
+
+            if (orderToEdit.products?.length > 0) {
+                dispatch(updateOrder(orderToEdit.products));
+            }
+
+            // setSelectedProduct(orderToEdit);
+            setSelectedShop(orderToEdit);
+        }
+
         const fetchShops = async () => {
             try {
                 const response = await axios.get('/shops');
@@ -44,7 +85,8 @@ const OrderForm = ({ resetField, setResetField }) => {
 
         fetchShops();
         fetchProducts();
-    }, []);
+    }, [orderToEdit]);
+
 
     if (resetField) {
         form.resetFields();
@@ -52,6 +94,46 @@ const OrderForm = ({ resetField, setResetField }) => {
         setResetField(false);
 
     }
+
+    const handleSubmit = (values) => {
+
+        console.log(values);
+        const selectedProductData = products.find(p => p.name === values.product_name);
+
+
+        const newproducts = {
+            product_id: selectedProduct.id,
+            product_name: selectedProductData.name,
+            quantity: values.qty,
+            stock: values.stock,
+            unit_price: selectedProductData.price,
+            subtotal: values.qty * selectedProductData.price,
+            remark: values.remark
+        }
+
+        if (!orderToEdit) return;
+
+        // const updatedOrder = {
+        //     ...orderToEdit,
+        //     shop_name: values.shop_name,
+        //     shop_address: values.shop_address,
+        //     township_name: values.township_name,
+        //     region_name: values.region_name,
+        //     product_name: values.product_name,
+        //     quantity: values.qty,
+        //     unit_price: values.price,
+        //     stock: values.stock,
+        //     remark: values.remark,
+        // };
+
+        //    console.log(updateOrder);
+
+        form.resetFields(['qty', 'product_name', 'price', 'stock', 'remark']);
+
+        dispatch(addProductToEdit({ newproducts }));
+        // message.success('Order updated successfully!');
+        // navigate('/orders'); // Redirect to orders list
+    };
 
     const handleProductChange = (productName) => {
 
@@ -64,7 +146,6 @@ const OrderForm = ({ resetField, setResetField }) => {
 
         if (product) {
             form.setFieldsValue({
-                quantity: product.quantity || '',
                 price: product.price || '',
                 stock: product.stock || '',
 
@@ -72,79 +153,6 @@ const OrderForm = ({ resetField, setResetField }) => {
             });
         }
     };
-
-    const handleSubmit = (values) => {
-
-        console.log(values);
-
-        const selectedProductData = products.find(p => p.name === values.product_name);
-
-
-
-        if (!selectedProductData) {
-            console.error("No product selected");
-            return;
-        }
-
-        const shop = {
-            shop_id: selectedShop?.id || 0,
-            shop_name: values.shop_name,
-            contact: selectedShop?.contact,
-            shop_address: selectedShop?.shop_address || '',
-            township_id: selectedShop?.township_id || '',
-            township_name: selectedShop?.township_name || '',
-            region_id: selectedShop?.region_id || '',
-            region_name: selectedShop?.region_name || '',
-        }
-
-        const newproducts = {
-            product_id: selectedProductData.id,
-            product_name: selectedProductData.name,
-            quantity: values.qty,
-            stock: values.stock,
-            unit_price: selectedProductData.price,
-            subtotal: values.qty * selectedProductData.price,
-            remark: values.remark,
-            status: '',
-            wrong_qty: 0,
-            wrong_remark: '',
-            falty_qty: 0,
-            falty_remark: ''
-        }
-
-        console.log(newproducts);
-
-        // const newOrder = {
-        //     id: Date.now(), // Unique ID
-
-        //     products: [{
-        //         product_id: selectedProductData.id,
-        //         product_name: selectedProductData.name,
-        //         quantity: values.qty,
-        //         unit_price: selectedProductData.price,
-        //         subtotal: values.qty * selectedProductData.price
-        //     }],
-        //     total_price: values.qty * selectedProductData.price,
-        //     remarks: values.remark || ''
-        // };
-
-        console.log();
- 
-
-        dispatch(addProductOrder(newproducts));
-        dispatch(addShop(shop))
-
-
-        form.resetFields(['qty', 'product_name', 'price', 'stock', 'remark']);
-
-
-
-        setSelectedProduct(null);
-        // form.resetFields();
-        // setSelectedProduct(null);
-        // setSelectedShop(null);
-    };
-
     const handleShopChange = (shopName) => {
         const shop = shops.find(shop => shop.shop_name === shopName);
 
@@ -175,8 +183,6 @@ const OrderForm = ({ resetField, setResetField }) => {
         }
 
     }
-
-
     return (
         <div className='w-[400px] border border-gray-300 rounded-lg bg-white shadow-md'>
             <div className="px-5 py-5 bg-button">
@@ -271,4 +277,4 @@ const OrderForm = ({ resetField, setResetField }) => {
     );
 };
 
-export default OrderForm;
+export default EditOrderForm;
