@@ -333,165 +333,131 @@
     }
   ],
   "orders": [
+  
+  ],
+  "drivers": [
     {
-      "id": "152b",
-      "invoice_no": "INV-20250211-8186",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "remark": "abc"
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "2",
-          "unit_price": 100,
-          "subtotal": 200,
-          "remark": ""
-        }
-      ]
+      "driver_id": 1,
+      "vehicle_plate_no": "YGN-1A/3456",
+      "driver_name": "Ko Tun Lin",
+      "contact": "09-xxxxxxxxxx",
+      "id": "4fe3"
     },
     {
-      "id": "47b7",
-      "invoice_no": "INV-20250211-7394",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abc"
-        }
-      ]
+      "driver_id": 2,
+      "vehicle_plate_no": "MDY-4B/7890",
+      "driver_name": "Ko Min Thant",
+      "contact": "09-xxxxxxxxxx",
+      "id": "3663"
     },
     {
-      "id": "e9ef",
-      "invoice_no": "INV-20250211-1202",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "township_id": "",
-      "region_id": "Yangon",
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "1"
-        }
-      ]
+      "driver_id": 3,
+      "vehicle_plate_no": "BGO-6D/4852",
+      "driver_name": "Ko Hla Oo",
+      "contact": "09-xxxxxxxxxx",
+      "id": "fa77"
     },
     {
-      "id": "f50b",
-      "invoice_no": "INV-20250211-1346",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "township_id": "",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abc"
-        }
-      ]
+      "driver_id": 4,
+      "vehicle_plate_no": "NPT-2C/1789",
+      "driver_name": "Ko Soe Aung",
+      "contact": "09-xxxxxxxxxx",
+      "id": "1a08"
+    }
+  ],
+  "assign_truck": [
+    {
+      "id": "5b2f",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "BB-5678",
+      "delivery_date": "2025-02-19"
     },
     {
-      "id": "b17c",
-      "invoice_no": "INV-20250211-2595",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": "",
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "remark": "abc"
-        }
-      ]
+      "id": "05ec",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "BB-5678",
+      "delivery_date": "2025-02-19"
     },
     {
-      "id": "688b",
-      "invoice_no": "INV-20250211-3904",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": "",
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "1",
-          "unit_price": 100,
-          "subtotal": 100,
-          "remark": "abc"
-        }
-      ]
+      "id": "c56c",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-25"
     },
     {
-      "id": "fc9f",
-      "invoice_no": "INV-20250211-1123",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": 1,
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "pending",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "remark": "abc"
-        },
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "3",
-          "unit_price": 2500,
-          "subtotal": 7500,
-          "remark": "abc"
-        }
-      ]
+      "id": "850a",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-25"
+    },
+    {
+      "id": "54eb",
+      "order_id": "372e",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "e4ae",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "2d6a",
+      "order_id": "372e",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-12"
+    },
+    {
+      "id": "167f",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-12"
+    },
+    {
+      "id": "cc1b",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-12"
+    },
+    {
+      "id": "4936",
+      "order_id": "372e",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "b239",
+      "order_id": "0865",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "2915",
+      "order_id": "f147",
+      "driver_id": "2",
+      "vehicle_plate_no": "AA-1234",
+      "delivery_date": "2025-02-28"
+    },
+    {
+      "id": "02c3",
+      "order_id": "6d8a",
+      "driver_id": 2,
+      "vehicle_plate_no": "MDY-4B/7890",
+      "delivery_date": "2025-02-18"
+    },
+   
     }
   ]
 }

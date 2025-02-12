@@ -36,8 +36,8 @@ const Router = () => {
                     element: <ProductTablePage />
                 }, 
                 {
-                    path: '/delivery',  // Route for ProductTablePage
-                    element: <DeliAssign />
+                    path: '/order-list',  // Route for ProductTablePage
+                    element: <OrderPage />
                 },    
             // {
 

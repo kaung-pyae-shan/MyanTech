@@ -36,9 +36,13 @@ public class OrderService {
 	@Autowired
 	private ProductRepo productRepo;
 	
-	public ShopProductDTO getFormData() {
-		return new ShopProductDTO(shopRepo.getAllShopInfo(), productRepo.getAllProductInfo());
+	public List<ShopInfo> getShopFormData() {
+		return shopRepo.getAllShopInfo();
 	}
+	
+	public List<ProductInfo> getProductFormData() {
+		return productRepo.getAllProductInfo();
+
 
 	public boolean createOrder(OrderForm form) {
 		System.out.println(form.shopId());

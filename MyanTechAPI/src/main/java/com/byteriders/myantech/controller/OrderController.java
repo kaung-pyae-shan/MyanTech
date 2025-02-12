@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
-import com.byteriders.myantech.model.dto.output.OrderList;
 import com.byteriders.myantech.model.dto.output.ShopProductDTO;
 import com.byteriders.myantech.model.service.OrderService;
 
@@ -22,10 +21,15 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService service;
-
-	@GetMapping("/form")
-	public ResponseEntity<ShopProductDTO> getFormData() {
-		return ResponseEntity.ok(service.getFormData());
+	
+	@GetMapping("/form/shops")
+	public List<ShopInfo> getShopFormData() {
+		return service.getShopFormData();
+	}
+	
+	@GetMapping("/form/products")
+	public List<ProductInfo> getProductFormData() {
+		return service.getProductFormData();
 	}
 	
 	@PostMapping("/create")
@@ -37,6 +41,8 @@ public class OrderController {
 		}
 		return ResponseEntity.badRequest().body("Order Creation failed");
 	}
+	
+	
 	
 	@GetMapping("/getOrders")
 	public List<OrderList> getOrders(){
