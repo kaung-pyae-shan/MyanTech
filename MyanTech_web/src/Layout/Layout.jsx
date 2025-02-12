@@ -119,11 +119,25 @@ const AppLayout = () => {
             },
 
             {
-              key: '4',
+              key: '5',
               icon: <TruckOutlined />,
-              defaultSelectedKeys: ['4'],
+              defaultSelectedKeys: ['5'],
 
-              label: <Link to="/delivery" className=' text-[15px]'>Delivery</Link>,
+              label: <Link to="/assign/truck" className=' text-[15px]'>Assign Truck</Link>,
+              style: {
+                border: '1px solid gray', marginBottom: '20px ',
+                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
+                background: '#52525233'
+
+              },
+            },
+
+            {
+              key: '6',
+              icon: <TruckOutlined />,
+              defaultSelectedKeys: ['6'],
+
+              label: <Link to="/drivers" className=' text-[15px]'>Driver</Link>,
               style: {
                 border: '1px solid gray', marginBottom: '20px ',
                 padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
+import com.byteriders.myantech.model.dto.output.ProductInfo;
+import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.entity.Order;
 import com.byteriders.myantech.model.entity.Order.Segment;
 import com.byteriders.myantech.model.entity.Order.Status;
@@ -31,6 +33,14 @@ public class OrderService {
 	private ProductOrderRepo productOrderRepo;
 	@Autowired
 	private ProductRepo productRepo;
+	
+	public List<ShopInfo> getShopFormData() {
+		return shopRepo.getAllShopInfo();
+	}
+	
+	public List<ProductInfo> getProductFormData() {
+		return productRepo.getAllProductInfo();
+	}
 
 	public boolean createOrder(OrderForm form) {
 		System.out.println(form.shopId());

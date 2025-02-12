@@ -3,11 +3,13 @@ import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
 import ProductTablePage from "../pages/ProductTablePage";
 import CreateOrder from "../pages/Order/CreateOrder";
-import DeliAssign from "../pages/delivery/DeliAssign";
 import OrderList from "../pages/Order/OrderList";
+
 import EditOrder from "../pages/Order/EditOrder";
 
 
+
+import OrderTable from "../pages/AssignTruck/OrderTable";
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -42,10 +44,11 @@ const Router = () => {
                     path: '/product',  // Route for ProductTablePage
                     element: <ProductTablePage />
                 }, 
+
                 {
-                    path: '/delivery',  // Route for ProductTablePage
-                    element: <DeliAssign />
-                },    
+                    path: '/assign/truck',  // Route for ProductTablePage
+                    element: <OrderTable />
+                }, 
             // {
 
             //     path:"/vocab/note",

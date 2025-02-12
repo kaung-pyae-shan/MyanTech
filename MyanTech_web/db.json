@@ -210,261 +210,129 @@
       "id": "5074"
     }
   ],
+  "drivers": [
+    {
+      "driver_id": 1,
+      "vehicle_plate_no": "YGN-1A/3456",
+      "driver_name": "Ko Tun Lin",
+      "contact": "09-xxxxxxxxxx",
+      "id": "4fe3"
+    },
+    {
+      "driver_id": 2,
+      "vehicle_plate_no": "MDY-4B/7890",
+      "driver_name": "Ko Min Thant",
+      "contact": "09-xxxxxxxxxx",
+      "id": "3663"
+    },
+    {
+      "driver_id": 3,
+      "vehicle_plate_no": "BGO-6D/4852",
+      "driver_name": "Ko Hla Oo",
+      "contact": "09-xxxxxxxxxx",
+      "id": "fa77"
+    },
+    {
+      "driver_id": 4,
+      "vehicle_plate_no": "NPT-2C/1789",
+      "driver_name": "Ko Soe Aung",
+      "contact": "09-xxxxxxxxxx",
+      "id": "1a08"
+    }
+  ],
   "products": [
     {
-      "id": "4e92",
-      "product_id": 1739161756298,
-      "name": "A",
+      "id": "cb3c",
+      "product_id": 1739248377486,
+      "name": "Acer Aspire X",
       "brand": "Acer",
-      "type": "Accessories ",
-      "price": 100,
-      "stock": 500,
-      "cashBack": 20,
+      "type": "Desktop PC ",
+      "price": 5000,
+      "stock": 50,
+      "cashBack": 1,
       "serialNo": "XXXX-XXXXX-XXXX-XXXXX"
     },
     {
-      "id": "c4e4",
-      "product_id": 1739161781604,
-      "name": "2",
-      "brand": "Asus",
+      "id": "88a7",
+      "product_id": 1739248404078,
+      "name": "Mac 14",
+      "brand": "Apple",
       "type": "Laptop",
-      "price": 2500,
-      "stock": 2,
-      "cashBack": 30,
+      "price": 3000,
+      "stock": 78,
+      "serialNo": "AAAA-XXXXX-XXXX"
+    },
+    {
+      "id": "7e67",
+      "product_id": 1739251554907,
+      "name": "fdsxxcds",
+      "brand": "Canon ",
+      "type": "Laptop",
+      "price": 34,
+      "stock": 343,
+      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
+    },
+    {
+      "id": "cf7e",
+      "product_id": 1739251568850,
+      "name": "User",
+      "brand": "Asus",
+      "type": "Memory ",
+      "price": 3432,
+      "stock": 32,
+      "cashBack": 4343,
       "serialNo": "5555-55555-5555-55555"
     },
     {
-      "0": {
-        "product_id": "c4e4",
-        "product_name": "2",
-        "quantity": "2",
-        "unit_price": 2500,
-        "subtotal": 5000
-      },
-      "id": "10c4"
+      "id": "43b1",
+      "product_id": 1739251590733,
+      "name": "Admin",
+      "brand": "APC",
+      "type": "Power Supply ",
+      "price": 52000,
+      "stock": 10,
+      "cashBack": 25,
+      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
     },
     {
-      "0": {
-        "product_id": "4e92",
-        "product_name": "A",
-        "quantity": "2",
-        "unit_price": 100,
-        "subtotal": 200
-      },
-      "id": "cb9d"
-    },
-    {
-      "0": {
-        "product_id": "c4e4",
-        "product_name": "2",
-        "unit_price": 2500,
-        "subtotal": null
-      },
-      "id": "853f"
-    },
-    {
-      "0": {
-        "product_id": "c4e4",
-        "product_name": "2",
-        "quantity": "2",
-        "unit_price": 2500,
-        "subtotal": 5000
-      },
-      "id": "1918"
-    },
-    {
-      "0": {
-        "product_id": "c4e4",
-        "product_name": "2",
-        "quantity": "2",
-        "unit_price": 2500,
-        "subtotal": 5000
-      },
-      "id": "5b4c"
-    },
-    {
-      "0": {
-        "product_id": "4e92",
-        "product_name": "A",
-        "quantity": "2",
-        "unit_price": 100,
-        "subtotal": 200
-      },
-      "id": "bb92"
-    },
-    {
-      "0": {
-        "product_id": "c4e4",
-        "product_name": "2",
-        "quantity": "2",
-        "unit_price": 2500,
-        "subtotal": 5000
-      },
-      "id": "6e90"
-    },
-    {
-      "0": {
-        "product_id": "c4e4",
-        "product_name": "2",
-        "quantity": "2",
-        "unit_price": 2500,
-        "subtotal": 5000
-      },
-      "id": "1678"
-    },
-    {
-      "id": "33bc",
-      "product_id": "c4e4",
-      "product_name": "2",
-      "quantity": "2",
-      "unit_price": 2500,
-      "subtotal": 5000
-    },
-    {
-      "id": "1363",
-      "product_id": "c4e4",
-      "product_name": "2",
-      "quantity": "2",
-      "unit_price": 2500,
-      "subtotal": 5000
-    },
-    {
-      "id": "a596",
-      "product_id": "c4e4",
-      "product_name": "2",
-      "quantity": "2",
-      "unit_price": 2500,
-      "subtotal": 5000
+      "id": "808e",
+      "product_id": 1739251658170,
+      "name": "sdsd",
+      "brand": "Dell ",
+      "type": "Monitor ",
+      "price": 343,
+      "stock": 32,
+      "cashBack": 13,
+      "serialNo": "xcxxxxxxxxxxxx"
     }
   ],
   "orders": [
+    
+  ],
+  "assign_truck": [
     {
-      "id": "4524",
-      "invoice_no": "INV-20250212-5625",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
-      "contact": "+951-376448",
-      "township_id": 1,
-      "township_name": "Hlaing",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "PENDING",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "stock": 2,
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "status": "",
-          "wrong_qty": 0,
-          "wrong_remark": "",
-          "falty_qty": 0,
-          "falty_remark": ""
-        },
-        {
-          "product_id": "4e92",
-          "product_name": "A",
-          "quantity": "2",
-          "stock": 500,
-          "unit_price": 100,
-          "subtotal": 200,
-          "status": "",
-          "wrong_qty": 0,
-          "wrong_remark": "",
-          "falty_qty": 0,
-          "falty_remark": ""
-        }
-      ],
-      "orderId": "4524",
-      "productId": "c4e4",
-      "status": "CANCELED"
+      "0": {
+        "assign_truck_id": 1739345709079,
+        "order_id": "f72e",
+        "driver_id": 3,
+        "delivery_date": "2025-02-13"
+      },
+      "id": "5c15"
     },
     {
-      "id": "8549",
-      "invoice_no": "INV-20250212-4756",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "contact": "+951-376448",
-      "township_id": 1,
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "PENDING",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "2",
-          "stock": 2,
-          "unit_price": 2500,
-          "subtotal": 5000,
-          "status": "",
-          "wrong_qty": 0,
-          "wrong_remark": "",
-          "falty_qty": 0,
-          "falty_remark": ""
-        }
-      ]
-    },
-    {
-      "id": "c180",
-      "invoice_no": "INV-20250212-2729",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "contact": "+951-376448",
-      "township_id": 1,
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "PENDING",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": 2,
-          "stock": 2,
-          "unit_price": 2500,
-          "subtotal": null,
-          "status": "",
-          "wrong_qty": 0,
-          "wrong_remark": "",
-          "falty_qty": 0,
-          "falty_remark": ""
-        }
-      ]
-    },
-    {
-      "id": "3c19",
-      "invoice_no": "INV-20250212-1703",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "contact": "+951-376448",
-      "township_id": 1,
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "PENDING",
-      "products": [
-        {
-          "product_id": "c4e4",
-          "product_name": "2",
-          "quantity": "1",
-          "stock": 2,
-          "unit_price": 2500,
-          "subtotal": 2500,
-          "status": "",
-          "wrong_qty": 0,
-          "wrong_remark": "",
-          "falty_qty": 0,
-          "falty_remark": ""
-        }
-      ]
+      "0": {
+        "assign_truck_id": 1739345725491,
+        "order_id": "d61d",
+        "driver_id": 3,
+        "delivery_date": "2025-02-28"
+      },
+      "1": {
+        "assign_truck_id": 1739345725492,
+        "order_id": "a114",
+        "driver_id": 3,
+        "delivery_date": "2025-02-28"
+      },
+      "id": "be3e"
     }
   ]
 }

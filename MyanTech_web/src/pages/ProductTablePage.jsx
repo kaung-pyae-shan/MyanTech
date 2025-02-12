@@ -101,7 +101,8 @@ const ProductTablePage = () => {
         Create Product
       </Button>
 
-      <Table columns={columns} dataSource={products} loading={loading} rowKey="product_id" locale={{ emptyText: "No items yet" }} />
+      <Table columns={columns} dataSource={products} loading={loading} rowKey="product_id" locale={{ emptyText: "No items yet" }} 
+        pagination={{ pageSize: 5 }} />
 
       <Modal
         title={isEditMode ? "Edit Product" : "Create Product"}
