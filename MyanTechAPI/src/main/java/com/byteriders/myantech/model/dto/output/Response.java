@@ -28,6 +28,22 @@ public class Response {
 	private BrandDTO brand;
 	private List<BrandDTO> brands;
 	
+	private CategoryDTO category;
+	private List<CategoryDTO> categories;
+	
+	private UserDTO user;
+	private List<UserDTO> users;
+	
+	private AssignTruckDTO assignTruck;
+	private List<AssignTruckDTO> assignTrucks;
+	
+	private AssignTruckOrderDTO assignTruckOrder;
+	private List<AssignTruckOrderDTO> assignTruckOrders;
+	
+	private OrderDTO order;
+	private List<OrderDTO> orders;
+	
+	
 	private final LocalDateTime timestamp = LocalDateTime.now();
 	
 }

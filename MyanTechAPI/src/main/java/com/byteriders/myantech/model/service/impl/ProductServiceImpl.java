@@ -1,7 +1,7 @@
 package com.byteriders.myantech.model.service.impl;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -15,8 +15,8 @@ import com.byteriders.myantech.model.entity.Brand;
 import com.byteriders.myantech.model.entity.Category;
 import com.byteriders.myantech.model.entity.Product;
 import com.byteriders.myantech.model.exception.NotFoundException;
-import com.byteriders.myantech.model.repo.BrandRepository;
-import com.byteriders.myantech.model.repo.CategoryRepository;
+import com.byteriders.myantech.model.repo.BrandRepo;
+import com.byteriders.myantech.model.repo.CategoryRepo;
 import com.byteriders.myantech.model.repo.ProductRepository;
 import com.byteriders.myantech.model.service.ProductService;
 
@@ -27,44 +27,38 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductServiceImpl implements ProductService {
-	
+
 	private final ProductRepository productRepository;
 	private final ModelMapper modelMapper;
-	private final CategoryRepository categoryRepository;
-	private final BrandRepository brandRepository;
-	
-	
+	private final CategoryRepo categoryRepository;
+	private final BrandRepo brandRepository;
+
 	@Override
 	public Response saveProduct(ProductDTO productDTO) {
-		
+
 		Category category = categoryRepository.findById(productDTO.getCategoryId())
 				.orElseThrow(() -> new NotFoundException("Category Not Found"));
-		
+
 		Brand brand = brandRepository.findById(productDTO.getBrandId())
 				.orElseThrow(() -> new NotFoundException("Category Not Found"));
-		
+
 		if (productRepository.existsBySerialNumber(productDTO.getSerialNumber())) {
-	        throw new IllegalArgumentException("Serial number already exists.");
-	    }
-		
+			throw new IllegalArgumentException("Serial number already exists.");
+		}
+
 		// map our dto to product entity
 		Product productToSave = Product.builder()
 				.name(productDTO.getName())
 				.price(productDTO.getPrice())
-				.cashBack(productDTO.getCashBack())
+				.cashback(productDTO.getCashback())
 				.serialNumber(productDTO.getSerialNumber())
-				.stockQuantiy(productDTO.getStockQuantiy())
-				.category(category)
-				.brand(brand)
-				.build();
-		
+				.stock(productDTO.getStock())
+				.category(category).brand(brand).build();
+
 		// save the product entity
-		productRepository.save(productToSave);		
-		
-		return Response.builder()
-				.status(200)
-				.message("Product successfully saved.")
-				.build();
+		productRepository.save(productToSave);
+
+		return Response.builder().status(200).message("Product successfully saved.").build();
 	}
 
 	@Override
@@ -72,117 +66,101 @@ public class ProductServiceImpl implements ProductService {
 		// check if product exist
 		Product existingProduct = productRepository.findById(productDTO.getProductId())
 				.orElseThrow(() -> new NotFoundException("Product Not Found"));
-		
+
 		int productId = productRepository.findProductIdBySerialNumber(productDTO.getSerialNumber());
-		
-		if (productRepository.existsBySerialNumber(productDTO.getSerialNumber())&& productId != productDTO.getProductId()) {
-	        throw new IllegalArgumentException("Serial number already exists.");
-	    }
-		
+
+		if (productRepository.existsBySerialNumber(productDTO.getSerialNumber())
+				&& productId != productDTO.getProductId()) {
+			throw new IllegalArgumentException("Serial number already exists.");
+		}
+
 		// check if category is to be changed for the products
-		if(productDTO.getCategoryId() > 0) {
+		if (productDTO.getCategoryId() > 0) {
 			Category category = categoryRepository.findById(productDTO.getCategoryId())
 					.orElseThrow(() -> new NotFoundException("Category Not Found"));
 			existingProduct.setCategory(category);
 		}
-		
+
 		// check if brand is to be changed for the products
-		if(productDTO.getBrandId() > 0) {
+		if (productDTO.getBrandId() > 0) {
 			Brand brand = brandRepository.findById(productDTO.getBrandId())
 					.orElseThrow(() -> new NotFoundException("Brand Not Found"));
 			existingProduct.setBrand(brand);
 		}
-		
+
 		// check if product fields is to be changed and update
-		if(productDTO.getName() != null && !productDTO.getName().isBlank()) {
+		if (productDTO.getName() != null && !productDTO.getName().isBlank()) {
 			existingProduct.setName(productDTO.getName());
 		}
-		
-		if(productDTO.getPrice() != null && productDTO.getPrice().compareTo(BigDecimal.ZERO) >= 0) {
+
+		if (productDTO.getPrice() != null && productDTO.getPrice().compareTo(BigDecimal.ZERO) >= 0) {
 			existingProduct.setPrice(productDTO.getPrice());
 		}
-		
-		if(productDTO.getCashBack() != null && productDTO.getCashBack().compareTo(BigDecimal.ZERO) >= 0) {
-			existingProduct.setCashBack(productDTO.getCashBack());
+
+		if (productDTO.getCashback() != null && productDTO.getCashback().compareTo(BigDecimal.ZERO) >= 0) {
+			existingProduct.setCashback(productDTO.getCashback());
 		}
-		
-		if(productDTO.getSerialNumber() != null && !productDTO.getSerialNumber().isBlank()) {
+
+		if (productDTO.getSerialNumber() != null && !productDTO.getSerialNumber().isBlank()) {
 			existingProduct.setSerialNumber(productDTO.getSerialNumber());
-		}	
-		
-		if(productDTO.getStockQuantiy() != null && productDTO.getStockQuantiy() >= 0) {
-			existingProduct.setStockQuantiy(productDTO.getStockQuantiy());
 		}
-		
-		existingProduct.setUpdatedAt(LocalDateTime.now());
-		
+
+		if (productDTO.getStock() != null && productDTO.getStock() >= 0) {
+			existingProduct.setStock(productDTO.getStock());
+		}
+
+		existingProduct.setUpdatedDate(LocalDate.now());
+
 		// update the product
 		productRepository.save(existingProduct);
-		
+
 		// Build our response
-		return Response.builder()
-				.status(200)
-				.message("Proudct Updated successfully.")
-				.build();
+		return Response.builder().status(200).message("Proudct Updated successfully.").build();
 	}
 
 	@Override
 	public Response getAllProducts() {
-		
+
 		List<Product> productList = productRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-		
-		List<ProductDTO> productDTOList = modelMapper.map(productList, new TypeToken<List<ProductDTO>>() {}.getType());
-		
-		return Response.builder()
-				.status(200)
-				.message("success")
-				.products(productDTOList)
-				.build();
+
+		List<ProductDTO> productDTOList = modelMapper.map(productList, new TypeToken<List<ProductDTO>>() {
+		}.getType());
+
+		return Response.builder().status(200).message("success").products(productDTOList).build();
 	}
 
 	@Override
 	public Response getProductById(int id) {
-		
-		Product product = productRepository.findById(id)
-				.orElseThrow(() -> new NotFoundException("Product Not Found"));
-		
-		return Response.builder()
-				.status(200)
-				.message("success")
-				.product(modelMapper.map(product, ProductDTO.class))
+
+		Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product Not Found"));
+
+		return Response.builder().status(200).message("success").product(modelMapper.map(product, ProductDTO.class))
 				.build();
 	}
 
 	@Override
 	public Response deleteProduct(int id) {
-		
-		productRepository.findById(id)
-		.orElseThrow(() -> new NotFoundException("Product Not Found"));
-		
+
+		productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product Not Found"));
+
 		productRepository.deleteById(id);
-		
-		return Response.builder()
-				.status(200)
-				.message("Proudct Deleted successfully.")
-				.build();
+
+		return Response.builder().status(200).message("Proudct Deleted successfully.").build();
 	}
-	
+
 	@Override
 	public Response searchProduct(String input) {
-		
+
 		List<Product> products = productRepository.searchProducts(input);
-		
-		if(products.isEmpty()) {
-			throw new NotFoundException("Product Not Found");			
+
+		if (products.isEmpty()) {
+			throw new NotFoundException("Product Not Found");
 		}
-		
-		List<ProductDTO> prdouctDTOList = modelMapper.map(products, new TypeToken<List<ProductDTO>>() {}.getType());
-		
-		return Response.builder()
-				.status(200)
-				.message("success")
-				.products(prdouctDTOList)
-				.build();
+
+		List<ProductDTO> prdouctDTOList = modelMapper.map(products, new TypeToken<List<ProductDTO>>() {
+		}.getType());
+
+		return Response.builder().status(200).message("success").products(prdouctDTOList).build();
 	}
 
 }

@@ -40,7 +40,7 @@ public class Order {
 	private LocalDate updatedDate;
 
 	public enum Status {
-		PENDING, DELIVERED
+		PENDING, DELIVERED, CANCELLED, COMPLETED, PROCESSING
 	}
 	
 	public enum Segment {

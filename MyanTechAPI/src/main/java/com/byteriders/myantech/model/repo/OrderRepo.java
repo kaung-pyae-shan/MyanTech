@@ -1,5 +1,6 @@
 package com.byteriders.myantech.model.repo;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,4 +12,8 @@ public interface OrderRepo extends JpaRepository<Order, Integer> {
 
 	@Query("SELECT MAX(o.invoiceNo) FROM Order o")
     Optional<Integer> findMaxInvoiceNo();
+	
+	@Query("SELECT o FROM Order o WHERE o.status = 'PENDING'")
+    List<Order> findOrdersToBeAssigned();
+	
 }

@@ -29,9 +29,9 @@ public class ProductController {
 	public ResponseEntity<Response> saveProduct(
 			@RequestParam("name")String name,
 			@RequestParam("price")BigDecimal price,
-			@RequestParam(value = "cashBack", required = false)BigDecimal cashBack,
+			@RequestParam(value = "cashback", required = false)BigDecimal cashback,
 			@RequestParam("serialNumber")String serialNumber,
-			@RequestParam("stockQuantity")Integer stockQuantity,
+			@RequestParam("stock")Integer stock,
 			@RequestParam("categoryId")int categoryId,
 			@RequestParam("brandId")int brandId
 			){
@@ -39,9 +39,9 @@ public class ProductController {
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setName(name);
 		productDTO.setPrice(price);
-		productDTO.setCashBack(cashBack);
+		productDTO.setCashback(cashback);
 		productDTO.setSerialNumber(serialNumber);
-		productDTO.setStockQuantiy(stockQuantity);
+		productDTO.setStock(stock);
 		productDTO.setCategoryId(categoryId);
 		productDTO.setBrandId(brandId);
 		
@@ -53,9 +53,9 @@ public class ProductController {
 	public ResponseEntity<Response> updateProduct(
 			@RequestParam(value = "name", required = false)String name,
 			@RequestParam(value = "price", required = false)BigDecimal price,
-			@RequestParam(value = "cashBack", required = false)BigDecimal cashBack,
+			@RequestParam(value = "cashback", required = false)BigDecimal cashback,
 			@RequestParam(value = "serialNumber", required = false)String serialNumber,
-			@RequestParam(value = "stockQuantity", required = false)Integer stockQuantity,
+			@RequestParam(value = "stock", required = false)Integer stock,
 			@RequestParam(value = "categoryId", required = false)int categoryId,
 			@RequestParam(value = "brandId", required = false)int brandId,
 			@RequestParam(value = "productId")int productId
@@ -65,9 +65,9 @@ public class ProductController {
 		productDTO.setProductId(productId);
 		productDTO.setName(name);
 		productDTO.setPrice(price);
-		productDTO.setCashBack(cashBack);
+		productDTO.setCashback(cashback);
 		productDTO.setSerialNumber(serialNumber);
-		productDTO.setStockQuantiy(stockQuantity);
+		productDTO.setStock(stock);
 		productDTO.setCategoryId(categoryId);
 		productDTO.setBrandId(brandId);
 		

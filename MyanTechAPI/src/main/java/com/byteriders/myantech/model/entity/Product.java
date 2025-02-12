@@ -1,7 +1,7 @@
 package com.byteriders.myantech.model.entity;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -38,14 +38,14 @@ public class Product {
 	
 	@Min(value = 0, message = "Product Price must be a positive value.")
 	@Column(columnDefinition = "DECIMAL(10,2) DEFAULT 0.0")
-	private BigDecimal cashBack;	
+	private BigDecimal cashback;	
 
 	@NotBlank(message = "Serial Number is required")
 	@Column(unique = true)
 	private String serialNumber;
 	
 	@Min(value = 0, message = "Stock quantity cannot be negative.")
-	private Integer stockQuantiy;
+	private Integer stock;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
@@ -55,14 +55,25 @@ public class Product {
 	@JoinColumn(name = "brand_id")
 	private Brand brand;
 	
-	private final LocalDateTime createAt = LocalDateTime.now();
-	private LocalDateTime updatedAt;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "created_user_id", nullable = true)
+	private User createdUser;
+	private final LocalDate createdDate = LocalDate.now();  
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "updated_user_id", nullable = true)  // Allow null for updatedUser (nullable = true)
+	private User updatedUser;
+	private LocalDate updatedDate;
 	
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", cashBack=" + cashBack
-				+ ", serialNumber=" + serialNumber + ", stockQuantiy=" + stockQuantiy + ", createAt=" + createAt
-				+ ", updatedAt=" + updatedAt + "]";
+		return "Product [id=" + id + ", name=" + name + ", price=" + price + ", cashBack=" + cashback
+				+ ", serialNumber=" + serialNumber + ", stockQuantity=" + stock + ", createdDate=" + createdDate
+				+ ", updatedDate=" + updatedDate + "]";
 	}
+	
+	
+	
+	
 	
 }

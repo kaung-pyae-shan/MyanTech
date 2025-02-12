@@ -19,13 +19,23 @@ public class Driver {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+	
 	@Column(nullable = false)
 	private String name;
+	
 	@Column(nullable = false)
 	private String vehiclePlateNo;
+	
 	@Column(nullable = false)
 	private String phone;
 	
 	@OneToOne
-	private AssignedTruck truck;
+	private AssignTruck assignedDelivery;
+
+	@Override
+	public String toString() {
+		return "Driver [id=" + id + ", name=" + name + ", vehiclePlateNo=" + vehiclePlateNo + ", phone=" + phone + "]";
+	}
+	
+	
 }
