@@ -18,4 +18,7 @@ public interface ShopRepo extends JpaRepository<Shop, Integer> {
 		       JOIN s.region r
 			""")
 	public List<ShopInfo> getAllShopInfo();
+	
+	@Query("SELECT s.id from Shop s where s.name LIKE %:name%")
+	public List<Integer> findIdsByNameLike(String name);
 }

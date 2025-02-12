@@ -78,12 +78,12 @@ insert into orders (created_date, created_user_id, invoice_no, product_segment, 
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-09', 1, '7140', 'CONSUMER', 20, "black", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-09', 1, '7139', 'CONSUMER', 18, "black", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-09', 1, '7138', 'CONSUMER', 3, "yellow", 'DELIVERED');
-insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-09', 1, '7137', 'CONSUMER', 5, "black", 'DELIVERED');
+insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-09', 1, '7137', 'CONSUMER', 5, "black", 'CANCELED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-08', 1, '7136', 'CONSUMER', 8, "green", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-08', 1, '7135', 'CONSUMER', 12, "black", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-07', 1, '7134', 'CONSUMER', 19, "gray", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-07', 1, '7133', 'CONSUMER', 17, "green", 'DELIVERED');
-insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-07', 1, '7132', 'CONSUMER', 13, "black", 'DELIVERED');
+insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-07', 1, '7132', 'CONSUMER', 13, "black", 'CANCELED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-07', 1, '7131', 'CONSUMER', 11, "white", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-06', 1, '7130', 'CONSUMER', 10, "black", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-06', 1, '7129', 'CONSUMER', 14, "white", 'DELIVERED');
@@ -132,6 +132,41 @@ insert into service_center (name, contact, address, available_status) values ('A
 insert into service_center (name, contact, address, available_status) values ('HP Authorized Service Center', '+951-558855', 'Pearl Condo Tower A, Bahan Township, Yangon', 'OPEN');
 insert into service_center (name, contact, address, available_status) values ('Dell Service Center', '+951-556677', 'Pyay Road, Sanchaung Township, Yangon', 'OPEN');
 insert into service_center (name, contact, address, available_status) values ('Zawgyi Electronics  goods and ICT product repairs', '+951-394095', 'Anawrahta Road, Downtown Yangon', 'OPEN');
+
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 1, 5, 'early bird', 75000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (12, 13, 10, 'bulk order', 120000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 7, 50, 'special request', 202020);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (9, 6, 25, 'loyalty customer', 404400);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 13, 15, 'urgent', 168066);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (13, 5, 7, 'staff discount', 8684);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (10, 13, 16, 'clearance', 1779056);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 9, 18, 'repeat order', 190368);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (9, 19, 30, 'new customer', 180270);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (8, 8, 24, 'first purchase', 720000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (15, 18, 9, 'gift order', 135000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 25, 42, 'international', 210000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 2, 10, 'seasonal sale', 150000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (8, 22, 36, 'pre-order', 540000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (4, 3, 5, 'backorder', 22500);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (3, 1, 4, 'express delivery', 100000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (1, 10, 23, 'sample order', 345000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (11, 15, 19, 'promotional', 760000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 13, 26, 'subscription', 390000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (16, 30, 31, 'bulk order', 465000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 10, 30, 'clearance', 450000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (2, 7, 38, 'urgent', 380000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 4, 21, 'seasonal sale', 315000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 11, 12, 'express delivery', 180000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (19, 28, 13, 'international', 195000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 13, 3, 'sample order', 45000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (10, 26, 19, 'loyalty customer', 285000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (20, 12, 18, 'repeat order', 270000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 15, 25, 'pre-order', 375000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (17, 29, 5, 'first purchase', 75000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 13, 35, 'gift order', 525000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (16, 17, 5, 'backorder', 75000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (6, 9, 14, 'staff discount', 210000);
+INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (12, 9, 7, 'new customer', 105000);
 
 
 
