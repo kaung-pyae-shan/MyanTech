@@ -307,7 +307,6 @@
     }
   ],
   "orders": [
-    
   ],
   "assign_truck": [
     {
@@ -333,6 +332,15 @@
         "delivery_date": "2025-02-28"
       },
       "id": "be3e"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739347421713,
+        "order_id": "825d",
+        "driver_id": 4,
+        "delivery_date": "2025-02-18"
+      },
+      "id": "1c88"
     }
   ]
 }
