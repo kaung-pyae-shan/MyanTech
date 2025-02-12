@@ -137,7 +137,7 @@ const AppLayout = () => {
               icon: <TruckOutlined />,
               defaultSelectedKeys: ['6'],
 
-              label: <Link to="/drivers" className=' text-[15px]'>Driver</Link>,
+              label: <Link to="/drivers"className=' text-[15px]'>Driver</Link>,
               style: {
                 border: '1px solid gray', marginBottom: '20px ',
                 padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',

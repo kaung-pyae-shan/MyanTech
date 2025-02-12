@@ -308,6 +308,7 @@
   ],
   "orders": [
     {
+
       "id": "5393",
       "invoice_no": "INV-20250212-6880",
       "shop_id": "9ab9",
@@ -341,6 +342,10 @@
     {
       "id": "070c",
       "invoice_no": "INV-20250212-5289",
+
+      "id": "f72e",
+      "invoice_no": "INV-20250212-3676",
+
       "shop_id": "f537",
       "shop_name": "City Corner Store",
       "shop_address": "78, Baho Street",
@@ -349,6 +354,7 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
+
       "order_status": "pending",
       "products": [
         {
@@ -371,6 +377,17 @@
           "stock": 10,
           "unit_price": 52000,
           "subtotal": 104000,
+
+      "order_status": "delivered",
+      "products": [
+        {
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "5",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 170,
+
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -380,6 +397,7 @@
       ]
     },
     {
+
       "id": "1691",
       "invoice_no": "INV-20250212-4278",
       "shop_id": "040e",
@@ -450,6 +468,26 @@
           "stock": 343,
           "unit_price": 34,
           "subtotal": 34,
+
+      "id": "3476",
+      "invoice_no": "INV-20250212-9306",
+      "shop_id": "ccbb",
+      "shop_name": "Evergreen Mini Mart",
+      "shop_address": "56, University Avenue",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Bahan",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "delivered",
+      "products": [
+        {
+          "product_id": "cf7e",
+          "product_name": "User",
+          "quantity": "5",
+          "stock": 32,
+          "unit_price": 3432,
+          "subtotal": 17160,
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -478,6 +516,14 @@
           "stock": 343,
           "unit_price": 34,
           "subtotal": 34,
+        },
+        {
+          "product_id": "43b1",
+          "product_name": "Admin",
+          "quantity": "10",
+          "stock": 10,
+          "unit_price": 52000,
+          "subtotal": 520000,
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -487,8 +533,11 @@
       ]
     },
     {
+
       "id": "c322",
       "invoice_no": "INV-20250212-8456",
+
+
       "shop_id": "ccbb",
       "shop_name": "Evergreen Mini Mart",
       "shop_address": "56, University Avenue",
@@ -497,6 +546,7 @@
       "township_name": "Bahan",
       "region_id": 1,
       "region_name": "Yangon",
+
       "order_status": "pending",
       "products": [
         {
@@ -534,6 +584,16 @@
           "stock": 78,
           "unit_price": 3000,
           "subtotal": 3000,
+
+      "products": [
+        {
+          "product_id": "43b1",
+          "product_name": "Admin",
+          "quantity": "3",
+          "stock": 10,
+          "unit_price": 52000,
+          "subtotal": 156000,
+
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -570,6 +630,7 @@
     },
     {
       "0": {
+
         "assign_truck_id": 1739348997183,
         "order_id": "5393",
         "driver_id": 3,
@@ -585,6 +646,31 @@
         "delivery_date": "2025-02-06"
       },
       "id": "1168"
+
+        "assign_truck_id": 1739347421713,
+        "order_id": "825d",
+        "driver_id": 4,
+        "delivery_date": "2025-02-18"
+      },
+      "id": "1c88"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739368692986,
+        "order_id": "3476",
+        "driver_id": 3,
+        "delivery_date": "2025-02-14"
+      },
+      "id": "84c7"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739369932032,
+        "order_id": "f73e",
+        "driver_id": 4,
+        "delivery_date": "2025-02-14"
+      },
+      "id": "5a60"
     }
   ]
 }
