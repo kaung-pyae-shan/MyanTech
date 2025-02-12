@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
 import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
-import { Button, Drawer, Radio, Space } from "antd";
+import { Button, Drawer, Pagination } from "antd";
 import OrderDetail from '../../pages/Order/OrderDetail';
-import SearchForm from '../SearchForm';
 import * as XLSX from 'xlsx';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const AllOrder = () => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
-    const [openOrder, setOpenOrder] = useState(null); // Track the order being viewed in the drawer
+    const [openOrder, setOpenOrder] = useState(null); 
+    const [currentPage, setCurrentPage] = useState(1);
+    const [pageSize] = useState(10); // Adjust page size here
     const navigate = useNavigate();
 
     const orderStatus = [
@@ -19,16 +20,10 @@ const AllOrder = () => {
         { value: "CANCELED", label: "CANCELED", color: "bg-green-100 border-green-500 text-green-700" },
     ];
 
-    const orderManages = [
-        { value: "1", label: "CANCEL", color: "bg-red-100 border-yellow-500 text-red-700" },
-        { value: "2", label: "Wrong", color: "bg-blue-100 border-blue-500 text-blue-700" },
-        { value: "3", label: "Faulty", color: "bg-green-100 border-green-500 text-green-700" },
-    ];
-
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get("/orders");
+                const response = await axios.get(`/orders?page=${currentPage}&limit=${pageSize}`);
                 setOrders(response.data);
             } catch (error) {
                 console.error("Error fetching orders:", error);
@@ -46,33 +41,28 @@ const AllOrder = () => {
 
         fetchShops();
         fetchOrders();
-    }, []);
+    }, [currentPage, pageSize]);
 
-    const handleEdit = (order) => {
-        navigate('/edit-order', { state: { orderData: order } });
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
     };
 
-    const getColor = (status) => {
-        const foundStatus = orderStatus.find((s) => s.value === status);
-        return foundStatus ? foundStatus.color : "bg-white border-gray-300 text-gray-700";
-    };
+    // const handleStatusChange = async (order, newStatus) => {
+    //     const updatedOrders = orders.map((o) =>
+    //         o.id === order.id ? { ...o, status: newStatus } : o
+    //     );
+    //     setOrders(updatedOrders);
+    //     await updateOrderStatus(order.id, newStatus);
+    // };
 
-    const handleStatusChange = async (order, newStatus) => {
-        const updatedOrders = orders.map((o) =>
-            o.id === order.id ? { ...o, status: newStatus } : o
-        );
-        setOrders(updatedOrders);
-        await updateOrderStatus(order.id, newStatus);
-    };
-
-    const updateOrderStatus = async (orderId, newStatus) => {
-        try {
-            const response = await axios.patch(`/orders/${orderId}`, { order_status: newStatus });
-            console.log("Order status updated", response.data);
-        } catch (error) {
-            console.error("Failed to update order status", error);
-        }
-    };
+    // const updateOrderStatus = async (orderId, newStatus) => {
+    //     try {
+    //         const response = await axios.patch(`/orders/${orderId}`, { order_status: newStatus });
+    //         console.log("Order status updated", response.data);
+    //     } catch (error) {
+    //         console.error("Failed to update order status", error);
+    //     }
+    // };
 
     const exportToExcel = () => {
         const dataForExcel = orders.map((order) => {
@@ -95,7 +85,6 @@ const AllOrder = () => {
     return (
         <>
             <div className='flex items-center justify-between'>
-                {/* <SearchForm onSearch={handleSearch} /> */}
                 <div className="">
                     <Button className='border border-purple-900 bg-none' type="light" onClick={exportToExcel}>
                         Export to Excel <AiOutlineArrowUp className=' text-gradient' />
@@ -132,9 +121,9 @@ const AllOrder = () => {
                                         </td>
                                         <td className="px-6 py-4 text-sm font-medium whitespace-nowrap text-end">
                                             <select
-                                                value={order.status}
-                                                onChange={(e) => handleStatusChange(order, e.target.value)}
-                                                className={`block w-full px-3 py-1 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 border ${getColor(order.status)}`}
+                                                value={order.order_status}
+                                                // onChange={(e) => handleStatusChange(order, e.target.value)}
+                                                className={`block w-full px-3 py-1 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-opacity-50 border`}
                                             >
                                                 {orderStatus.map((status) => (
                                                     <option key={status.value} value={status.value}>
@@ -154,7 +143,7 @@ const AllOrder = () => {
                                             >
                                                 <div className="absolute top-2 right-3">
                                                     <button
-                                                        onClick={() => handleEdit(order)}
+                                                        onClick={() => navigate(`/edit-order`, { state: { orderData: order } })}
                                                         className='inline-block px-4 py-2 border-2 border-yellow-600 rounded-md text-blue'> Edit Order</button>
                                                 </div>
 
@@ -166,6 +155,16 @@ const AllOrder = () => {
                             })}
                         </tbody>
                     </table>
+                </div>
+                {/* Pagination */}
+                <div className="mt-4">
+                    <Pagination
+                        current={currentPage}
+                        pageSize={pageSize}
+                        total={1} // Update the total based on your backend
+                        onChange={handlePageChange}
+                        showSizeChanger={false} // Hide the page size changer if you want to restrict the page size
+                    />
                 </div>
             </div>
         </>

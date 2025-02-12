@@ -26,7 +26,7 @@ const initialState = {
         township_name: '',
         region_id: 0,
         region_name: '',
-        order_status: 'pending',
+        order_status: 'PENDING',
         
         products: []
     },
@@ -96,6 +96,7 @@ export const orderSlice = createSlice({
         
         resetOrder : (state, action) =>{
             state.order = initialState.order;
+            state.editOrders = initialState.editOrders;
         },
         resetEditOrder : (state, action) =>{
             state.editOrders = initialState.editOrders;
@@ -112,10 +113,25 @@ export const orderSlice = createSlice({
         delProduct: (state, action) => {
             console.log(action.payload)
             state.order.products = state.order.products.filter(product => product.id !== action.payload);
+        },
+
+        updateProductQty: (state, action) => {
+            const { product_id, quantity } = action.payload;
+        
+            state.editOrders.products = state.editOrders.products.map(product =>
+                product.product_id === product_id ? { ...product, quantity } : product
+            );
+        },
+        updateCreateProductQty: (state, action) => {
+            const { product_id, quantity } = action.payload;
+        
+            state.order.products = state.order.products.map(product =>
+                product.product_id === product_id ? { ...product, quantity } : product
+            );
         }
 
     }
 });
 
-export const { addOrder, addShop, addProductOrder, resetOrder, delProduct, updateOrder, oldOrder, addProductToEdit, resetEditOrder, delEditProduct} = orderSlice.actions;
+export const { addOrder, addShop, addProductOrder, updateCreateProductQty, updateProductQty, resetOrder, delProduct, updateOrder, oldOrder, addProductToEdit, resetEditOrder, delEditProduct} = orderSlice.actions;
 export default orderSlice.reducer;
