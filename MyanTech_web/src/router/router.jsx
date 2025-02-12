@@ -10,6 +10,7 @@ import EditOrder from "../pages/Order/EditOrder";
 
 
 import OrderTable from "../pages/AssignTruck/OrderTable";
+import SalesDashboard from "../pages/Dashboards/SalesDashboard";
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -19,9 +20,9 @@ const Router = () => {
             element: <Layout />,
             children: [ 
                 {
-                    path: '/',
-                    element: <Home />
-                },   
+                    path: '/sales/dashboard',  // Route for ProductTablePage
+                    element: <SalesDashboard />
+                },    
                 {
 
                     path: '/order-list',
@@ -49,10 +50,12 @@ const Router = () => {
                     path: '/assign/truck',  // Route for ProductTablePage
                     element: <OrderTable />
                 }, 
+
                 {
                     path: '/drivers',  // Route for ProductTablePage
                     element: <DriverPage />
                 }, 
+
             // {
 
             //     path:"/vocab/note",

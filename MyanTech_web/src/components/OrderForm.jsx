@@ -6,7 +6,7 @@ import axios from '../api/axios';
 import { addProduct } from '../redux/productSlice';
 import { Color } from 'antd/es/color-picker';
 
-const OrderForm = ({ resetField, setResetField }) => {
+const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) => {
     const [form] = Form.useForm();
     const dispatch = useDispatch();
     const orders = useSelector(state => state.orders.orders); // Get orders from Redux store
@@ -137,6 +137,7 @@ const OrderForm = ({ resetField, setResetField }) => {
 
         form.resetFields(['qty', 'product_name', 'price', 'stock', 'remark']);
 
+        setShopDisable(true)
 
 
         setSelectedProduct(null);
@@ -189,8 +190,10 @@ const OrderForm = ({ resetField, setResetField }) => {
                     label="Shop Name"
                     name="shop_name"
                     rules={[{ required: true }]}
+                   
                 >
                     <Select
+                         disabled = {shopDisable}
                         className="w-full"
                         onChange={handleShopChange}
                         options={shops.map(shop => ({

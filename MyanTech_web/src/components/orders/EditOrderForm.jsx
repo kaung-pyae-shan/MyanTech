@@ -5,7 +5,7 @@ import { addProductOrder, addProductToEdit, addShop, oldOrder, resetOrder, updat
 import axios from '../../api/axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const EditOrderForm = ({ resetField, setResetField }) => {
+const EditOrderForm = ({ resetField, setResetField, shopDisable, setShopDisable}) => {
     const location = useLocation();
     const navigate = useNavigate();
     const orderToEdit = location.state?.orderData;
@@ -130,6 +130,8 @@ const EditOrderForm = ({ resetField, setResetField }) => {
 
         form.resetFields(['qty', 'product_name', 'price', 'stock', 'remark']);
 
+        setShopDisable(true)
+
         dispatch(addProductToEdit({ newproducts }));
         // message.success('Order updated successfully!');
         // navigate('/orders'); // Redirect to orders list
@@ -197,6 +199,7 @@ const EditOrderForm = ({ resetField, setResetField }) => {
                     rules={[{ required: true }]}
                 >
                     <Select
+                        disabled={true}
                         className="w-full"
                         onChange={handleShopChange}
                         options={shops.map(shop => ({

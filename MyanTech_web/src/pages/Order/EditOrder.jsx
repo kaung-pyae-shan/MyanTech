@@ -14,6 +14,8 @@ const EditOrder = () => {
     const order = useSelector(state => state.orders.editOrders);
     const navigate = useNavigate()
     const [resetField, setResetField] = useState(false);
+         const [shopDisable, setShopDisable] = useState(false)
+    
 
     console.log(order);
 
@@ -26,7 +28,6 @@ const EditOrder = () => {
     
             if (response.data) {
                 setResetField(true);
-
                 notify();
 
                 // Add a slight delay before navigation to allow the toast to display
@@ -43,7 +44,7 @@ const EditOrder = () => {
     return (
         <div className='flex gap-3'>
             <ToastContainer />  {/* Ensure it's properly rendered */}
-            <EditOrderForm resetField={resetField} setResetField={setResetField} />
+            <EditOrderForm shopDisable={shopDisable} setShopDisable={setShopDisable} resetField={resetField} setResetField={setResetField} />
 
             <div className="flex flex-col items-end justify-start">
                 <div className="flex justify-end">
