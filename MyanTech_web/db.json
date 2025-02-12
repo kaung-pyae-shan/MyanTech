@@ -4,6 +4,7 @@
       "shop_id": 1,
       "shop_name": "Golden Mart",
       "shop_address": "No. 123, Main Road",
+      "contact": "+951-376448",
       "township_name": "Sanchaung",
       "region_id": 1,
       "township_id": 1,
@@ -15,6 +16,7 @@
       "shop_id": 2,
       "shop_name": "Sunrise Supermarket",
       "shop_address": "45, Insein Road",
+      "contact": "+951-376448",
       "township_name": "Hlaing",
       "region_id": 1,
       "township_id": 1,
@@ -26,6 +28,7 @@
       "shop_id": 3,
       "shop_name": "City Corner Store",
       "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
       "township_name": "Kamayut",
       "region_id": 1,
       "township_id": 1,
@@ -37,6 +40,7 @@
       "shop_id": 4,
       "shop_name": "Evergreen Mini Mart",
       "shop_address": "56, University Avenue",
+      "contact": "+951-376448",
       "township_name": "Bahan",
       "region_id": 1,
       "township_id": 1,
@@ -48,6 +52,7 @@
       "shop_id": 5,
       "shop_name": "Metro Convenience Store",
       "shop_address": "101, Strand Road",
+      "contact": "+951-376448",
       "township_name": "Pazundaung",
       "region_id": 1,
       "township_id": 1,
@@ -302,92 +307,6 @@
     }
   ],
   "orders": [
-    {
-      "id": "f72e",
-      "invoice_no": "INV-20250212-8389",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": 1,
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "delivering",
-      "products": [
-        {
-          "product_id": "7e67",
-          "product_name": "fdsxxcds",
-          "quantity": "4",
-          "unit_price": 34,
-          "subtotal": 136
-        }
-      ]
-    },
-    {
-      "id": "d61d",
-      "invoice_no": "INV-20250212-3442",
-      "shop_id": "ccbb",
-      "shop_name": "Evergreen Mini Mart",
-      "shop_address": "56, University Avenue",
-      "township_id": 1,
-      "township_name": "Bahan",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "delivering",
-      "products": [
-        {
-          "product_id": "7e67",
-          "product_name": "fdsxxcds",
-          "quantity": "3",
-          "unit_price": 34,
-          "subtotal": 102
-        }
-      ]
-    },
-    {
-      "id": "a114",
-      "invoice_no": "INV-20250212-2504",
-      "shop_id": "f537",
-      "shop_name": "City Corner Store",
-      "shop_address": "78, Baho Street",
-      "township_id": 1,
-      "township_name": "Kamayut",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "delivering",
-      "products": [
-        {
-          "product_id": "cf7e",
-          "product_name": "User",
-          "quantity": "5",
-          "unit_price": 3432,
-          "subtotal": 17160,
-          "remark": "s"
-        }
-      ]
-    },
-    {
-      "id": "825d",
-      "invoice_no": "INV-20250212-2939",
-      "shop_id": "ccbb",
-      "shop_name": "Evergreen Mini Mart",
-      "shop_address": "56, University Avenue",
-      "township_id": 1,
-      "township_name": "Bahan",
-      "region_id": 1,
-      "region_name": "Yangon",
-      "order_status": "delivering",
-      "products": [
-        {
-          "product_id": "7e67",
-          "product_name": "fdsxxcds",
-          "quantity": "3",
-          "unit_price": 34,
-          "subtotal": 102,
-          "remark": "dsda"
-        }
-      ]
-    }
   ],
   "assign_truck": [
     {

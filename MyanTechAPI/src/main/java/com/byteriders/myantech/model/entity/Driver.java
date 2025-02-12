@@ -24,7 +24,7 @@ public class Driver {
 	@Column(nullable = false)
 	private String vehiclePlateNo;
 	@Column(nullable = false)
-	private String phone;
+	private String contact;
 	
 	@OneToOne
 	private AssignedTruck truck;

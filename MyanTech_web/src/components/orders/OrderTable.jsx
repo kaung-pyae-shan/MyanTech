@@ -1,20 +1,33 @@
-import { Button, Table } from 'antd';
-import React, { useEffect } from 'react';
+import { Button, InputNumber, Table } from 'antd';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from '../../api/axios';
-import { delProduct } from '../../redux/services/OrderSlice';
+import { delProduct, updateCreateProductQty } from '../../redux/services/OrderSlice';
 import { CloseOutlined } from '@ant-design/icons';
 import { AiOutlineClose } from "react-icons/ai";
 
 
 const OrderTable = () => {
     const order = useSelector(state => state.orders.order);
+     const [qtyMsgs, setQtyMsgs] = useState({}); // Store messages per row
+    
 
     const dispatch = useDispatch()
    useEffect(() =>{
     console.log(order);
     
    },[order])
+
+    const handleQuantityChange = (value, record) => {
+           console.log(value, record);
+           
+           if (value > record.stock) {
+               setQtyMsgs(prev => ({ ...prev, [record.product_id]: 'Over Stock!' }));
+           } else {
+               dispatch(updateCreateProductQty({ product_id: record.product_id, quantity: value }));
+               setQtyMsgs(prev => ({ ...prev, [record.product_id]: '' })); // Clear message
+           }
+       };
     
 //    const createProduct = async () => {
 //     try {
@@ -32,8 +45,23 @@ const OrderTable = () => {
     const columns = [
         { title: "No.", dataIndex: "id", key: "id" },
         { title: "Product Name", dataIndex: "product_name", key: "product_name" },
-        { title: "Quantity", dataIndex: "quantity", key: "quantity" },
-        { title: "Unit Price", dataIndex: "unit_price", key: "unit_price" },
+        {
+            title: "Quantity",
+            dataIndex: "quantity",
+            key: "quantity",
+            render: (text, record) => (
+                <div>
+                    <span className="text-red-500">{qtyMsgs[record.product_id]}</span>
+                    <InputNumber
+                        min={1}
+                        max={record.stock}
+                        status={qtyMsgs[record.product_id] ? 'warning' : ''}
+                        value={record.quantity}
+                        onChange={(value) => handleQuantityChange(value, record)}
+                    />
+                </div>
+            ),
+        },        { title: "Unit Price", dataIndex: "unit_price", key: "unit_price" },
         { title: "Subtotal", dataIndex: "subtotal", key: "subtotal" },
         { title: "Remark", dataIndex: "remark", key: "remark" },
         {
