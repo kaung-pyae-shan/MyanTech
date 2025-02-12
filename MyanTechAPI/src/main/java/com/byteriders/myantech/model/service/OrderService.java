@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
+import com.byteriders.myantech.model.dto.output.OrderList;
+import com.byteriders.myantech.model.dto.output.ProductList;
 import com.byteriders.myantech.model.dto.output.ShopProductDTO;
+import com.byteriders.myantech.model.entity.Brand;
 import com.byteriders.myantech.model.entity.Order;
 import com.byteriders.myantech.model.entity.Order.Segment;
 import com.byteriders.myantech.model.entity.Order.Status;
@@ -70,4 +73,34 @@ public class OrderService {
 	private int generateInvoiceNo() {
 		return orderRepo.findMaxInvoiceNo().get();
 	}
+
+	 public List<OrderList> getAllOrders() {
+	        List<Order> orders = orderRepo.findAll();
+	        return orders.stream().map(this::mapToOrderList).collect(Collectors.toList());
+	    }
+
+	    private OrderList mapToOrderList(Order order) {
+	        OrderList dto = new OrderList();
+	        dto.setId(order.getId());
+	        dto.setInvoiceNo(order.getInvoiceNo());
+	        dto.setSegment(order.getProductSegment());
+	        dto.setShopId(order.getShop());
+	        dto.setUpdatedDate(order.getUpdatedDate());
+	        dto.setUpdatedUser(order.getUpdatedUser());
+	        dto.setRemarks(order.getRemarks());
+	        dto.setStatus(order.getStatus());
+
+	        
+	        List<ProductList> productList = productOrderRepo.findByOrder_Id(order.getId())
+	                .stream() 
+	                .map(po -> new ProductList(po.getId(), po.getProduct().getBrand(), po.getProduct().getModel(), po.getQty(),
+	                		po.getStatus(), po.getWrongQty(), po.getFaultyRemark(), po.getRemark(), po.getWrongRemark()
+	                		)).collect(Collectors.toList());
+
+	        dto.setProducts(productList);
+	        return dto;
+	    }
+	
+	
+    
 }

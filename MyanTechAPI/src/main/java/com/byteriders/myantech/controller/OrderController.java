@@ -1,5 +1,7 @@
 package com.byteriders.myantech.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
+import com.byteriders.myantech.model.dto.output.OrderList;
 import com.byteriders.myantech.model.dto.output.ShopProductDTO;
 import com.byteriders.myantech.model.service.OrderService;
 
@@ -33,6 +36,12 @@ public class OrderController {
 			return ResponseEntity.status(HttpStatus.CREATED).body("Order Created Successfully");
 		}
 		return ResponseEntity.badRequest().body("Order Creation failed");
+	}
+	
+	@GetMapping("/getOrders")
+	public List<OrderList> getOrders(){
+		return service.getAllOrders();
+		
 	}
 	
 }
