@@ -2,9 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "../../api/axios";
 import { Button, Select, Modal, DatePicker, message, Tabs } from "antd";
 import { AiOutlineArrowRight } from "react-icons/ai";
-
 const { TabPane } = Tabs;
-
 const OrderTable = () => {
   const [orders, setOrders] = useState([]);
   const [shops, setShops] = useState([]);
@@ -14,7 +12,6 @@ const OrderTable = () => {
   const [deliveryDate, setDeliveryDate] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     const fetchOrdersAndShops = async () => {
       try {
@@ -31,7 +28,6 @@ const OrderTable = () => {
     };
     fetchOrdersAndShops();
   }, []);
-
   const fetchDrivers = async () => {
     try {
       const response = await axios.get("/drivers");
@@ -42,13 +38,11 @@ const OrderTable = () => {
       message.error("Failed to load drivers.");
     }
   };
-
   const handleOrderSelection = (orderId) => {
     setSelectedOrders((prev) =>
       prev.includes(orderId) ? prev.filter((id) => id !== orderId) : [...prev, orderId]
     );
   };
-
   const handleAssignTruck = async () => {
     if (!selectedDrivers.length || !deliveryDate) {
       message.error("Please select drivers and a delivery date.");
@@ -103,7 +97,6 @@ const OrderTable = () => {
   };
   
   
-
   const renderOrdersTable = (statusFilter) => (
     <table className="min-w-full divide-y divide-gray-200">
       <thead style={{ background: "linear-gradient(to right, #6b39fc, #52aff0)" }}>
@@ -166,7 +159,6 @@ const OrderTable = () => {
       </tbody>
     </table>
   );
-
   return (
     <div className="flex flex-col shadow-md">
       <div className="p-4">
@@ -174,7 +166,6 @@ const OrderTable = () => {
           Assign It
         </Button>
       </div>
-
       <Tabs defaultActiveKey="1">
         <TabPane tab="PENDING Orders" key="1">
           {renderOrdersTable("PENDING")}
@@ -183,7 +174,6 @@ const OrderTable = () => {
           {renderOrdersTable("DELIVERING")}
         </TabPane>
       </Tabs>
-
       <Modal
         title="Assign Drivers and Set Delivery Date"
         open={modalOpen}
@@ -215,5 +205,4 @@ const OrderTable = () => {
     </div>
   );
 };
-
 export default OrderTable;
