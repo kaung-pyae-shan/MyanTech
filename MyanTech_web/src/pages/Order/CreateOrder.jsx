@@ -16,7 +16,7 @@ const CreateOrder = () => {
 
   const createProduct = async () => {
     try {
-      const response = await axios.post('/orders', order);
+      const response = await axios.post('/order/create', order);
 
       setResetField(true);
 

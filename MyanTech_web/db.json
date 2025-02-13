@@ -1,4 +1,5 @@
 {
+
   "users": [
     {
       "id": "1",
@@ -25,6 +26,7 @@
       "id": "a6d5",
       "user_name": "sales",
       "password": "asdffdsa"
+
     }
   ],
   "shops": [
@@ -139,6 +141,19 @@
       "category_id": 10,
       "category_name": "Storage Device ",
       "id": "2b99"
+    }
+  ],
+  "products": [
+    {
+      "id": "4b73",
+      "product_id": 1739420864981,
+      "name": "Admin",
+      "brand": "Canon ",
+      "type": "Laptop",
+      "price": 4254,
+      "stock": 3433,
+      "cashBack": 4324,
+      "serialNo": "5555-55555-5555-55555"
     }
   ],
   "brand": [
@@ -268,76 +283,12 @@
       "id": "1a08"
     }
   ],
-  "products": [
-    {
-      "id": "cb3c",
-      "product_id": 1739248377486,
-      "name": "Acer Aspire X",
-      "brand": "Acer",
-      "type": "Desktop PC ",
-      "price": 5000,
-      "stock": 50,
-      "cashBack": 1,
-      "serialNo": "XXXX-XXXXX-XXXX-XXXXX"
-    },
-    {
-      "id": "88a7",
-      "product_id": 1739248404078,
-      "name": "Mac 14",
-      "brand": "Apple",
-      "type": "Laptop",
-      "price": 3000,
-      "stock": 78,
-      "serialNo": "AAAA-XXXXX-XXXX"
-    },
-    {
-      "id": "7e67",
-      "product_id": 1739251554907,
-      "name": "fdsxxcds",
-      "brand": "Canon ",
-      "type": "Laptop",
-      "price": 34,
-      "stock": 343,
-      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
-    },
-    {
-      "id": "cf7e",
-      "product_id": 1739251568850,
-      "name": "User",
-      "brand": "Asus",
-      "type": "Memory ",
-      "price": 3432,
-      "stock": 32,
-      "cashBack": 4343,
-      "serialNo": "5555-55555-5555-55555"
-    },
-    {
-      "id": "43b1",
-      "product_id": 1739251590733,
-      "name": "Admin",
-      "brand": "APC",
-      "type": "Power Supply ",
-      "price": 52000,
-      "stock": 10,
-      "cashBack": 25,
-      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
-    },
-    {
-      "id": "808e",
-      "product_id": 1739251658170,
-      "name": "sdsd",
-      "brand": "Dell ",
-      "type": "Monitor ",
-      "price": 343,
-      "stock": 32,
-      "cashBack": 13,
-      "serialNo": "xcxxxxxxxxxxxx"
-    }
-  ],
   "orders": [
     {
+
       "id": "5393",
       "invoice_no": "INV-20250212-6880",
+
       "shop_id": "9ab9",
       "shop_name": "Sunrise Supermarket",
       "shop_address": "45, Insein Road",
@@ -349,6 +300,7 @@
       "order_status": "delivered",
       "products": [
         {
+
           "product_id": "88a7",
           "product_name": "Mac 14",
           "quantity": "2",
@@ -399,6 +351,7 @@
           "stock": 10,
           "unit_price": 52000,
           "subtotal": 104000,
+
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -408,59 +361,38 @@
       ]
     },
     {
+
       "id": "1691",
       "invoice_no": "INV-20250212-4278",
       "shop_id": "040e",
       "shop_name": "Metro Convenience Store",
       "shop_address": "101, Strand Road",
+
       "contact": "+951-376448",
       "township_id": 1,
-      "township_name": "Pazundaung",
+      "township_name": "Hlaing",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "DELIVERING",
+      "order_status": "PENDING",
       "products": [
         {
-          "product_id": "808e",
-          "product_name": "sdsd",
-          "quantity": "2",
-          "stock": 32,
-          "unit_price": 343,
-          "subtotal": 686,
+          "product_id": "4b73",
+          "product_name": "Admin",
+          "quantity": "5",
+          "stock": 3433,
+          "unit_price": 4254,
+          "subtotal": 21270,
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
           "falty_qty": 0,
           "falty_remark": ""
-        },
-        {
-          "product_id": "88a7",
-          "product_name": "Mac 14",
-          "quantity": 3,
-          "stock": 78,
-          "unit_price": 3000,
-          "subtotal": 6000,
-          "status": "",
-          "wrong_qty": 0,
-          "wrong_remark": "",
-          "falty_qty": 0,
-          "falty_remark": ""
-        },
-        {
-          "product_id": "cf7e",
-          "product_name": "User",
-          "quantity": 3,
-          "stock": 32,
-          "unit_price": 3432,
-          "subtotal": null,
-          "remark": "2"
         }
-      ],
-      "order_id": "1691"
+      ]
     },
     {
-      "id": "204c",
-      "invoice_no": "INV-20250212-7588",
+      "id": "89fe",
+      "invoice_no": "INV-20250213-3233",
       "shop_id": "f537",
       "shop_name": "City Corner Store",
       "shop_address": "78, Baho Street",
@@ -469,6 +401,7 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
+
       "order_status": "delivered",
       "products": [
         {
@@ -562,6 +495,7 @@
           "stock": 78,
           "unit_price": 3000,
           "subtotal": 3000,
+
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -746,21 +680,22 @@
   "assign_truck": [
     {
       "0": {
-        "assign_truck_id": 1739345709079,
-        "order_id": "f72e",
+        "assign_truck_id": 1739421636816,
+        "order_id": "79eb",
         "driver_id": 3,
-        "delivery_date": "2025-02-13"
+        "delivery_date": "2025-02-15"
       },
-      "id": "5c15"
+      "id": "79b3"
     },
     {
       "0": {
-        "assign_truck_id": 1739345725491,
-        "order_id": "d61d",
-        "driver_id": 3,
-        "delivery_date": "2025-02-28"
+        "assign_truck_id": 1739423503382,
+        "order_id": "89fe",
+        "driver_id": 1,
+        "delivery_date": "2025-02-15"
       },
       "1": {
+
         "assign_truck_id": 1739345725492,
         "order_id": "a114",
         "driver_id": 3,
@@ -794,6 +729,7 @@
         "delivery_date": "2025-01-29"
       },
       "id": "8976"
+
     }
   ]
 }

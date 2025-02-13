@@ -13,6 +13,7 @@ import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.entity.Order;
 import com.byteriders.myantech.model.entity.Order.Segment;
 import com.byteriders.myantech.model.entity.Order.Status;
+import com.byteriders.myantech.model.entity.Product;
 import com.byteriders.myantech.model.entity.ProductOrder;
 import com.byteriders.myantech.model.repo.OrderRepo;
 import com.byteriders.myantech.model.repo.ProductOrderRepo;
@@ -33,6 +34,8 @@ public class OrderService {
 	private ProductOrderRepo productOrderRepo;
 	@Autowired
 	private ProductRepo productRepo;
+	@Autowired
+	private ProductService productService;
 	
 	public List<ShopInfo> getShopFormData() {
 		return shopRepo.getAllShopInfo();
@@ -43,7 +46,6 @@ public class OrderService {
 	}
 
 	public boolean createOrder(OrderForm form) {
-		System.out.println(form.shopId());
 		var shop = shopRepo.findById(form.shopId()).get();
 		var order = new Order();
 		int invoiceNo = generateInvoiceNo();
@@ -54,25 +56,27 @@ public class OrderService {
 		order.setCreatedDate(LocalDate.now());
 		//Order Created User ID
 		var savedOrder = orderRepo.save(order);
-
 		List<ProductOrder> productOrders = form.products()
 				.stream()
 				.map(p -> {
-					var product = productRepo.findById(p.productId()).get();
+					Product product = productRepo.findById(p.productId()).get();
 					var productOrder = new ProductOrder();
 					productOrder.setOrder(savedOrder);
 					productOrder.setProduct(product);
 					productOrder.setQty(p.quantity());
 					productOrder.setRemark(p.remarks());
+					productOrder.setSubTotal(product.getPrice() * p.quantity());
 					return productOrder;
 				})
 				.collect(Collectors.toList());
 		productOrderRepo.saveAll(productOrders);
 		
+		productService.subtractProductQty(productOrders);
+		
 		return savedOrder != null;
 	}
 	
 	private int generateInvoiceNo() {
-		return orderRepo.findMaxInvoiceNo().get();
+		return orderRepo.findMaxInvoiceNo().get() + 1;
 	}
 }
