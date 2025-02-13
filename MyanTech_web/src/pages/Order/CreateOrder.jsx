@@ -15,6 +15,8 @@ const CreateOrder = () => {
   const navigate = useNavigate();
 
   const createProduct = async () => {
+    console.log(order);
+    
     try {
       const response = await axios.post('/order/create', order);
 

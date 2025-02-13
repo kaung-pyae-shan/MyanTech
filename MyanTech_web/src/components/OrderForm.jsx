@@ -27,6 +27,8 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
         const fetchShops = async () => {
             try {
                 const response = await axios.get('/order/form/shops');
+                console.log(response.data);
+                
                 setShops(response.data);
             } catch (error) {
                 console.error('Error fetching shops:', error);
@@ -87,29 +89,32 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
         }
 
         const shop = {
-            shop_id: selectedShop?.id || 0,
-            shop_name: values.shop_name,
-            contact: selectedShop?.contact,
-            shop_address: selectedShop?.shop_address || '',
-            township_id: selectedShop?.township_id || '',
-            township_name: selectedShop?.township_name || '',
-            region_id: selectedShop?.region_id || '',
-            region_name: selectedShop?.region_name || '',
+            shopId: selectedShop?.shop_id || 0,
+            // shop_name: values.shop_name,
+            // contact: selectedShop?.contact,
+            // shop_address: selectedShop?.shop_address || '',
+            // township_id: selectedShop?.township_id || '',
+            // township_name: selectedShop?.township_name || '',
+            // region_id: selectedShop?.region_id || '',
+            // region_name: selectedShop?.region_name || '',
         }
 
         const newproducts = {
-            product_id: selectedProductData.id,
-            product_name: selectedProductData.name,
+            productId: selectedProductData.product_id,
             quantity: values.qty,
-            stock: values.stock,
-            unit_price: selectedProductData.price,
-            subtotal: values.qty * selectedProductData.price,
-            remark: values.remark,
-            status: '',
-            wrong_qty: 0,
-            wrong_remark: '',
-            falty_qty: 0,
-            falty_remark: ''
+            // remarks: values.remark,
+            // product_id: selectedProductData.id,
+            product_name: selectedProductData.name,
+            // quantity: values.qty,
+             stock: selectedProduct.stock,
+             unit_price: selectedProductData.price,
+             subtotal: values.qty * selectedProductData.price,
+            remarks: values.remark,
+            // status: '',
+            // wrong_qty: 0,
+            // wrong_remark: '',
+            // falty_qty: 0,
+            // falty_remark: ''
         }
 
         console.log(newproducts);
@@ -148,6 +153,8 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
 
     const handleShopChange = (shopName) => {
         const shop = shops.find(shop => shop.shop_name === shopName);
+
+
 
         console.log(shop);
 

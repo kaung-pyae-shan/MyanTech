@@ -18,7 +18,9 @@ const AllOrder = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`/orders`);
+                const response = await axios.get(`/order/list`);
+                console.log(response.data);
+                
                 setOrders(response.data);
             } catch (error) {
                 console.error("Error fetching orders:", error);
@@ -57,29 +59,29 @@ const AllOrder = () => {
     };
 
     const columns = [
-        { title: 'Invoice No', dataIndex: 'invoice_no', key: 'invoice_no' },
+        { title: 'Invoice No', dataIndex: 'invoiceNo', key: 'invoice_no' },
         { 
             title: 'Shop Name', 
-            dataIndex: 'shop_id', 
-            key: 'shop_id',
-            render: (shop_id) => shops.find(shop => shop.id === shop_id)?.shop_name || 'Unknown'
+            dataIndex: 'shopName', 
+            key: 'shopName',
+            // render: (shop_id) => shops.find(shop => shop.id === shop_id)?.shop_name || 'Unknown'
         },
         { 
             title: 'Total Quantity', 
             key: 'total_quantity',
-            render: (_, order) => order.products.reduce((sum, product) => sum + product.quantity, 0)
+            render: (_, order) => order.products.reduce((sum, product) => sum + product.qty, 0)
         },
         { 
             title: 'Total Price', 
             key: 'total_price',
-            render: (_, order) => order.products.reduce((sum, product) => sum + product.subtotal, 0)
+            render: (_, order) => order.products.reduce((sum, product) => sum + product.subTotal, 0)
         },
-        { title: 'Order Status', dataIndex: 'order_status', key: 'order_status' },
+        { title: 'Order Status', dataIndex: 'orderStatus', key: 'orderStatus' },
         {
             title: 'Details',
             key: 'details',
             render: (_, order) => (
-                <AiOutlineArrowRight className="cursor-pointer" onClick={() => setOpenOrder(order.id)} />
+                <AiOutlineArrowRight className="cursor-pointer" onClick={() => setOpenOrder(order.orderId)} />
             )
         }
     ];
@@ -112,9 +114,9 @@ const AllOrder = () => {
                 onClose={() => setOpenOrder(null)}
                 open={openOrder !== null}
             >
-                {openOrder && <OrderDetail order={orders.find(order => order.id === openOrder)} />}
-               { orders.find(order => order.id === openOrder)?.order_status == 'pending'&& <Button 
-                    onClick={() => navigate(`/edit-order`, { state: { orderData: orders.find(order => order.id === openOrder) } })} 
+                {openOrder && <OrderDetail order={orders.find(order => order.orderId === openOrder)} />}
+               { orders.find(order => order.orderId === openOrder)?.orderStatus == 'pending'&& <Button 
+                    onClick={() => navigate(`/edit-order`, { state: { orderData: orders.find(order => order.orderId === openOrder) } })} 
                     className='absolute mt-3 border-2 border-yellow-600 rounded-md right-4 text-blue top-1'
                 >
                     Edit Order
