@@ -11,7 +11,7 @@ const initialState = {
         township_name: '',
         region_id: 0,
         region_name: '',
-        order_status: 'pending',
+        order_status: 'PENDING',
         
         products: []
     },
