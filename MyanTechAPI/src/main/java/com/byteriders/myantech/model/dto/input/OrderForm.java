@@ -4,8 +4,7 @@ import java.util.List;
 
 public record OrderForm(
     int shopId,
-    List<Product> products,
-    int subtotal
+    List<Product> products
 ) {
     public record Product(int productId, int quantity, String remarks) {}
 }
