@@ -49,7 +49,7 @@ public class Order {
 	private List<ProductOrder> productOrders;
 
 	public enum Status {
-		PENDING, DELIVERED, CANCELED
+		PENDING, DELIVERING, DELIVERED, COMPLETED, CANCELED
 	}
 	
 	public enum Segment {

@@ -23,9 +23,4 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
 	
 	@Query("Select p.stock from Product p where id = :id")
 	public int findStockById(int id);
-	
-	@Modifying
-	@Transactional
-	@Query("UPDATE Product p SET p.stock=:stock where p.id=:id")
-	public int updateStock(int stock, int id);
 }

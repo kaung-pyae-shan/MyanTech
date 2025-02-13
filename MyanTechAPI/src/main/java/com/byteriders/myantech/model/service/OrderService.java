@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
+import com.byteriders.myantech.model.dto.input.OrderSearch;
+import com.byteriders.myantech.model.dto.input.StatusUpdateDTO;
+import com.byteriders.myantech.model.dto.output.OrderDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.entity.Order;
@@ -76,7 +79,66 @@ public class OrderService {
 		return savedOrder != null;
 	}
 	
+	public List<OrderDetails> getAllOrderDetails(OrderSearch search) {
+		return orderRepo.searchAllOrderDetails(search);
+	}
+
+	public boolean updateStatus(StatusUpdateDTO statusUpdate) {
+		switch (statusUpdate.status()) {
+		case PENDING: {
+			restockInventory(Status.PENDING, statusUpdate.orderId());
+			updateOrderStatus(Status.PENDING, statusUpdate.orderId());
+			break;
+		}
+		case DELIVERING: {
+			updateOrderStatus(Status.DELIVERING, statusUpdate.orderId());
+			break;
+		}
+		case DELIVERED: {
+			updateOrderStatus(Status.DELIVERED, statusUpdate.orderId());
+			break;
+		}
+		case COMPLETED: {
+			updateOrderStatus(Status.COMPLETED, statusUpdate.orderId());
+			break;
+		}
+		case CANCELED: {
+			restockInventory(Status.CANCELED, statusUpdate.orderId());
+			updateOrderStatus(Status.CANCELED, statusUpdate.orderId());
+			break;
+		}
+		default:
+			return false;
+		}
+		return true;
+	}
+	
 	private int generateInvoiceNo() {
 		return orderRepo.findMaxInvoiceNo().get() + 1;
+	}
+
+	private void restockInventory(Status updatedStatus, int orderId) {
+		var order = orderRepo.findById(orderId).orElseThrow();
+		Status currentStatus = order.getStatus();
+		
+		// no need to restock
+		if(updatedStatus == currentStatus) return;
+
+		var productOrders = productOrderRepo.findByOrderId(orderId);
+		// loop the ProductOrders and get the product quantity
+		// add the quantity into Product stock
+		if(updatedStatus == Status.PENDING) {
+			productService.addProductQty(productOrders);
+		}
+		if(updatedStatus == Status.CANCELED) {
+			productService.subtractProductQty(productOrders);
+		}
+		return;
+	}
+
+	private void updateOrderStatus(Status status, int orderId) {
+		var order = orderRepo.findById(orderId).orElseThrow();
+		order.setStatus(status);
+		orderRepo.save(order);
 	}
 }

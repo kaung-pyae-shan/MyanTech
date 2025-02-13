@@ -14,24 +14,21 @@ public class ProductService {
 	@Autowired
 	private ProductRepo repo;
 
-	public void subtractProductQty(List<ProductOrder> productOrders) {
-//		productOrders.forEach(po -> {
-//			var qty = po.getQty();
-//			var dbQty = repo.findStockById(po.getProduct().getId());
-//			repo.updateStock(dbQty - qty);
-//		});
-		for (ProductOrder productOrder : productOrders) {
-			var stock = productOrder.getQty();
-			var dbStock = repo.findStockById(productOrder.getProduct().getId());
-			repo.updateStock(dbStock - stock, productOrder.getProduct().getId());
-		}
+	public void subtractProductQty(List<ProductOrder> productOrders) {	
+		productOrders.forEach(po -> {
+			var qty = po.getQty();
+			var product = repo.findById(po.getProduct().getId()).orElseThrow();
+			product.setStock(product.getStock()-qty);
+			repo.save(product);
+		});
 	}
 	
 	public void addProductQty(List<ProductOrder> productOrders) {
 		productOrders.forEach(po -> {
 			var qty = po.getQty();
-			var dbQty = repo.findStockById(po.getProduct().getId());
-			repo.updateStock(dbQty + qty, po.getProduct().getId());
+			var product = repo.findById(po.getProduct().getId()).orElseThrow();
+			product.setStock(product.getStock()+qty);
+			repo.save(product);
 		});
 	}
 }
