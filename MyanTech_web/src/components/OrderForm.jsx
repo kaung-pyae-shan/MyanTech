@@ -193,9 +193,15 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
                    
                 >
                     <Select
+                        showSearch
                          disabled = {shopDisable}
                         className="w-full"
+                        placeholder="Select a shop"
+
                         onChange={handleShopChange}
+                        filterOption={(input, option) =>
+                            (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                          }
                         options={shops.map(shop => ({
                             value: shop.shop_name,
                             label: shop.shop_name
@@ -223,7 +229,11 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
                 <div className="flex items-center gap-3">
                     <Form.Item label="Choose Product" style={{ width: '100%' }} name="product_name" rules={[{ required: true }]}>
                         <Select
+                            showSearch
                             onChange={handleProductChange}
+                            filterOption={(input, option) =>
+                                (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
+                              }
                             options={products
                                 .filter(product =>
                                     !order.products.some(addedProduct => addedProduct.product_name === product.name)
@@ -241,8 +251,9 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
                             form.setFieldsValue({ qty: e.target.value }); // Ensure Form updates qty
                             checkStock(e);
                         }}
+                        rules={[{ required: true }]}
                         name="qty" className='relative' style={{ width: '100%' }}>
-                        <Input type='number' style={{ width: '100%' }} onChange={checkStock} placeholder='Qty' rules={[{ required: true }]} />
+                        <Input   type='number' style={{ width: '100%' }} onChange={checkStock} placeholder='Qty' rules={[{ required: true }]} />
                         <p className='absolute text-red-600'>{inputMessage}</p>
                     </Form.Item>
                 </div>

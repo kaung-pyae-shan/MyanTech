@@ -4,6 +4,7 @@ import LineChartC from '../../components/Dashboard/LineChart'
 
 import HomeCard from '../../components/Dashboard/HomeCard';
 import Popular from '../../components/Dashboard/Popular';
+import PieChart from '../../components/Dashboard/PieChart';
 
 
 
@@ -19,7 +20,7 @@ const SalesDashboard = () => {
       <HomeCard />  
       
     </div>
-    <div className="flex justify-between my-10">
+    <div className="flex justify-between my-5">
           <div className=" w-[40%]">
             <h2 className='mb-3 text-xl font-semibold text-gradient'>Popular Products</h2>
             <Popular />
@@ -29,6 +30,11 @@ const SalesDashboard = () => {
 
                 <LineChartC />
         </div>
+
+    </div>
+
+    <div className=" w-[400px]">
+        <PieChart />
     </div>
     </>
   )
