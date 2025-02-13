@@ -2,6 +2,35 @@
 .ant-menu-item-selected {
     background: linear-gradient(to right, #6b39fc, #52aff0) !important;
 }
+
+.ant-table-wrapper .ant-table-thead >tr{
+  background: linear-gradient(to right, #6b39fc, #52aff0)  !important
+}
+
+.title1 .ant-card-head {
+  background:  linear-gradient(to right, #AC95F8, #703FFE)  !important ;
+}
+
+.title2 .ant-card-head {
+  background:  linear-gradient(to bottom, #8CC5C3, #2E9D95)  !important ;
+}
+
+.title3 .ant-card-head {
+  background:  linear-gradient(to bottom, #F5C0A6, #FE9256)  !important ;
+}
+.title4 .ant-card-head {
+  background:  linear-gradient(to bottom, #B3D694, #7ABD3A)
+  !important ;
+}
+
+.ant-card-body{
+  padding: 15px 18px;
+}
+
+.ant-table-wrapper .ant-table-thead >tr>th{
+  color: white  !important;
+  background: none !important;
+}
   
   .ant-menu-item-selected a {
     color: #ffffff !important;

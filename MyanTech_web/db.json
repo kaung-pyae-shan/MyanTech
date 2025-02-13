@@ -4,6 +4,7 @@
       "shop_id": 1,
       "shop_name": "Golden Mart",
       "shop_address": "No. 123, Main Road",
+      "contact": "+951-376448",
       "township_name": "Sanchaung",
       "region_id": 1,
       "township_id": 1,
@@ -15,6 +16,7 @@
       "shop_id": 2,
       "shop_name": "Sunrise Supermarket",
       "shop_address": "45, Insein Road",
+      "contact": "+951-376448",
       "township_name": "Hlaing",
       "region_id": 1,
       "township_id": 1,
@@ -26,6 +28,7 @@
       "shop_id": 3,
       "shop_name": "City Corner Store",
       "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
       "township_name": "Kamayut",
       "region_id": 1,
       "township_id": 1,
@@ -37,6 +40,7 @@
       "shop_id": 4,
       "shop_name": "Evergreen Mini Mart",
       "shop_address": "56, University Avenue",
+      "contact": "+951-376448",
       "township_name": "Bahan",
       "region_id": 1,
       "township_id": 1,
@@ -48,6 +52,7 @@
       "shop_id": 5,
       "shop_name": "Metro Convenience Store",
       "shop_address": "101, Strand Road",
+      "contact": "+951-376448",
       "township_name": "Pazundaung",
       "region_id": 1,
       "township_id": 1,
@@ -205,6 +210,7 @@
       "id": "5074"
     }
   ],
+
   "products": [
     {
       "id": "4e92",
@@ -393,97 +399,71 @@
       "id": "1a08"
     }
   ],
-  "assign_truck": [
+  "products": [
     {
-      "id": "5b2f",
-      "order_id": "0865",
-      "driver_id": "2",
-      "vehicle_plate_no": "BB-5678",
-      "delivery_date": "2025-02-19"
+      "id": "cb3c",
+      "product_id": 1739248377486,
+      "name": "Acer Aspire X",
+      "brand": "Acer",
+      "type": "Desktop PC ",
+      "price": 5000,
+      "stock": 50,
+      "cashBack": 1,
+      "serialNo": "XXXX-XXXXX-XXXX-XXXXX"
     },
     {
-      "id": "05ec",
-      "order_id": "f147",
-      "driver_id": "2",
-      "vehicle_plate_no": "BB-5678",
-      "delivery_date": "2025-02-19"
+      "id": "88a7",
+      "product_id": 1739248404078,
+      "name": "Mac 14",
+      "brand": "Apple",
+      "type": "Laptop",
+      "price": 3000,
+      "stock": 78,
+      "serialNo": "AAAA-XXXXX-XXXX"
     },
     {
-      "id": "c56c",
-      "order_id": "0865",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-25"
+      "id": "7e67",
+      "product_id": 1739251554907,
+      "name": "fdsxxcds",
+      "brand": "Canon ",
+      "type": "Laptop",
+      "price": 34,
+      "stock": 343,
+      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
     },
     {
-      "id": "850a",
-      "order_id": "f147",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-25"
+      "id": "cf7e",
+      "product_id": 1739251568850,
+      "name": "User",
+      "brand": "Asus",
+      "type": "Memory ",
+      "price": 3432,
+      "stock": 32,
+      "cashBack": 4343,
+      "serialNo": "5555-55555-5555-55555"
     },
     {
-      "id": "54eb",
-      "order_id": "372e",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-28"
+      "id": "43b1",
+      "product_id": 1739251590733,
+      "name": "Admin",
+      "brand": "APC",
+      "type": "Power Supply ",
+      "price": 52000,
+      "stock": 10,
+      "cashBack": 25,
+      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
     },
     {
-      "id": "e4ae",
-      "order_id": "0865",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-28"
-    },
-    {
-      "id": "2d6a",
-      "order_id": "372e",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-12"
-    },
-    {
-      "id": "167f",
-      "order_id": "0865",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-12"
-    },
-    {
-      "id": "cc1b",
-      "order_id": "f147",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-12"
-    },
-    {
-      "id": "4936",
-      "order_id": "372e",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-28"
-    },
-    {
-      "id": "b239",
-      "order_id": "0865",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-28"
-    },
-    {
-      "id": "2915",
-      "order_id": "f147",
-      "driver_id": "2",
-      "vehicle_plate_no": "AA-1234",
-      "delivery_date": "2025-02-28"
-    },
-    {
-      "id": "02c3",
-      "order_id": "6d8a",
-      "driver_id": 2,
-      "vehicle_plate_no": "MDY-4B/7890",
-      "delivery_date": "2025-02-18"
+      "id": "808e",
+      "product_id": 1739251658170,
+      "name": "sdsd",
+      "brand": "Dell ",
+      "type": "Monitor ",
+      "price": 343,
+      "stock": 32,
+      "cashBack": 13,
+      "serialNo": "xcxxxxxxxxxxxx"
     }
   ]
+  
 }
