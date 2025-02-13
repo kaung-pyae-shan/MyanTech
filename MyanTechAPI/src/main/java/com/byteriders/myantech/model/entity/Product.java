@@ -33,7 +33,7 @@ public class Product {
 	private int cashback;
 	private String serialNumber;
 	private int stock;
-	@Column(nullable = true)
+	@Column(columnDefinition = "INT DEFAULT 0")
 	private int stockFaulty;
 	
 	@ManyToOne
