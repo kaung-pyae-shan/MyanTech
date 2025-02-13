@@ -48,8 +48,16 @@
     background-color: rgb(0 0 0 / 1%)  !important;
   }
 
+  .ant-card .ant-card-body{
+    padding: 17px 20px !important;
+  }
+
   .ant-drawer .ant-drawer-body{
     padding: 0;
+  }
+
+  .piechart{
+    height: 300px !important
   }
   
 

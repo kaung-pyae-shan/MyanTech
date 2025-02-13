@@ -18,6 +18,18 @@ import { LogoutOutlined } from '@ant-design/icons';
 // import Logo from "../assets/Images/Logo.png";
 const { Header, Sider, Content } = Layout;
 
+const siderStyle = {
+  overflow: 'auto',
+  height: '100vh',
+  position: 'sticky',
+  insetInlineStart: 0,
+  top: 0,
+  bottom: 0,
+  scrollbarWidth: 'thin',
+  scrollbarGutter: 'stable',
+  minWidth: '210px'
+};
+
 const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const {
@@ -30,7 +42,10 @@ const AppLayout = () => {
 
   return (
     <Layout className="min-h-screen ">
-      <Sider className='relative w-[100%] bg-dark ' trigger={null} collapsible collapsed={collapsed} >
+      <Sider className='relative w-[100%] bg-dark ' 
+      trigger={null} collapsible collapsed={collapsed}
+      style={siderStyle}
+      >
         <div className="demo-logo-vertical" />
         {
           collapsed ?
@@ -164,7 +179,9 @@ const AppLayout = () => {
           style={{
             padding: 0,
             background: '#1C1C25',
-
+            position: 'sticky',
+            top: 0,
+            zIndex: 1000
           }}
           className="flex justify-between w-full"
         >
