@@ -168,7 +168,7 @@ const OrderTable = () => {
   );
 
   return (
-    <div className="flex flex-col shadow-md">
+    <div className="flex flex-col">
       <div className="p-4">
         <Button type="primary" onClick={fetchDrivers} disabled={selectedOrders.length === 0}>
           Assign It

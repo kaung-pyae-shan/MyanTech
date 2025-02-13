@@ -11,6 +11,7 @@ import EditOrder from "../pages/Order/EditOrder";
 
 import OrderTable from "../pages/AssignTruck/OrderTable";
 import SalesDashboard from "../pages/Dashboards/SalesDashboard";
+import Login from "../pages/User/Login";
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -76,11 +77,11 @@ const Router = () => {
         //     element : <Register/>
 
         // },
-        // {
-        //     path:"/login",
-        //     element : <Login/>
+        {
+            path:"/login",
+            element : <Login />
 
-        // },
+        },
         // {
         //     path:"*",
         //     element : <NotFound />
