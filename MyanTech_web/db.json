@@ -1,4 +1,32 @@
 {
+  "users": [
+    {
+      "id": "1",
+      "username": "sales",
+      "password": "asdffdsa",
+      "role": "sales",
+      "loginEndpoint": "/api/login"
+    },
+    {
+      "id": "2",
+      "username": "warehouse",
+      "password": "asdffdsa",
+      "role": "warehouse",
+      "loginEndpoint": "/api/login"
+    },
+    {
+      "id": "3",
+      "username": "finance",
+      "password": "asdffdsa",
+      "role": "finance",
+      "loginEndpoint": "/api/login"
+    },
+    {
+      "id": "a6d5",
+      "user_name": "sales",
+      "password": "asdffdsa"
+    }
+  ],
   "shops": [
     {
       "shop_id": 1,
@@ -318,7 +346,7 @@
       "township_name": "Hlaing",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "delivering",
+      "order_status": "delivered",
       "products": [
         {
           "product_id": "88a7",
@@ -349,7 +377,7 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "pending",
+      "order_status": "delivered",
       "products": [
         {
           "product_id": "88a7",
@@ -553,7 +581,7 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "PENDING",
+      "order_status": "DELIVERING",
       "products": [
         {
           "product_id": "7e67",
@@ -611,6 +639,108 @@
           "falty_remark": ""
         }
       ]
+    },
+    {
+      "id": "ac9a",
+      "invoice_no": "INV-20250213-6002",
+      "shop_id": "f537",
+      "shop_name": "City Corner Store",
+      "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Kamayut",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "PENDING",
+      "products": [
+        {
+          "product_id": "88a7",
+          "product_name": "Mac 14",
+          "quantity": "1",
+          "stock": 78,
+          "unit_price": 3000,
+          "subtotal": 3000,
+          "remark": "abc",
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "cf7e",
+          "product_name": "User",
+          "quantity": "30",
+          "stock": 32,
+          "unit_price": 3432,
+          "subtotal": 102960,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "1",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 34
+        }
+      ],
+      "order_id": "ac9a"
+    },
+    {
+      "id": "44ab",
+      "invoice_no": "INV-20250213-6122",
+      "shop_id": "040e",
+      "shop_name": "Metro Convenience Store",
+      "shop_address": "101, Strand Road",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Pazundaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "PENDING",
+      "products": [
+        {
+          "product_id": "cb3c",
+          "product_name": "Acer Aspire X",
+          "quantity": "2",
+          "stock": 50,
+          "unit_price": 5000,
+          "subtotal": 10000,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "cf7e",
+          "product_name": "User",
+          "quantity": "1",
+          "stock": 32,
+          "unit_price": 3432,
+          "subtotal": 3432,
+          "remark": "acdf",
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "1",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 34
+        }
+      ],
+      "order_id": "44ab"
     }
   ],
   "assign_truck": [
@@ -655,6 +785,15 @@
         "delivery_date": "2025-02-06"
       },
       "id": "1168"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739454568387,
+        "order_id": "e59c",
+        "driver_id": 3,
+        "delivery_date": "2025-01-29"
+      },
+      "id": "8976"
     }
   ]
 }

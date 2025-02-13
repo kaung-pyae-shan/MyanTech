@@ -1,10 +1,32 @@
 import { Tabs } from 'antd';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AllOrder from './AllOrder';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
+import axios from '../../api/axios';
 
 const OrderTab = () => {
+
+  //  const [loading, setLoading] = useState(false)
+  // const [orders, setOrders] = useState([]);
+   
+    // useEffect(()=>{
+    //    const fetchOrders = async () => {
+    //               setLoading(true)
+    //               try {
+    //                   const response = await axios.get(`/orders`);
+    //                   setOrders(response.data);
+    //                   setLoading(false)
+    //               } catch (error) {
+    //                   console.error("Error fetching orders:", error);
+    //                   setLoading(false)
+      
+    //               }
+    //           };
+      
+    //           fetchOrders();
+    // },)
+
 
     const [items, setItems] = useState([
         {

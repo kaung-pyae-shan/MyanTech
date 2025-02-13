@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
-import { Table, Button, Drawer, Pagination } from 'antd';
+import { Table, Button, Drawer, Pagination, Tag, Spin } from 'antd';
 import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
@@ -14,14 +14,19 @@ const AllOrder = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [pageSize] = useState(10);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         const fetchOrders = async () => {
+            setLoading(true)
             try {
                 const response = await axios.get(`/orders`);
                 setOrders(response.data);
+                setLoading(false)
             } catch (error) {
                 console.error("Error fetching orders:", error);
+                setLoading(false)
+
             }
         };
 
@@ -37,6 +42,16 @@ const AllOrder = () => {
         fetchShops();
         fetchOrders();
     }, [currentPage, pageSize]);
+
+    if (loading) {
+        return (
+      
+            <div className="flex justify-center items-center h-[500px]">
+                <Spin size="large" />
+            </div>
+        )
+      }
+      
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {
@@ -74,7 +89,20 @@ const AllOrder = () => {
             key: 'total_price',
             render: (_, order) => order.products.reduce((sum, product) => sum + product.subtotal, 0)
         },
-        { title: 'Order Status', dataIndex: 'order_status', key: 'order_status' },
+        { title: 'Order Status', 
+            dataIndex: 'order_status',
+             key: 'order_status',
+             render: (status) => {
+                let color = 'gray';
+                if (status === 'PENDING') color = 'orange';
+                else if (status === 'DELIVERING') color = 'purple';
+                else if (status === 'DELIVERED') color = 'blue';
+                else if (status === 'COMPLETED') color = 'green';
+                else if (status === 'CANCELED') color = 'red';
+    
+                return <Tag color={color} className="text-normal">{status.toUpperCase()}</Tag>;
+            }
+             },
         {
             title: 'Details',
             key: 'details',
@@ -113,7 +141,7 @@ const AllOrder = () => {
                 open={openOrder !== null}
             >
                 {openOrder && <OrderDetail order={orders.find(order => order.id === openOrder)} />}
-               { orders.find(order => order.id === openOrder)?.order_status == 'pending'&& <Button 
+               { orders.find(order => order.id === openOrder)?.order_status == 'PENDING'&& <Button 
                     onClick={() => navigate(`/edit-order`, { state: { orderData: orders.find(order => order.id === openOrder) } })} 
                     className='absolute mt-3 border-2 border-yellow-600 rounded-md right-4 text-blue top-1'
                 >

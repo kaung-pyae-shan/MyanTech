@@ -8,7 +8,7 @@ import { addAuth, login, selectIsAuthenticated } from '../../redux/services/Auth
 // import img from '../../assets/image 2.png'
 
 
-const LOGIN_URL ='/login'
+const LOGIN_URL ='/users'
 
 const Login = () => {
 
@@ -72,7 +72,7 @@ const Login = () => {
       setPwd('')
       setSuccess(true)
 
-     navigate('/vocab/new-word/flashcard')
+     navigate('/')
     } catch (error) {
       console.log(error.response);
       
