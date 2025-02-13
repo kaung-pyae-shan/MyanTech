@@ -1,4 +1,11 @@
 {
+  "townships": [
+    {
+      "township_id": 1,
+      "township_name": "Sanchaung",
+      "route_gp": "a"
+    }
+  ],
   "shops": [
     {
       "shop_id": 1,
@@ -318,7 +325,7 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "delivered",
+      "order_status": "delivering",
       "products": [
         {
           "product_id": "7e67",
@@ -346,7 +353,7 @@
       "township_name": "Bahan",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "delivered",
+      "order_status": "pending",
       "products": [
         {
           "product_id": "cf7e",
@@ -387,7 +394,7 @@
       "township_name": "Bahan",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "delivered",
+      "order_status": "pending",
       "products": [
         {
           "product_id": "43b1",
@@ -396,6 +403,34 @@
           "stock": 10,
           "unit_price": 52000,
           "subtotal": 156000,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        }
+      ]
+    },
+    {
+      "id": "b1f0",
+      "invoice_no": "INV-20250212-8767",
+      "shop_id": "9ab9",
+      "shop_name": "Sunrise Supermarket",
+      "shop_address": "45, Insein Road",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Hlaing",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "pending",
+      "products": [
+        {
+          "product_id": "cf7e",
+          "product_name": "User",
+          "quantity": "5",
+          "stock": 32,
+          "unit_price": 3432,
+          "subtotal": 17160,
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -456,6 +491,15 @@
         "delivery_date": "2025-02-14"
       },
       "id": "5a60"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739414301141,
+        "order_id": "f72e",
+        "driver_id": 2,
+        "delivery_date": "2025-02-20"
+      },
+      "id": "c45a"
     }
   ]
 }
