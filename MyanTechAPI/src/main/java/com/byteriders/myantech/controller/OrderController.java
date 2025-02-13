@@ -35,7 +35,6 @@ public class OrderController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<String> createOrder(@RequestBody OrderForm orderForm) {
-		System.out.println(orderForm);
 		var result = service.createOrder(orderForm);
 		if(result) {
 			return ResponseEntity.status(HttpStatus.CREATED).body("Order Created Successfully");
