@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
 import com.byteriders.myantech.model.dto.input.OrderSearch;
-import com.byteriders.myantech.model.dto.input.StatusUpdateDTO;
+import com.byteriders.myantech.model.dto.input.OrderStatusUpdateDTO;
+import com.byteriders.myantech.model.dto.input.ProductOrderStatusUpdateDTO;
 import com.byteriders.myantech.model.dto.output.OrderDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.ShopInfo;
@@ -44,10 +45,16 @@ public class OrderController {
 	}
 	
 	@PutMapping("/status")
-	public ResponseEntity<String> updateOrderStatus(@RequestBody StatusUpdateDTO statusUpdate) {
-		var result = service.updateStatus(statusUpdate);
+	public ResponseEntity<String> updateOrderStatus(@RequestBody OrderStatusUpdateDTO statusUpdate) {
+		var result = service.updateOrderStatus(statusUpdate);
 		return result ? ResponseEntity.ok("Order Status updated successfully") : ResponseEntity.badRequest().body("Unexpected value" + statusUpdate.status().name());
 	}
+	
+	@PutMapping("/product/status")
+	public ResponseEntity<String> updateProductOrderStatus(@RequestBody ProductOrderStatusUpdateDTO statusUpdate) {
+		var result = service.updateProductOrderStatus(statusUpdate);
+		return result ? ResponseEntity.ok("ProductOrder Status updated successfully") : ResponseEntity.badRequest().body("Unexpected value" + statusUpdate.status().name());
+	} 
 	
 	@PostMapping("/create")
 	public ResponseEntity<String> createOrder(@RequestBody OrderForm orderForm) {
