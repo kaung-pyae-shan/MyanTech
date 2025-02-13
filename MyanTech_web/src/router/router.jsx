@@ -4,7 +4,7 @@ import Layout from "../Layout/Layout";
 import ProductTablePage from "../pages/ProductTablePage";
 import CreateOrder from "../pages/Order/CreateOrder";
 import OrderList from "../pages/Order/OrderList";
-
+import DriverPage from "../pages/AssignTruck/DriverPage";
 import EditOrder from "../pages/Order/EditOrder";
 
 
@@ -51,7 +51,12 @@ const Router = () => {
                     path: '/assign/truck',  // Route for ProductTablePage
                     element: <OrderTable />
                 }, 
-              
+
+                {
+                    path: '/drivers',  // Route for ProductTablePage
+                    element: <DriverPage />
+                }, 
+
             // {
 
             //     path:"/vocab/note",
