@@ -86,7 +86,7 @@ const OrdersTable = () => {
       <Select defaultValue={record.order_status} onChange={(value) => handleStatusChange(value, record)} className="w-full">
         <Option value="pending">Pending</Option>
         <Option value="in-progress">In Progress</Option>
-        <Option value="delivered">Delivered</Option>
+        <Option value="DELIVERED">Delivered</Option>
       </Select>
     ) },
   ];
