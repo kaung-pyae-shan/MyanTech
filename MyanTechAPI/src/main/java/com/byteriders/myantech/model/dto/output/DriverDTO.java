@@ -13,10 +13,9 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DriverDTO {
-
-	private int id;
-    private String name;
-    private String phone;
+	
+	private int driverId;
+    private String driverName;
+    private String contact;
     private String vehiclePlateNo;
-    private int assignedDeliveryId;
 }

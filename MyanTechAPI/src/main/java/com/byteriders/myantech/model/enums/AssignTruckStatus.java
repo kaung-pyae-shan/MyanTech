@@ -1,5 +1,5 @@
 package com.byteriders.myantech.model.enums;
 
-public enum DeliveryStatus {
+public enum AssignTruckStatus {
 	ASSIGNED, DELIVERED, CANCELLED, COMPLETED
 }

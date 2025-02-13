@@ -12,7 +12,7 @@ public class MyanTechApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(MyanTechApiApplication.class, args);
 	}
-	
+
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {

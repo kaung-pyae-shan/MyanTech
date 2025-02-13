@@ -1,5 +1,7 @@
 package com.byteriders.myantech.model.dto.output;
 
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
@@ -15,9 +17,8 @@ import lombok.NoArgsConstructor;
 public class AssignTruckDTO {
 	
 	private int id;
-    private int driverId;
-    private String deliveryDate;
-    private String createdDate;
-    
-
+    private int order_id;
+    private int driver_id;
+    private LocalDate delivery_date;
+    private String status;
 }

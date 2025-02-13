@@ -1,10 +1,12 @@
 package com.byteriders.myantech.model.entity;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
+import com.byteriders.myantech.model.enums.AssignTruckStatus;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,21 +23,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AssignTruck {
-
-	@Id
+	
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    private Long id;
+    
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private Order order;
+    
+    @ManyToOne
     @JoinColumn(name = "driver_id")
     private Driver driver;
-
+    
     private LocalDate deliveryDate;
-
-    private final LocalDateTime createdDate = LocalDateTime.now();
-
-    @Override
-    public String toString() {
-        return "AssignTrack [id=" + id + ", driver=" + driver + ", deliveryDate=" + deliveryDate + "]";
-    }
+    
+    @Enumerated(EnumType.STRING)
+    private AssignTruckStatus status;
 }

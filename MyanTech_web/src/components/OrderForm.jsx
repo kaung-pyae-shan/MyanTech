@@ -69,6 +69,7 @@ const OrderForm = ({resetField, setResetField}) => {
             form.setFieldsValue({
                 price: product.price || '',
                 stock: product.stock || ''
+                
             });
         }
     };
@@ -90,8 +91,10 @@ const OrderForm = ({resetField, setResetField}) => {
             shop_id: selectedShop?.id || 0,
             shop_name: values.shop_name,
             shop_address: selectedShop?.shop_address || '',
-            township: selectedShop?.township_name || '',
-            region: selectedShop?.region_name || '',
+            township_id: selectedShop?.township_id || '',
+            township_name: selectedShop?.township_name || '',
+            region_id: selectedShop?.region_id || '',            
+            region_name: selectedShop?.region_name || '',
         }
 
         const   newproducts = {
@@ -142,13 +145,18 @@ const OrderForm = ({resetField, setResetField}) => {
     
     const handleShopChange = (shopName) => { 
         const shop = shops.find(shop => shop.shop_name === shopName); 
+
+        console.log(shop);
+        
         setSelectedShop(shop || null);
 
         if (shop) { 
             form.setFieldsValue({ 
                 shop_address: shop.shop_address || '', 
-                township: shop.township_name || '', 
-                region: shop.region_name || '', 
+                township_id: shop.township_id || '',
+                township_name: shop.township_name || '', 
+                region_id: shop.region_id || '',
+                region_name: shop.region_name || '', 
             }); 
         } 
     };
@@ -157,7 +165,7 @@ const OrderForm = ({resetField, setResetField}) => {
 
       console.log(selectedProduct);
       
-        const product = products.find(product => product.name === selectedProduct.name); 
+        const product = products.find(product => product?.name === selectedProduct?.name); 
       
         if (product) {
             e.target.value > product.stock ? setInputMessage('Out of Stock !') : setInputMessage(null)
@@ -196,11 +204,11 @@ const OrderForm = ({resetField, setResetField}) => {
  
                 {/* Township & Region Selection */} 
                 <div className="flex gap-4"> 
-                    <Form.Item label="Township" name="township">
+                    <Form.Item label="Township" name="township_name">
                         <Input className="w-full" disabled />
                     </Form.Item> 
  
-                    <Form.Item label="Region" name="region">
+                    <Form.Item label="Region" name="region_name">
                         <Input className="w-full" disabled />
                     </Form.Item> 
                 </div> 
@@ -223,7 +231,7 @@ const OrderForm = ({resetField, setResetField}) => {
                     }} 
                      name="qty" className='relative' style={{width: '100%'}}>
                         <Input  type='number' style={{width: '100%'}} onChange={checkStock} placeholder='Qty' rules={[{ required: true   }]} />
-                       <p className='absolute text-red-600'>{inputMessage}</p>   
+                          <p className='absolute text-red-600'>{inputMessage}</p>   
                     </Form.Item>
                 </div>
 

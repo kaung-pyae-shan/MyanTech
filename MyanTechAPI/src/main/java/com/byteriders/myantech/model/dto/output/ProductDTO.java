@@ -1,7 +1,6 @@
 package com.byteriders.myantech.model.dto.output;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,10 +18,11 @@ public class ProductDTO {
 	
 	private int id;
 	private String name;
-	private BigDecimal price;
-	private BigDecimal cashback;
+	private int price;
+	private int cashback;
 	private String serialNumber;
-	private Integer stock;
+	private int stock;
+	private int stockFaulty;
 	
 	private int categoryId;
 	private int productId;
@@ -30,7 +30,9 @@ public class ProductDTO {
 	private int createdUserId;
 	private int updatedUserId;
 	
-	private final LocalDate updatedUser = LocalDate.now();
-	private LocalDate updatedDate;
+	private LocalDateTime createdDate;
+	private LocalDateTime updatedDate;
+	
+	
 
 }
