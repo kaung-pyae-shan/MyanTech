@@ -24,6 +24,7 @@ const OrderTable = () => {
         ]);
         setOrders(ordersRes.data);
         setShops(shopsRes.data);
+        console.log(ordersRes.data);
       } catch (error) {
         console.error("Error fetching orders or shops:", error);
         message.error("Failed to load orders and shops.");
@@ -118,13 +119,14 @@ const OrderTable = () => {
           </th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Invoice No</th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-end">Shop Name</th>
+          <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Township</th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Total Quantity</th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Order Status</th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-end">Details</th>
         </tr>
       </thead>
       <tbody className="divide-y divide-gray-200">
-        {orders.filter((order) => order.order_status === statusFilter).map((order) => {
+        {orders.filter((order) => order.order_status.toLowerCase() === statusFilter).map((order) => {
           const shop = shops.find((s) => s.id === order.shop_id);
           return (
             <tr key={order.id}>
@@ -138,6 +140,9 @@ const OrderTable = () => {
               <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">{order.invoice_no}</td>
               <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
                 {shop?.shop_name || "Unknown"}
+              </td>
+              <td className="px-6 py-4 text-sm font-medium text-gray-800 whitespace-nowrap">
+                {order.township_name || "Unknown"}
               </td>
               <td className="px-6 py-4 text-sm text-gray-800 whitespace-nowrap">
                 {order.products?.reduce((sum, product) => sum + Number(product.quantity), 0) || 0}
@@ -168,8 +173,8 @@ const OrderTable = () => {
       <Tabs defaultActiveKey="1">
         <TabPane tab="Pending Orders" key="1">{renderOrdersTable("pending")}</TabPane>
         <TabPane tab="Delivering Orders" key="2">{renderOrdersTable("delivering")}</TabPane>
-      </Tabs> 
-       <Modal
+      </Tabs>
+      <Modal
         title="Assign Drivers and Set Delivery Date"
         open={modalOpen}
         onCancel={() => setModalOpen(false)}
