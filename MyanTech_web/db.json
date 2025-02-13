@@ -1,4 +1,11 @@
 {
+  "townships": [
+    {
+      "township_id": 1,
+      "township_name": "Sanchaung",
+      "route_gp": "a"
+    }
+  ],
   "shops": [
     {
       "shop_id": 1,
@@ -345,6 +352,7 @@
       "subtotal": 5000
     }
   ],
+  
   "orders": [
     {
       "id": "7070",
@@ -464,6 +472,8 @@
       "cashBack": 13,
       "serialNo": "xcxxxxxxxxxxxx"
     }
-  ]
+  ],
+  "orders": [ ],
+  "assign_truck": [ ]
   
 }

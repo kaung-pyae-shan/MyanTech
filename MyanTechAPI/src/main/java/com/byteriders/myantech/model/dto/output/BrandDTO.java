@@ -14,6 +14,6 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class BrandDTO {
 	
-	private int id;
-	private String name;
+	private int brand_id;
+	private String brand_name;
 }
