@@ -26,7 +26,7 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
     useEffect(() => {
         const fetchShops = async () => {
             try {
-                const response = await axios.get('/shops');
+                const response = await axios.get('/order/form/shops');
                 setShops(response.data);
             } catch (error) {
                 console.error('Error fetching shops:', error);
@@ -35,7 +35,7 @@ const OrderForm = ({ resetField, setResetField, shopDisable, setShopDisable }) =
 
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('/products');
+                const response = await axios.get('/order/form/products');
                 setProducts(response.data);
             } catch (error) {
                 console.error('Error fetching products:', error);
