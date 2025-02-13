@@ -89,6 +89,7 @@ const ProductTablePage = () => {
 
   return (
     <div style={{ padding: "20px" }}>
+     { localStorage.getItem('user').role == 'warehouse' &&
       <Button
         type="primary"
         onClick={() => {
@@ -99,7 +100,7 @@ const ProductTablePage = () => {
         style={{ marginBottom: "16px" }}
       >
         Create Product
-      </Button>
+      </Button>}
 
       <Table columns={columns} dataSource={products} loading={loading} rowKey="product_id" locale={{ emptyText: "No items yet" }} 
         pagination={{ pageSize: 5 }} />

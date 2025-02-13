@@ -1,9 +1,32 @@
 {
-  "townships": [
+
+  "users": [
     {
-      "township_id": 1,
-      "township_name": "Sanchaung",
-      "route_gp": "a"
+      "id": "1",
+      "username": "sales",
+      "password": "asdffdsa",
+      "role": "sales",
+      "loginEndpoint": "/api/login"
+    },
+    {
+      "id": "2",
+      "username": "warehouse",
+      "password": "asdffdsa",
+      "role": "warehouse",
+      "loginEndpoint": "/api/login"
+    },
+    {
+      "id": "3",
+      "username": "finance",
+      "password": "asdffdsa",
+      "role": "finance",
+      "loginEndpoint": "/api/login"
+    },
+    {
+      "id": "a6d5",
+      "user_name": "sales",
+      "password": "asdffdsa"
+
     }
   ],
   "shops": [
@@ -262,8 +285,10 @@
   ],
   "orders": [
     {
-      "id": "79eb",
-      "invoice_no": "INV-20250213-2836",
+
+      "id": "5393",
+      "invoice_no": "INV-20250212-6880",
+
       "shop_id": "9ab9",
       "shop_name": "Sunrise Supermarket",
       "shop_address": "45, Insein Road",
@@ -275,13 +300,58 @@
       "order_status": "delivered",
       "products": [
         {
-          "product_id": "4b73",
-          "product_name": "Admin",
+
+          "product_id": "88a7",
+          "product_name": "Mac 14",
+          "quantity": "2",
+          "stock": 78,
+          "unit_price": 3000,
+          "subtotal": 6000,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        }
+      ],
+      "orderId": "5393",
+      "productId": "88a7",
+      "status": "WRONG_ORDER"
+    },
+    {
+      "id": "070c",
+      "invoice_no": "INV-20250212-5289",
+      "shop_id": "f537",
+      "shop_name": "City Corner Store",
+      "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Kamayut",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "delivered",
+      "products": [
+        {
+          "product_id": "88a7",
+          "product_name": "Mac 14",
           "quantity": "3",
-          "stock": 3433,
-          "unit_price": 4254,
-          "subtotal": 12762,
-          "remark": "5522",
+          "stock": 78,
+          "unit_price": 3000,
+          "subtotal": 9000,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "43b1",
+          "product_name": "Admin",
+          "quantity": "2",
+          "stock": 10,
+          "unit_price": 52000,
+          "subtotal": 104000,
+
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -291,11 +361,13 @@
       ]
     },
     {
-      "id": "2a7c",
-      "invoice_no": "INV-20250213-5939",
-      "shop_id": "9ab9",
-      "shop_name": "Sunrise Supermarket",
-      "shop_address": "45, Insein Road",
+
+      "id": "1691",
+      "invoice_no": "INV-20250212-4278",
+      "shop_id": "040e",
+      "shop_name": "Metro Convenience Store",
+      "shop_address": "101, Strand Road",
+
       "contact": "+951-376448",
       "township_id": 1,
       "township_name": "Hlaing",
@@ -329,15 +401,101 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "DELIVERED",
+
+      "order_status": "delivered",
       "products": [
         {
-          "product_id": "4b73",
-          "product_name": "Admin",
-          "quantity": "50",
-          "stock": 3433,
-          "unit_price": 4254,
-          "subtotal": 212700,
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "1",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 34,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        }
+      ]
+    },
+    {
+      "id": "2464",
+      "invoice_no": "INV-20250212-3478",
+      "shop_id": "ccbb",
+      "shop_name": "Evergreen Mini Mart",
+      "shop_address": "56, University Avenue",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Bahan",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "pending",
+      "products": [
+        {
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "1",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 34,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        }
+      ]
+    },
+    {
+      "id": "c322",
+      "invoice_no": "INV-20250212-8456",
+      "shop_id": "ccbb",
+      "shop_name": "Evergreen Mini Mart",
+      "shop_address": "56, University Avenue",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Bahan",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "pending",
+      "products": [
+        {
+          "product_id": "88a7",
+          "product_name": "Mac 14",
+          "quantity": "3",
+          "stock": 78,
+          "unit_price": 3000,
+          "subtotal": 9000,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        }
+      ]
+    },
+    {
+      "id": "56be",
+      "invoice_no": "INV-20250212-3536",
+      "shop_id": "9ab9",
+      "shop_name": "Sunrise Supermarket",
+      "shop_address": "45, Insein Road",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Hlaing",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "pending",
+      "products": [
+        {
+          "product_id": "88a7",
+          "product_name": "Mac 14",
+          "quantity": "1",
+          "stock": 78,
+          "unit_price": 3000,
+          "subtotal": 3000,
+
           "status": "",
           "wrong_qty": 0,
           "wrong_remark": "",
@@ -357,7 +515,7 @@
       "township_name": "Kamayut",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "PENDING",
+      "order_status": "DELIVERING",
       "products": [
         {
           "product_id": "7e67",
@@ -385,7 +543,7 @@
       "township_name": "Hlaing",
       "region_id": 1,
       "region_name": "Yangon",
-      "order_status": "PENDING",
+      "order_status": "delivered",
       "products": [
         {
           "product_id": "88a7",
@@ -415,6 +573,108 @@
           "falty_remark": ""
         }
       ]
+    },
+    {
+      "id": "ac9a",
+      "invoice_no": "INV-20250213-6002",
+      "shop_id": "f537",
+      "shop_name": "City Corner Store",
+      "shop_address": "78, Baho Street",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Kamayut",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "PENDING",
+      "products": [
+        {
+          "product_id": "88a7",
+          "product_name": "Mac 14",
+          "quantity": "1",
+          "stock": 78,
+          "unit_price": 3000,
+          "subtotal": 3000,
+          "remark": "abc",
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "cf7e",
+          "product_name": "User",
+          "quantity": "30",
+          "stock": 32,
+          "unit_price": 3432,
+          "subtotal": 102960,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "1",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 34
+        }
+      ],
+      "order_id": "ac9a"
+    },
+    {
+      "id": "44ab",
+      "invoice_no": "INV-20250213-6122",
+      "shop_id": "040e",
+      "shop_name": "Metro Convenience Store",
+      "shop_address": "101, Strand Road",
+      "contact": "+951-376448",
+      "township_id": 1,
+      "township_name": "Pazundaung",
+      "region_id": 1,
+      "region_name": "Yangon",
+      "order_status": "PENDING",
+      "products": [
+        {
+          "product_id": "cb3c",
+          "product_name": "Acer Aspire X",
+          "quantity": "2",
+          "stock": 50,
+          "unit_price": 5000,
+          "subtotal": 10000,
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "cf7e",
+          "product_name": "User",
+          "quantity": "1",
+          "stock": 32,
+          "unit_price": 3432,
+          "subtotal": 3432,
+          "remark": "acdf",
+          "status": "",
+          "wrong_qty": 0,
+          "wrong_remark": "",
+          "falty_qty": 0,
+          "falty_remark": ""
+        },
+        {
+          "product_id": "7e67",
+          "product_name": "fdsxxcds",
+          "quantity": "1",
+          "stock": 343,
+          "unit_price": 34,
+          "subtotal": 34
+        }
+      ],
+      "order_id": "44ab"
     }
   ],
   "assign_truck": [
@@ -435,12 +695,41 @@
         "delivery_date": "2025-02-15"
       },
       "1": {
-        "assign_truck_id": 1739423503383,
-        "order_id": "89fe",
+
+        "assign_truck_id": 1739345725492,
+        "order_id": "a114",
         "driver_id": 3,
-        "delivery_date": "2025-02-15"
+        "delivery_date": "2025-02-28"
       },
-      "id": "040b"
+      "id": "be3e"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739348997183,
+        "order_id": "5393",
+        "driver_id": 3,
+        "delivery_date": "2025-02-13"
+      },
+      "id": "2e78"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739365651658,
+        "order_id": "1691",
+        "driver_id": 3,
+        "delivery_date": "2025-02-06"
+      },
+      "id": "1168"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739454568387,
+        "order_id": "e59c",
+        "driver_id": 3,
+        "delivery_date": "2025-01-29"
+      },
+      "id": "8976"
+
     }
   ]
 }
