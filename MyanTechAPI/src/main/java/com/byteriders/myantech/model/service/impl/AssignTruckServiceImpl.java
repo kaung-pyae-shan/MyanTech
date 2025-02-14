@@ -13,6 +13,7 @@ import com.byteriders.myantech.model.dto.output.Response;
 import com.byteriders.myantech.model.entity.AssignTruck;
 import com.byteriders.myantech.model.entity.Driver;
 import com.byteriders.myantech.model.entity.Order;
+import com.byteriders.myantech.model.entity.Order.Status;
 import com.byteriders.myantech.model.enums.AssignTruckStatus;
 import com.byteriders.myantech.model.exception.NotFoundException;
 import com.byteriders.myantech.model.repo.AssignTruckRepo;
@@ -83,8 +84,8 @@ public class AssignTruckServiceImpl implements AssignTruckService {
 		        throw new NotFoundException("AssignTruck with invoiceNo: " + order.getInvoiceNo() + " already exists.");
 		    }
 			
-//			order.setStatus(Status.DELIVERED);
-//			orderRepo.save(order);
+		//order.setStatus(Status.DELIVERING);
+		//	orderRepo.save(order);
 			
 			AssignTruck assignTruck = AssignTruck.builder()
 		                .order(order)
@@ -286,7 +287,8 @@ public class AssignTruckServiceImpl implements AssignTruckService {
 	        orderDTO.setDriver_name(assignTruck.getDriver().getDriverName());
 	        orderDTO.setVehicle_plate_no(assignTruck.getDriver().getVehiclePlateNo());
 	        orderDTO.setDelivery_status(assignTruck.getStatus() != null ? assignTruck.getStatus().toString() : "Unknown");
-
+	        orderDTO.setOrder_status(order.getStatus().toString());
+	        
 	        return orderDTO;
 	    }).collect(Collectors.toList());
 
