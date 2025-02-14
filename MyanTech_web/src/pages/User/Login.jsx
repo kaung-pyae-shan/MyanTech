@@ -8,7 +8,7 @@ import { addAuth, login, selectIsAuthenticated } from '../../redux/services/Auth
 // import img from '../../assets/image 2.png'
 
 
-const LOGIN_URL ='/users'
+const LOGIN_URL ='/auth/login'
 
 const Login = () => {
 
@@ -36,60 +36,90 @@ const Login = () => {
   },[user, pwd])
 
   const onFinish = async (values) => {
-
-    console.log(values);
-    setUser(values.username)
-    setPwd(values.password)
+    setUser(values.username);
+    setPwd(values.password);
     try {
       const response = await axios.post(LOGIN_URL, 
         JSON.stringify({
-          user_name : values.username, 
+          username : values.username, 
            password: values.password
           }),
            {
             headers : {'Content-Type': 'application/json'}
           }
-      );
-      console.log(JSON.stringify(response?.data));
-
-      const accessToken = response?.data?.token;
-      console.log(accessToken);
-
-      // setAuth({user,pwd})
-      dispatch(login(user))
-      dispatch(addAuth({user, pwd}))
-      console.log(auth.auth);
-      
-
-
-      
-      localStorage.setItem('token', accessToken)
-      localStorage.setItem('user',user)
-
-      
-
-      setUser('')
-      setPwd('')
-      setSuccess(true)
-
-     navigate('/')
+      );      
+      if (response.data.length > 0) {
+        const userData = response.data[0];
+        
+        dispatch(login(userData.username));
+        dispatch(addAuth(userData));
+        
+        localStorage.setItem('user', JSON.stringify(userData));
+        setSuccess(true);
+        navigate('/');
+      } else {
+        setErrMsg('Invalid Username or Password');
+      }
     } catch (error) {
-      console.log(error.response);
+      setErrMsg('Login Failed');
+    }
+  };
+
+  // const onFinish = async (values) => {
+
+  //   console.log(values);
+  //   setUser(values.username)
+  //   setPwd(values.password)
+  //   try {
+  //     const response = await axios.post(LOGIN_URL, 
+  //       JSON.stringify({
+  //         username : values.username, 
+  //          password: values.password
+  //         }),
+  //          {
+  //           headers : {'Content-Type': 'application/json'}
+  //         }
+  //     );
+  //     console.log(JSON.stringify(response?.data));
+
+  //     // const accessToken = response?.data?.token;
+  //     // console.log(accessToken);
+
+  //     setAuth({user,pwd})
+  //     dispatch(login(user))
+  //     dispatch(addAuth({user, pwd}))
+  //     console.log(auth.auth);
+      
+
+
+      
+  //     // localStorage.setItem('token', accessToken)
+  //     localStorage.setItem('user',user)
+
+      
+
+  //     setUser('')
+  //     setPwd('')
+  //     setSuccess(true)
+
+  //    navigate('/')
+  //   } catch (error) {
+  //     console.log(error.response);
       
       
-         if (error) {
+  //        if (error) {
          
-          setErrMsg(error.response?.data.message)
-         }else{
-          setErrMsg("Registration Failed")
-         }
+  //         setErrMsg(error.response?.data.message)
+  //        }else{
+  //         setErrMsg("Registration Failed")
+  //        }
 
        
         
-    }
+  //   }
 
    
-  };
+  // };
 
   if (success) {
     return (<Alert message="You are logged in" type="success" />)

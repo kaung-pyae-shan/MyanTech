@@ -8,6 +8,7 @@ import CanceledOrders from './CanceledOrders';
 import Delivering from './Delivering';
 
 import axios from '../../api/axios';
+import CompletedOrders from './CompletedOrders';
 
 
 const OrderTab = () => {
@@ -42,7 +43,7 @@ const OrderTab = () => {
           {
             key: '2',
             label: 'Completed',
-            children: <CanceledOrders />,
+            children: <CompletedOrders />,
           },
           {
             key: '3',
