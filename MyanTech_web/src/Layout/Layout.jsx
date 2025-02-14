@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { DashboardOutlined, MenuFoldOutlined, MenuUnfoldOutlined, ShoppingOutlined } from "@ant-design/icons"
 import { Button, Layout, Menu, theme } from "antd"
-import { Outlet, Link } from "react-router-dom"
+import { Outlet, Link, useNavigate } from "react-router-dom"
 // import Logout from '../pages/User/Logout';
 import { FormOutlined, TruckOutlined } from "@ant-design/icons"
 // import { UnorderedListOutlined } from '@ant-design/icons';
@@ -9,6 +9,7 @@ import { FolderOutlined } from "@ant-design/icons"
 import { LogoutOutlined } from "@ant-design/icons"
 import { AiOutlinePlus } from "react-icons/ai"
 import { MdDashboard } from "react-icons/md"
+import axios from "../api/axios"
 // import Logo from "../assets/Images/Logo.png";
 const { Header, Sider, Content } = Layout
 
@@ -35,7 +36,7 @@ const AppLayout = () => {
   const userRole = storedUser?.role || "" // Get user role, default to empty if null
 
   const [menuItems, setMenuItems] = useState([])
-
+  const navigate = useNavigate()
 
   useEffect(() => {
     const baseMenuItems = [
@@ -115,7 +116,7 @@ const AppLayout = () => {
      
     ]
 
-    if (userRole === "sales") {
+    if (userRole === "SALE") {
       baseMenuItems.splice(1, 0, {
         key: "3",
         icon: <AiOutlinePlus />,
@@ -137,7 +138,7 @@ const AppLayout = () => {
     }
 
     // Add Assign Truck menu item only for warehouse users
-    if (userRole === "warehouse") {
+    if (userRole === "WAREHOUSE") {
       baseMenuItems.splice(3, 0, {
         key: "5",
         icon: <TruckOutlined />,
@@ -156,30 +157,57 @@ const AppLayout = () => {
           background: "#52525233",
         },
       },
-      {
-        key: "6",
-        icon: <TruckOutlined />,
-        defaultSelectedKeys: ["6"],
-        label: (
-          <Link to="/drivers" className=" text-[15px]">
-            Driver
-          </Link>
-        ),
-        style: {
-          border: "1px solid gray",
-          marginBottom: "20px ",
-          padding: !collapsed ? "15px 20px" : "",
-          borderRadius: "10px",
-          color: "white",
-          background: "#52525233",
-        },
-      },
+      // {
+      //   key: "6",
+      //   icon: <TruckOutlined />,
+      //   defaultSelectedKeys: ["6"],
+      //   label: (
+      //     <Link to="/drivers" className=" text-[15px]">
+      //       Driver
+      //     </Link>
+      //   ),
+      //   style: {
+      //     border: "1px solid gray",
+      //     marginBottom: "20px ",
+      //     padding: !collapsed ? "15px 20px" : "",
+      //     borderRadius: "10px",
+      //     color: "white",
+      //     background: "#52525233",
+      //   },
+      // },
     
     )
     }
 
     setMenuItems(baseMenuItems)
   }, [userRole, collapsed])
+
+  const handleLogout = async () =>{
+
+   
+
+    try {
+        const token = localStorage.getItem('token')
+
+    if(token){
+        await axios.post('/auth/logout',
+            {},
+            // {
+            //     headers: {
+            //         // Authorization: `Bearer ${token}` 
+            //     }
+            // }
+
+        );            
+    }
+  
+        // Redirect to the login page (or home)
+        navigate('/login'); 
+      } catch (error) {
+        console.error("Logout failed: ", error);
+      }
+}
+
 
   return (
     <Layout className="min-h-screen ">
@@ -229,16 +257,16 @@ const AppLayout = () => {
             />
             <h2 className="text-2xl font-semibold text-transparent bg-gradient-purple bg-clip-text">
               {
-                userRole == 'warehouse' ? 'Warehouse Department' : 
-                userRole == 'sales' ? 'Sales Department':
-                userRole == 'finance' ? 'Finance Department': ''
+                userRole == 'WAREHOUSE' ? 'Warehouse Department' : 
+                userRole == 'SALE' ? 'Sales Department':
+                userRole == 'FINANCE' ? 'Finance Department': ''
                 
               }
            
                 </h2>
           </div>
           <div className="mr-[3rem]">
-            <Button className="mr-[8px] h-10 rounded-xl mt-3 bg-button px-[25px] hover:bg-none">
+            <Button onClick={handleLogout} className="mr-[8px] h-10 rounded-xl mt-3 bg-button px-[25px] hover:bg-none">
               Logout
               <LogoutOutlined />
             </Button>

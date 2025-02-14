@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const CompletedOrders = () => {
+const CompletedOrders = ({activeKey}) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -27,18 +27,10 @@ const CompletedOrders = () => {
             }
         };
 
-        const fetchShops = async () => {
-            try {
-                const response = await axios.get("/shops");
-                setShops(response.data);
-            } catch (error) {
-                console.error("Error fetching shops:", error);
-            }
-        };
-
-        fetchShops();
-        fetchOrders();
-    }, [currentPage, pageSize]);
+        if (activeKey === '2') {
+            fetchOrders();
+          }
+    }, [activeKey]);
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {

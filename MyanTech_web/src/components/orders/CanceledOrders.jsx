@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const CanceledOrders = () => {
+const CanceledOrders = ({activeKey}) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -15,30 +15,22 @@ const CanceledOrders = () => {
     const [pageSize] = useState(10);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await axios.get(`/order/list?shopName=PENDING&invoiceNo=PENDING&orderStatus=PENDING`);
-                console.log(response.data);
-                
-                setOrders(response.data);
-            } catch (error) {
-                console.error("Error fetching orders:", error);
+  useEffect(() => {
+          const fetchOrders = async () => {
+              try {
+                  const response = await axios.get(`/order/list?shopName=CANCELED&invoiceNo=CANCELED&orderStatus=CANCELED`);
+                  console.log(response.data);
+                  
+                  setOrders(response.data);
+              } catch (error) { 
+                  console.error("Error fetching orders:", error);
+              }
+          };
+  
+          if (activeKey === '3') {
+              fetchOrders();
             }
-        };
-
-        const fetchShops = async () => {
-            try {
-                const response = await axios.get("/shops");
-                setShops(response.data);
-            } catch (error) {
-                console.error("Error fetching shops:", error);
-            }
-        };
-
-        fetchShops();
-        fetchOrders();
-    }, [currentPage, pageSize]);
+      }, [activeKey, currentPage, pageSize]);
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {
