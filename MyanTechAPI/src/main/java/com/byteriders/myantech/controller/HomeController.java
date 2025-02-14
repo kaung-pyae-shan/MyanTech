@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.output.BestSellingProductDto;
+import com.byteriders.myantech.model.dto.output.DashBoardData;
 import com.byteriders.myantech.model.dto.output.SaleChartDto;
 import com.byteriders.myantech.model.dto.output.SaleRecordReport;
 import com.byteriders.myantech.model.dto.output.TotalProductsByCategoryDto;
@@ -42,8 +43,22 @@ public class HomeController {
 		List<SaleChartDto> chartData = orderService.getSaleByDay();
 		dto.setSaleChartRecord(chartData);
 		
+		List<SaleChartDto> chartDataByYear = orderService.getTotalSaleByMonth(LocalDate.now().getYear());
+		dto.setSaleChartRecordByMonth(chartDataByYear);
+		
+		DashBoardData data = new DashBoardData();
+		data.setPendingOrders(orderService.getPending());
+		data.setDeliveredOrders(orderService.getDelivered());
+		data.setProductsSold(orderService.getSoldProducts());
+		data.setTotalProducts(orderService.getTotalStock());
+		dto.setData(data);
+		
+		
+		
 		return ResponseEntity.ok(dto);
 		
 	}
+	
+	
 
 }

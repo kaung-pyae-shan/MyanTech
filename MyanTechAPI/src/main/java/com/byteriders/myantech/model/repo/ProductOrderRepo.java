@@ -9,4 +9,5 @@ import com.byteriders.myantech.model.entity.ProductOrder;
 public interface ProductOrderRepo extends JpaRepository<ProductOrder, Integer> {
 
 	List<ProductOrder> findByOrderId(int id);
+
 }
