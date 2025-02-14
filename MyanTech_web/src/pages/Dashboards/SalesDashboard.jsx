@@ -38,24 +38,29 @@ const SalesDashboard = () => {
       <HomeCard />  
       
     </div>
-    <div className="flex justify-between my-5 gap-6">
+    <div className="flex justify-between gap-6 my-5">
           <div className=" w-[40%]">
             <h2 className='mb-3 text-xl font-semibold text-gradient'>Popular Products</h2>
             <Popular items={dashboard.bestSellingItems} />
         </div>
 
+        <div className=" w-[600px]">
+          <h2 className='mb-3 text-xl font-semibold text-gradient'>Monthly Sales</h2>
 
-                <LineChartC />
+              <LineChartC record={dashboard.saleChartRecord} />
+        
+          
+         </div>
         </div>
 
     {/* </div> */}
 
-    <div className=" w-[400px]">
+    {/* <div className=" w-[400px]">
         <PieChart />
 
         {
           // role == 'sales' ?
-          <div className=" w-[60%]">
+          <div className=" w-[600px]">
           <h2 className='mb-3 text-xl font-semibold text-gradient'>Monthly Sales</h2>
 
               <LineChartC record={dashboard.saleChartRecord} />
@@ -68,7 +73,7 @@ const SalesDashboard = () => {
         // </div> 
         }
     
-    </div>
+    </div> */}
 
    
     </>

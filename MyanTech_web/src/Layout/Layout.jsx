@@ -24,18 +24,6 @@ const siderStyle = {
   minWidth: "210px",
 }
 
-const siderStyle = {
-  overflow: 'auto',
-  height: '100vh',
-  position: 'sticky',
-  insetInlineStart: 0,
-  top: 0,
-  bottom: 0,
-  scrollbarWidth: 'thin',
-  scrollbarGutter: 'stable',
-  minWidth: '210px'
-};
-
 const AppLayout = () => {
   const [collapsed, setCollapsed] = useState(false)
   const {
@@ -111,7 +99,7 @@ const AppLayout = () => {
         icon: <FolderOutlined />,
         defaultSelectedKeys: ["4"],
         label: (
-          <Link to="/product" className=" text-[15px]">
+          <Link to="/products/all" className=" text-[15px]">
             Products
           </Link>
         ),
@@ -212,116 +200,18 @@ const AppLayout = () => {
           theme="dark"
           mode="inline"
           className="mt-[2rem] bg-dark  hover:bg-none   px-2 "
-<<<<<<< HEAD
-
-          type='primary'
-
-          items={[
-            {
-              key: '1',
-              icon: <FormOutlined style={{ color: 'white' }} />,
-              defaultSelectedKeys: ['1'],
-
-              label: <Link to="/sales/dashboard" style={{ color: 'white' }}>Dashboard </Link>,
-
-              style: {
-                border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
-                background: '#52525233'
-              },
-
-            },
-
-            {
-              key: '2',
-              icon: <ShoppingOutlined />,
-              defaultSelectedKeys: ['2'],
-              
-
-              label: <Link to="/order-list" className=' text-[15px]'>Order List</Link>,
-              style: {
-                border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
-                background: '#52525233'
-
-              },
-            },
-
-
-            {
-              key: '3',
-              icon: <ShoppingOutlined />,
-              defaultSelectedKeys: ['23'],
-              
-
-              label: <Link to="/create-order" className=' text-[15px]'>Create Orders</Link>,
-              style: {
-                border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
-                background: '#52525233'
-
-              },
-            },
-
-            {
-              key: '4',
-              icon: <FolderOutlined />,
-              defaultSelectedKeys: ['4'],
-
-              label: <Link to="/products/all" className=' text-[15px]'>Products</Link>,
-              style: {
-                border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
-                background: '#52525233'
-
-              },
-            },
-
-            {
-              key: '5',
-              icon: <TruckOutlined />,
-              defaultSelectedKeys: ['5'],
-
-              label: <Link to="/assign/truck" className=' text-[15px]'>Assign Truck</Link>,
-              style: {
-                border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
-                background: '#52525233'
-
-              },
-            },
-
-            {
-              key: '6',
-              icon: <TruckOutlined />,
-              defaultSelectedKeys: ['6'],
-
-              label: <Link to="/drivers"className=' text-[15px]'>Driver</Link>,
-              style: {
-                border: '1px solid gray', marginBottom: '20px ',
-                padding: !collapsed ? '15px 20px' : '', borderRadius: '10px', color: 'white',
-                background: '#52525233'
-
-              },
-            },
-
-          ]}
-=======
           type="primary"
           items={menuItems}
->>>>>>> branch 'main' of https://github.com/kaung-pyae-shan/MyanTech.git
         />
       </Sider>
       <Layout>
         <Header
           style={{
             padding: 0,
-
-            background: '#1C1C25',
-            position: 'sticky',
+            background: "#1C1C25",
+            position: "sticky",
             top: 0,
-            zIndex: 1000
-
+            zIndex: 1000,
           }}
           className="flex justify-between w-full"
         >
@@ -372,4 +262,3 @@ const AppLayout = () => {
 }
 
 export default AppLayout
-

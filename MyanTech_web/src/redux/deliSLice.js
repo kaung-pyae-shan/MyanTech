@@ -22,8 +22,20 @@ export const updateOrderStatus = createAsyncThunk(
 
 const deliSlice = createSlice({
   name: "orders",
-  initialState: { orders: [], loading: false },
-  reducers: {},
+  initialState: {
+    deli: {
+      
+    },
+     orders: [],
+      loading: false
+     },
+  reducers: {
+    addDeli: (state, action) =>{
+      console.log(action.payload);
+      
+    }
+
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchOrders.pending, (state) => {
@@ -41,6 +53,7 @@ const deliSlice = createSlice({
           order.id === action.payload.id ? { ...order, status: action.payload.status } : order
         );
       });
+
   },
 });
 
