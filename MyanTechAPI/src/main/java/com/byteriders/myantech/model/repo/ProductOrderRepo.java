@@ -10,7 +10,6 @@ public interface ProductOrderRepo extends JpaRepository<ProductOrder, Integer> {
 
 	    // Retrieve all product orders by order_id
 	    List<ProductOrder> findByOrder_Id(int orderId);
-	
 
 	
 }

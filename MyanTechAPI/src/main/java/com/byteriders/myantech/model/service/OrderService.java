@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
 import com.byteriders.myantech.model.dto.output.BestSellingProductDto;
+import com.byteriders.myantech.model.dto.output.DashBoardData;
 import com.byteriders.myantech.model.dto.output.OrderAndProductDto;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.ProductOrderDetails;
@@ -143,8 +144,29 @@ public class OrderService {
 		        ))
 		        .collect(Collectors.toList());
 		}
+		
+		public List<SaleChartDto> getTotalSaleByMonth(int year) {
+			return orderRepo.getTotalSalesByMonth(year).stream().map(obj -> new SaleChartDto(
+						(String) obj[0],
+						obj[1] != null ? ((Number) obj[1]).intValue() : 0
+					)).collect(Collectors.toList());
+		}
 
-	
+		public int getPending() {
+			return orderRepo.getPendingCount();
+		}
+		
+		public int getDelivered() {
+			return orderRepo.getDeliveredCount();
+		}
+		
+		public int getTotalStock() {
+			return orderRepo.getTotalStock();
+		}
+		
+		public int getSoldProducts() {
+			return orderRepo.getSoldProducts();
+		}
 	
     
 }

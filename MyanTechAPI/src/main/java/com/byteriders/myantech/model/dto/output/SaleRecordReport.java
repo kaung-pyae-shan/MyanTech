@@ -15,5 +15,11 @@ public class SaleRecordReport {
 	
 	List<SaleChartDto> saleChartRecord;
 	
+	List<SaleChartDto> saleChartRecordByMonth;
+	
+	DashBoardData data;
+
+	
+	
 
 }
