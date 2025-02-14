@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const CompletedOrders = ({activeKey}) => {
+const Completed = ({activeKey}) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -18,11 +18,11 @@ const CompletedOrders = ({activeKey}) => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`/order/list?shopName=COMPLETED&invoiceNo=COMPLETED&orderStatus=COMPLETED`);
+                const response = await axios.get(`/order/list?shopName=PENDING&invoiceNo=PENDING&orderStatus=PENDING`);
                 console.log(response.data);
                 
                 setOrders(response.data);
-            } catch (error) { 
+            } catch (error) {
                 console.error("Error fetching orders:", error);
             }
         };
@@ -131,4 +131,4 @@ const CompletedOrders = ({activeKey}) => {
     );
 };
 
-export default CompletedOrders;
+export default Completed;

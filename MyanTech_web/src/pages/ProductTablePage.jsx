@@ -16,6 +16,7 @@ const ProductTablePage = () => {
 
   const [brands, setBrands] = useState([]);
   const [categories, setCategories] = useState([]);
+  const user = localStorage.getItem('user')
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -24,19 +25,23 @@ const ProductTablePage = () => {
   }, [dispatch]);
 
   const fetchBrands = async () => {
-    const response = await fetch("http://localhost:8081/brands");
+    const response = await fetch("http://localhost:8080/brands");
     const data = await response.json();
     setBrands(data);
   };
 
   const fetchCategories = async () => {
-    const response = await fetch("http://localhost:8081/categories");
+    const response = await fetch("http://localhost:8080/categories");
     const data = await response.json();
     setCategories(data);
   };
 
 
   const handleAddProduct = async (values) => {
+
+
+
+
     console.log("Updating product:", values);
   
     if (isEditMode) {
@@ -79,22 +84,23 @@ const ProductTablePage = () => {
     { title: "Stock", dataIndex: "stocck", key: "stocck" },
     { title: "Cash Back", dataIndex: "cashback", key: "cashback" },
     { title: "Serial No", dataIndex: "serialNo", key: "serialNo" },
-    {
-      title: "Actions",
-      key: "actions",
-      render: (_, record) => (
-        <Button type="link" onClick={() => handleEdit(record)}>
-          Edit
-        </Button>
-      ),
-    },
+    // {
+    //   title: "Actions",
+    //   key: "actions",
+    //   render: (_, record) => (
+    //     <Button type="link" onClick={() => handleEdit(record)}>
+    //       Edit
+    //     </Button>
+    //   ),
+    // },
   ];
 
   return (
     <div style={{ padding: "20px" }}>
-     { localStorage.getItem('user').role == 'warehouse' &&
-      <Button
-        type="primary"
+     {/* { user.role === 'warehouse' && */}
+     <div className="flex justify-end">
+     <Button
+        className="ml-auto mr-0 text-white bg-button"
         onClick={() => {
           setIsEditMode(false);
           setIsModalVisible(true);
@@ -102,8 +108,9 @@ const ProductTablePage = () => {
         }}
         style={{ marginBottom: "16px" }}
       >
-        Create Product
-      </Button>}
+        + Create Product
+      </Button>
+     </div>
 
       <Table columns={columns} dataSource={products} loading={loading} rowKey="product_id" locale={{ emptyText: "No items yet" }} 
         pagination={{ pageSize: 5 }} />
@@ -156,8 +163,8 @@ const ProductTablePage = () => {
               {isEditMode ? "Update Product" : "Add Product"}
             </Button>
           </Form.Item>
-        </Form>
-      </Modal>
+          </Form> 
+      </Modal> 
     </div>
   );
 };

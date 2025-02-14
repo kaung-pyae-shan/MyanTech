@@ -4,10 +4,10 @@ import { Table, Button, Drawer, Pagination } from 'antd';
 import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
-import SearchForm from '../SearchForm';
+// import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const CompletedOrders = ({activeKey}) => {
+const DeliveringOrders = (activeKey) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -15,22 +15,24 @@ const CompletedOrders = ({activeKey}) => {
     const [pageSize] = useState(10);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await axios.get(`/order/list?shopName=COMPLETED&invoiceNo=COMPLETED&orderStatus=COMPLETED`);
-                console.log(response.data);
-                
-                setOrders(response.data);
-            } catch (error) { 
-                console.error("Error fetching orders:", error);
-            }
-        };
-
-        if (activeKey === '2') {
-            fetchOrders();
-          }
-    }, [activeKey]);
+         useEffect(() => {
+            console.log(activeKey);
+            
+            const fetchOrders = async () => {
+                try {
+                      const response = await axios.get(`/order/list?shopName=DELIVERING&invoiceNo=DELIVERING&orderStatus=DELIVERING`);
+                    console.log(response.data);
+                    
+                    setOrders(response.data);
+                } catch (error) { 
+                    console.error("Error fetching orders:", error);
+                }
+            };
+    
+            if (activeKey.activeKey === '4') {
+                fetchOrders();
+              }
+        }, [activeKey]);
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {
@@ -96,7 +98,7 @@ const CompletedOrders = ({activeKey}) => {
     return (
         <div>
             <div className='flex items-center justify-between mb-4'>
-                <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} />
+                {/* <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} /> */}
                 <Button className='border border-purple-900' onClick={exportToExcel}>
                     Export to Excel <AiOutlineArrowUp className='ml-2' />
                 </Button>
@@ -131,4 +133,4 @@ const CompletedOrders = ({activeKey}) => {
     );
 };
 
-export default CompletedOrders;
+export default DeliveringOrders;
