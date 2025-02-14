@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const AllOrder = () => {
+const Delivering = () => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -18,7 +18,7 @@ const AllOrder = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`/order/list`);
+                const response = await axios.get(`/order/list?shopName=DELIVERED&invoiceNo=DELIVERED&orderStatus=DELIVERED`);
                 console.log(response.data);
                 
                 setOrders(response.data);
@@ -38,7 +38,7 @@ const AllOrder = () => {
 
         fetchShops();
         fetchOrders();
-    }, [currentPage, pageSize]);
+    }, [currentPage, pageSize, orders]);
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {
@@ -87,11 +87,31 @@ const AllOrder = () => {
     ];
     console.log(openOrder);
     
+    const onSearch = async (value) =>{
+          console.log(value);
+
+          if (value == '' || value == null) {
+            const response = await axios.get(`/order/list`);
+             console.log(response.data);
+             
+             setOrders(response.data);
+          }
+    
+          try {
+             const response = await axios.get(`/order/list?shopName=${value}&invoiceNo=${value}&orderStatus=${value}`);
+             console.log(response.data);
+             
+             setOrders(response.data);
+         } catch (error) {
+             console.error("Error fetching orders:", error);
+         }
+          
+        }
 
     return (
         <div>
             <div className='flex items-center justify-between mb-4'>
-                <SearchForm onSearch={() => {}} />
+                <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} />
                 <Button className='border border-purple-900' onClick={exportToExcel}>
                     Export to Excel <AiOutlineArrowUp className='ml-2' />
                 </Button>
@@ -115,7 +135,7 @@ const AllOrder = () => {
                 open={openOrder !== null}
             >
                 {openOrder && <OrderDetail order={orders.find(order => order.orderId === openOrder)} />}
-               { orders.find(order => order.orderId === openOrder)?.orderStatus == 'PENDING'&& <Button 
+               { orders.find(order => order.orderId === openOrder)?.orderStatus == 'pending'&& <Button 
                     onClick={() => navigate(`/edit-order`, { state: { orderData: orders.find(order => order.orderId === openOrder) } })} 
                     className='absolute mt-3 border-2 border-yellow-600 rounded-md right-4 text-blue top-1'
                 >
@@ -126,4 +146,4 @@ const AllOrder = () => {
     );
 };
 
-export default AllOrder;
+export default Delivering;

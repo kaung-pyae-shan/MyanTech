@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import AllOrder from './AllOrder';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
+import CanceledOrders from './CanceledOrders';
+import Delivering from './Delivering';
 
 const OrderTab = () => {
 
@@ -15,17 +17,17 @@ const OrderTab = () => {
           {
             key: '2',
             label: 'Completed',
-            children: 'Content of Tab Pane 1',
+            children: <CanceledOrders />,
           },
           {
             key: '3',
-            label: 'Cancelled Orders',
-            children: 'Content of Tab Pane 2',
+            label: 'Pending Orders',
+            children: <CanceledOrders />,
           },
           {
             key: '4',
-            label: 'Wrong Orders',
-            children: 'Content of Tab Pane 3',
+            label: 'Delivered',
+            children: <Delivering />,
           },
           {
             key: '5',
