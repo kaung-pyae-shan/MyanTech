@@ -1,7 +1,9 @@
 package com.byteriders.myantech.model.entity;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -10,6 +12,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -42,7 +45,7 @@ public class Order {
 	@ManyToOne
 	private User updatedUser;
 	private LocalDate updatedDate;
-
+	
 	public enum Status {
 		PENDING, DELIVERED, CANCELED
 	}
@@ -50,4 +53,9 @@ public class Order {
 	public enum Segment {
 		Consumer, Industrial
 	}
+	
+	@OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    private List<ProductOrder> productOrders;
+	
+	
 }

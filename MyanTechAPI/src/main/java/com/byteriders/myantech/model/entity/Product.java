@@ -33,8 +33,9 @@ public class Product {
 	private int cashback;
 	private String serialNumber;
 	private int stock;
+	
 	@Column(nullable = true)
-	private int stockFaulty;
+	private Integer stockFaulty;
 	
 	@ManyToOne
 	private User createdUser;
