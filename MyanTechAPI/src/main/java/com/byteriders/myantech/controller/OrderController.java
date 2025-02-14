@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
+<<<<<<< HEAD
 import com.byteriders.myantech.model.dto.input.OrderSearch;
 import com.byteriders.myantech.model.dto.input.OrderStatusUpdateDTO;
 import com.byteriders.myantech.model.dto.input.ProductOrderStatusUpdateDTO;
 import com.byteriders.myantech.model.dto.output.OrderDetails;
+=======
+import com.byteriders.myantech.model.dto.output.OrderAndProductDto;
+import com.byteriders.myantech.model.dto.output.OrderList;
+>>>>>>> refs/heads/Dashboard
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.service.OrderService;
@@ -64,5 +69,10 @@ public class OrderController {
 		}
 		return ResponseEntity.badRequest().body("Order Creation failed");
 	}
+	
+	@GetMapping("/getOrders")
+    public List<OrderAndProductDto> getAllOrders() {
+        return service.getAllOrders();
+    }
 	
 }

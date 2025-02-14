@@ -31,4 +31,8 @@ public class ProductService {
 			repo.save(product);
 		});
 	}
+	
+	public List<TotalProductsByCategoryDto> getProductsByCategory() {
+		return productRepo.getTotalProductsByCategory();
+	}
 }

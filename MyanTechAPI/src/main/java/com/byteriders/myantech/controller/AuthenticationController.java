@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.byteriders.myantech.model.dto.input.SignInForm;
+import com.byteriders.myantech.model.dto.output.UserDetails;
+import com.byteriders.myantech.model.entity.User;
 import com.byteriders.myantech.model.service.UserService;
 
 @RequestMapping("/auth")
@@ -23,13 +25,22 @@ public class AuthenticationController {
         String username = form.username();
         String password = form.password();
 
-        int userId = service.validateUser(username, password);
+        User user = service.validateUser(username, password);
 
-        if (userId != 0) {
-            return ResponseEntity.ok(Map.of("userId", userId));
+        if (user != null) {
+        	UserDetails userDetails = new UserDetails();
+        	userDetails.setId(user.getId());
+        	userDetails.setName(user.getUsername());
+        	userDetails.setRole(user.getRole());
+            return ResponseEntity.ok(userDetails);
         } else {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid credentials"));
         }
     } 
+	
+	@PostMapping("/logout")
+	public ResponseEntity<String> logout() {
+	    return ResponseEntity.ok("Logged out successfully");
+	}
 
 }

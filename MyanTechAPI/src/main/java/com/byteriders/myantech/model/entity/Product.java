@@ -30,8 +30,14 @@ public class Product {
 	private int cashback;
 	private String serialNumber;
 	private int stock;
+<<<<<<< HEAD
 	@Column(columnDefinition = "INT DEFAULT 0")
 	private int stockFaulty;
+=======
+	
+	@Column(nullable = true)
+	private Integer stockFaulty;
+>>>>>>> refs/heads/Dashboard
 	
 	@ManyToOne
 	private User createdUser;

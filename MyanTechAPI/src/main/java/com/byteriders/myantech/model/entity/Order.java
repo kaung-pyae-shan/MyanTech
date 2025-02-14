@@ -3,6 +3,7 @@ package com.byteriders.myantech.model.entity;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -45,9 +46,12 @@ public class Order {
 	private User updatedUser;
 	private LocalDate updatedDate;
 	
+<<<<<<< HEAD
 	@OneToMany(mappedBy = "order")
 	private List<ProductOrder> productOrders;
 
+=======
+>>>>>>> refs/heads/Dashboard
 	public enum Status {
 		PENDING, DELIVERING, DELIVERED, COMPLETED, CANCELED
 	}
@@ -55,4 +59,9 @@ public class Order {
 	public enum Segment {
 		Consumer, Industrial
 	}
+	
+	@OneToMany(mappedBy = "order", cascade = {CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval = true)
+    private List<ProductOrder> productOrders;
+	
+	
 }

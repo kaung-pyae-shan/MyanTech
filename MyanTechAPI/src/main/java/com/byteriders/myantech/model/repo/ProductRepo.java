@@ -20,4 +20,12 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
 	
 	@Query("Select p.stock from Product p where id = :id")
 	public int findStockById(int id);
+	
+	 @Query("SELECT new com.byteriders.myantech.model.dto.output.TotalProductsByCategoryDto(c.id, c.name, COUNT(p.id)) " +
+	           "FROM Product p " +
+	           "JOIN p.category c " + 
+	           "GROUP BY c.id, c.name")
+	    List<TotalProductsByCategoryDto> getTotalProductsByCategory();
+
+
 }

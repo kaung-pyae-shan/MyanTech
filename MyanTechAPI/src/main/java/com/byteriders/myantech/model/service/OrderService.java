@@ -185,4 +185,36 @@ public class OrderService {
 		productOrderRepo.save(productOrder);
 	}
 
+	
+		
+		public int getTodayOrders(LocalDate today) {
+			int[] todayOrders = orderRepo.getTodayOrders(today);
+			int total = 0;
+			for (int i : todayOrders) {
+				System.out.println("i : " + i);
+				total += orderRepo.getTotalSaleForOrder(i);
+			} 
+			return total;
+		}
+		
+		
+		public List<BestSellingProductDto> getBestSellingProducts() {
+			LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
+			return orderRepo.getBestSelling(threeMonthsAgo);
+			
+		}
+
+		public List<SaleChartDto> getSaleByDay() {
+		    return orderRepo.findSalesForCurrentMonth().stream()
+		        .map(obj -> new SaleChartDto(
+		            (String) obj[0],  
+		            obj[1] != null ? ((Number) obj[1]).intValue() : 0
+		            
+		        ))
+		        .collect(Collectors.toList());
+		}
+
+	
+	
+    
 }
