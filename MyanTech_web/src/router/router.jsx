@@ -12,7 +12,10 @@ import EditOrder from "../pages/Order/EditOrder";
 
 import OrderTable from "../pages/AssignTruck/OrderTable";
 import SalesDashboard from "../pages/Dashboards/SalesDashboard";
-import Login from "../pages/User/Login";
+// import Login from "../pages/User/Login";
+
+import LoginTest from "../pages/User/LoginTest";
+
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -90,7 +93,8 @@ const Router = () => {
         // },
         {
             path:"/login",
-            element : <Login />
+
+            element : <LoginTest />
 
         },
         // {

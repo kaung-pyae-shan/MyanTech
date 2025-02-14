@@ -91,13 +91,13 @@ const OrderDetail = ({ order }) => {
 
           <div className="grid grid-cols-2 gap-6 p-6">
             <div>
-              <p>Name - {order.shop_name}</p>
-              <p>Address - {order.shop_address}</p>
+              <p>Name - {order.shopName}</p>
+              <p>Address - {order.shopAddress}</p>
               <p>Contact - {order.contact}</p>
             </div>
             <div className="text-right">
-              <p><span className="font-medium">Invoice #:</span> {order.invoice_no}</p>
-              <p><span className="font-medium">Created at:</span> 09/11/24</p>
+              <p><span className="font-medium">Invoice #:</span> {order.invoiceNo}</p>
+              <p><span className="font-medium">Created at:</span> {order.createdDate}</p>
             </div>
           </div>
 
@@ -116,17 +116,17 @@ const OrderDetail = ({ order }) => {
               <tbody className="divide-y">
                 {order.products.map((product) => (
                   <tr key={product.product_id}>
-                    <td className="p-3">{product.product_name}</td>
-                    <td className="p-3">{product.quantity}</td>
-                    <td className="p-3">{product.unit_price}</td>
+                    <td className="p-3">{product.productName}</td>
+                    <td className="p-3">{product.qty}</td>
+                    <td className="p-3">{product.unitPrice}</td>
                     <td className="p-3">100</td>
-                    <td className="p-3">{product.subtotal}</td>
+                    <td className="p-3">{product.subTotal}</td>
                     <td className="p-3">
                       <div className="flex flex-col gap-2">
                         <select
-                          onChange={(e) => handleStatusChange(order.id, product.product_id, e.target.value)}
+                          onChange={(e) => handleStatusChange(order.orderId, product.productOrderid, e.target.value)}
                           className={`w-[120px] h-[30px] py-1 rounded ${
-                            productStatus[product.product_id] ? statusStyles[productStatus[product.product_id]] : statusStyles.default
+                            productStatus[product.productOrderid] ? statusStyles[productStatus[product.productOrderid]] : statusStyles.default
                           }`}
                         >
                           <option value="">No Report Yet</option>
@@ -135,12 +135,12 @@ const OrderDetail = ({ order }) => {
                           <option value="FAULTY_PRODUCT">Faulty</option>
                         </select>
 
-                        {productStatus[product.product_id] === "WRONG_ORDER" || productStatus[product.product_id] === "FAULTY_PRODUCT" ? (
+                        {productStatus[product.productOrderid] === "WRONG_ORDER" || productStatus[product.productOrderid] === "FAULTY_PRODUCT" ? (
                           <input
                             type="number"
                             placeholder="Enter Quantity"
-                            value={productQuantity[product.product_id] || 1}
-                            onChange={(e) => handleQuantityChange(product.product_id, Number(e.target.value))}
+                            value={productQuantity[product.productOrderid] || 1}
+                            onChange={(e) => handleQuantityChange(product.productOrderid, Number(e.target.value))}
                             min={1}
                             max={product.quantity}
                             className="p-2 border rounded w-[120px] h-[30px]"
@@ -157,7 +157,7 @@ const OrderDetail = ({ order }) => {
           <div className="p-6 text-right">
             <div className="flex items-center gap-5 px-4 py-2 ml-auto rounded-lg">
               <p className="mb-1 text-lg font-medium">TOTAL</p>
-              <p className="text-3xl font-bold">{order.products.reduce((sum, product) => sum + product.subtotal, 0)}</p>
+              <p className="text-3xl font-bold">{order.products.reduce((sum, product) => sum + product.subTotal, 0)}</p>
             </div>
           </div>
         </div>

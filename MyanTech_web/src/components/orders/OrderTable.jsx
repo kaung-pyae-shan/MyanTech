@@ -50,7 +50,7 @@ const OrderTable = () => {
         },
         { title: "Unit Price", dataIndex: "unit_price", key: "unit_price" },
         { title: "Subtotal", dataIndex: "subtotal", key: "subtotal" },
-        { title: "Remark", dataIndex: "remark", key: "remark" },
+        { title: "Remark", dataIndex: "remarks", key: "remark" },
         {
             title: 'Operation',
             dataIndex: 'operation',

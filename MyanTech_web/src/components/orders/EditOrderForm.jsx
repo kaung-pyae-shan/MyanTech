@@ -188,7 +188,7 @@ const EditOrderForm = ({ resetField, setResetField, shopDisable, setShopDisable}
     return (
         <div className='w-[400px] border border-gray-300 rounded-lg bg-white shadow-md'>
             <div className="px-5 py-5 bg-button">
-                <h1 className="text-2xl font-bold text-white">Create Order</h1>
+                <h1 className="text-2xl font-bold text-white">Edit Order</h1>
             </div>
             <hr />
             <Form form={form} layout="vertical" autoComplete="off" className='p-5' onFinish={handleSubmit}>

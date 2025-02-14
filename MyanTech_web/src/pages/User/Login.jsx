@@ -8,6 +8,7 @@ import { addAuth, login, selectIsAuthenticated } from '../../redux/services/Auth
 // import img from '../../assets/image 2.png'
 
 
+<<<<<<< HEAD
 const LOGIN_URL ='/login'
 
 const Login = () => {
@@ -73,6 +74,73 @@ const Login = () => {
       setSuccess(true)
 
      navigate('/vocab/new-word/flashcard')
+=======
+const LOGIN_URL ='/users'
+
+const Login = () => {
+
+  
+
+  const auth = useSelector((state) => state.auth)
+
+  const dispatch = useDispatch()
+
+  const navigate = useNavigate()
+
+  const userRef = useRef();
+  
+  const [user, setUser] = useState('')
+  const [pwd, setPwd] = useState('')
+  const [errMsg, setErrMsg] = useState('')
+  const [success, setSuccess] = useState(false)
+
+  // useEffect(() => {
+  //   userRef.current.focus();
+  // },[])
+
+  useEffect(() => {
+    setErrMsg('')
+  },[user, pwd])
+
+  const onFinish = async (values) => {
+
+    console.log(values);
+    setUser(values.username)
+    setPwd(values.password)
+    try {
+      const response = await axios.post(LOGIN_URL, 
+        JSON.stringify({
+          user_name : values.username, 
+           password: values.password
+          }),
+           {
+            headers : {'Content-Type': 'application/json'}
+          }
+      );
+      console.log(JSON.stringify(response?.data));
+
+      const accessToken = response?.data?.token;
+      console.log(accessToken);
+
+      // setAuth({user,pwd})
+      dispatch(login(user))
+      dispatch(addAuth({user, pwd}))
+      console.log(auth.auth);
+      
+
+
+      
+      localStorage.setItem('token', accessToken)
+      localStorage.setItem('user',user)
+
+      
+
+      setUser('')
+      setPwd('')
+      setSuccess(true)
+
+     navigate('/')
+>>>>>>> branch 'main' of https://github.com/kaung-pyae-shan/MyanTech.git
     } catch (error) {
       console.log(error.response);
       

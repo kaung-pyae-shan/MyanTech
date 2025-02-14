@@ -27,4 +27,5 @@ public record ProductOrderDetails(
             root.get("status")
         );
     }
+
 }

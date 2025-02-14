@@ -18,7 +18,7 @@ import com.byteriders.myantech.model.repo.BrandRepo;
 import com.byteriders.myantech.model.repo.CategoryRepo;
 import com.byteriders.myantech.model.repo.ProductRepo;
 import com.byteriders.myantech.model.repo.ProductRepository;
-import com.byteriders.myantech.model.service.ProductService;
+import com.byteriders.myantech.model.service.ProductServices;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,7 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ProductServiceImpl implements ProductService {
+public class ProductServiceImpl implements ProductServices {
 
 	private final ProductRepository productRepository;
 	private final ModelMapper modelMapper;

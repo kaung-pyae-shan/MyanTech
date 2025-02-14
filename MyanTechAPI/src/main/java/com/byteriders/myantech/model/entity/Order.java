@@ -50,7 +50,7 @@ public class Order {
 
 	public enum Status {
 
-		PENDING, DELIVERED, CANCELLED, COMPLETED
+		PENDING, DELIVERING, DELIVERED, COMPLETED, CANCELED
 	}
 	
 	public enum Segment {

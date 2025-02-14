@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.byteriders.myantech.model.dto.output.ProductDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
+import com.byteriders.myantech.model.dto.output.TotalProductsByCategoryDto;
 import com.byteriders.myantech.model.entity.Product;
 
 import jakarta.transaction.Transactional;
@@ -42,4 +43,12 @@ public interface ProductRepo extends JpaRepository<Product, Integer> {
 	@Transactional
 	@Query("UPDATE Product p SET p.stock=:stock where p.id=:id")
 	public int updateStock(int stock, int id);
+
+	
+	 @Query("SELECT new com.byteriders.myantech.model.dto.output.TotalProductsByCategoryDto(c.id, c.name, COUNT(p.id)) " +
+	           "FROM Product p " +
+	           "JOIN p.category c " + 
+	           "GROUP BY c.id, c.name")
+	    List<TotalProductsByCategoryDto> getTotalProductsByCategory();
+
 }

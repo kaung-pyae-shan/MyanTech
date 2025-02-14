@@ -1,10 +1,37 @@
 import { Tabs } from 'antd';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AllOrder from './AllOrder';
 import { Link } from 'react-router-dom';
 import { AiOutlinePlus } from 'react-icons/ai';
 
+import CanceledOrders from './CanceledOrders';
+import Delivering from './Delivering';
+
+import axios from '../../api/axios';
+
+
 const OrderTab = () => {
+
+  //  const [loading, setLoading] = useState(false)
+  // const [orders, setOrders] = useState([]);
+   
+    // useEffect(()=>{
+    //    const fetchOrders = async () => {
+    //               setLoading(true)
+    //               try {
+    //                   const response = await axios.get(`/orders`);
+    //                   setOrders(response.data);
+    //                   setLoading(false)
+    //               } catch (error) {
+    //                   console.error("Error fetching orders:", error);
+    //                   setLoading(false)
+      
+    //               }
+    //           };
+      
+    //           fetchOrders();
+    // },)
+
 
     const [items, setItems] = useState([
         {
@@ -15,17 +42,17 @@ const OrderTab = () => {
           {
             key: '2',
             label: 'Completed',
-            children: 'Content of Tab Pane 1',
+            children: <CanceledOrders />,
           },
           {
             key: '3',
-            label: 'Cancelled Orders',
-            children: 'Content of Tab Pane 2',
+            label: 'Pending Orders',
+            children: <CanceledOrders />,
           },
           {
             key: '4',
-            label: 'Wrong Orders',
-            children: 'Content of Tab Pane 3',
+            label: 'Delivered',
+            children: <Delivering />,
           },
           {
             key: '5',

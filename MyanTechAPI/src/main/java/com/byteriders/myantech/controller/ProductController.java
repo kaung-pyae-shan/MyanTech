@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.byteriders.myantech.model.dto.input.ProductRequest;
 import com.byteriders.myantech.model.dto.output.ProductDetails;
 import com.byteriders.myantech.model.dto.output.Response;
-import com.byteriders.myantech.model.service.ProductService;
+import com.byteriders.myantech.model.service.ProductServices;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductController {
 	
-	private final ProductService productService;
+	private final ProductServices productService;
 	
 	@PostMapping("/add")
 	public ResponseEntity<Response> createProduct(@RequestBody ProductRequest productRequest) {

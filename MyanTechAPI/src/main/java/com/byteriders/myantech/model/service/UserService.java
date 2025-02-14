@@ -15,16 +15,17 @@ public class UserService {
 	@Autowired
 	private UserRepo userRepo;
 	
-	public int validateUser(String username, String password) {
+	public User validateUser(String username, String password) {
         Optional<User> user = userRepo.findByUsernameAndPassword(username,password);
+        
         
         if (user.isPresent()) {
             User foundUser = user.get();
             if (foundUser.getPassword().equals(password)) {
-                return foundUser.getId(); // Return user ID if credentials are correct
+                return foundUser; // Return user ID if credentials are correct
             }
         }
         
-        return 0; // Return null if login fails
+        return null; 
     }
 }
