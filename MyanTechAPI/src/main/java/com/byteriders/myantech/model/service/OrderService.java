@@ -8,9 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.OrderForm;
+import com.byteriders.myantech.model.dto.input.OrderSearch;
+import com.byteriders.myantech.model.dto.input.OrderStatusUpdateDTO;
+import com.byteriders.myantech.model.dto.input.ProductOrderStatusUpdateDTO;
 import com.byteriders.myantech.model.dto.output.BestSellingProductDto;
-import com.byteriders.myantech.model.dto.output.DashBoardData;
 import com.byteriders.myantech.model.dto.output.OrderAndProductDto;
+import com.byteriders.myantech.model.dto.output.OrderDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.ProductOrderDetails;
 import com.byteriders.myantech.model.dto.output.SaleChartDto;
@@ -18,6 +21,7 @@ import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.entity.Order;
 import com.byteriders.myantech.model.entity.Order.Segment;
 import com.byteriders.myantech.model.entity.Order.Status;
+import com.byteriders.myantech.model.entity.Product;
 import com.byteriders.myantech.model.entity.ProductOrder;
 import com.byteriders.myantech.model.repo.OrderRepo;
 import com.byteriders.myantech.model.repo.ProductOrderRepo;
@@ -158,85 +162,49 @@ public class OrderService {
 	private int generateInvoiceNo() {
 		return orderRepo.findMaxInvoiceNo().get() + 1;
 	}
-	
-		public List<OrderAndProductDto> getAllOrders() {
-        List<Order> orders = orderRepo.findAllOrdersWithDetails();
 
-        return orders.stream().map(order -> {
-            OrderAndProductDto orderDto = new OrderAndProductDto();
-            orderDto.setId(order.getId());
-            orderDto.setInvoiceNo("INV-" + order.getCreatedDate() + "-" + order.getInvoiceNo());
-            orderDto.setShopId(Integer.toHexString(order.getShop().getId()));
-            orderDto.setShopName(order.getShop().getName());
-            orderDto.setShopAddress(order.getShop().getAddress());
-            orderDto.setContact(order.getShop().getContact());
-            orderDto.setTownshipId(order.getShop().getTownship().getId());
-            orderDto.setTownshipName(order.getShop().getTownship().getName());
-            orderDto.setRegionId(order.getShop().getRegion().getId());
-            orderDto.setRegionName(order.getShop().getRegion().getName());
-            orderDto.setOrderStatus(order.getStatus().toString().toLowerCase());
+	private void restockInventoryProduct(Status updatedStatus, int orderId) {
+		var order = orderRepo.findById(orderId).orElseThrow();
+		Status currentStatus = order.getStatus();
 
-            // Convert products
-            List<ProductOrderDetails> products = order.getProductOrders().stream()
-            	    .map(productOrder -> {
-            	        ProductOrderDetails productDto = new ProductOrderDetails();
-            	        productDto.setProductId(Integer.toHexString(productOrder.getProduct().getId()));
-            	        productDto.setProductName(productOrder.getProduct().getName());
-            	        productDto.setQuantity(productOrder.getQty());
-            	        productDto.setUnitPrice(productOrder.getProduct().getPrice());
-            	        productDto.setSubtotal(productOrder.getQty() * productOrder.getProduct().getPrice());
-            	        productDto.setRemark(productOrder.getRemark());
-            	        return productDto;
-            	    })
-            	    .collect(Collectors.toList());
+		// no need to restock
+		if (updatedStatus == currentStatus)
+			return;
 
-            orderDto.setProducts(products);
-            return orderDto;
-        }).collect(Collectors.toList());
-    }
-
-		public int getTodayOrders(LocalDate today) {
-			int[] todayOrders = orderRepo.getTodayOrders(today);
-			int total = 0;
-			for (int i : todayOrders) {
-				System.out.println("i : " + i);
-				total += orderRepo.getTotalSaleForOrder(i);
-			} 
-			return total;
+		var productOrders = productOrderRepo.findByOrderId(orderId);
+		// loop the ProductOrders and get the product quantity
+		// add the quantity into Product stock
+		if (updatedStatus == Status.PENDING) {
+			productService.addProductQty(productOrders);
 		}
-		
-		
-		public List<BestSellingProductDto> getBestSellingProducts() {
-			LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
-			return orderRepo.getBestSelling(threeMonthsAgo);
-			
+		if (updatedStatus == Status.CANCELED) {
+			productService.subtractProductQty(productOrders);
 		}
+		return;
+	}
 
-		public List<SaleChartDto> getSaleByDay() {
-		    return orderRepo.findSalesForCurrentMonth().stream()
-		        .map(obj -> new SaleChartDto(
-		            (String) obj[0],  
-		            obj[1] != null ? ((Number) obj[1]).intValue() : 0
-		            
-		        ))
-		        .collect(Collectors.toList());
+	private void updateOrderStatus(Status status, int orderId) {
+		var order = orderRepo.findById(orderId).orElseThrow();
+		order.setStatus(status);
+		orderRepo.save(order);
+	}
+
+	private void updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status status,
+			int productOrderId) {
+		var productOrder = productOrderRepo.findById(productOrderId).orElseThrow();
+		productOrder.setStatus(status);
+		productOrderRepo.save(productOrder);
+	}
+
+	public int getTodayOrders(LocalDate today) {
+		int[] todayOrders = orderRepo.getTodayOrders(today);
+		int total = 0;
+		for (int i : todayOrders) {
+			System.out.println("i : " + i);
+			total += orderRepo.getTotalSaleForOrder(i);
 		}
 		return total;
 	}
-		
-		public List<SaleChartDto> getTotalSaleByMonth(int year) {
-			return orderRepo.getTotalSalesByMonth(year).stream().map(obj -> new SaleChartDto(
-						(String) obj[0],
-						obj[1] != null ? ((Number) obj[1]).intValue() : 0
-					)).collect(Collectors.toList());
-		}
-		
-		public List<SaleChartDto> getTotalSaleByMonth(int year) {
-			return orderRepo.getTotalSalesByMonth(year).stream().map(obj -> new SaleChartDto(
-						(String) obj[0],
-						obj[1] != null ? ((Number) obj[1]).intValue() : 0
-					)).collect(Collectors.toList());
-		}
 
 	public List<BestSellingProductDto> getBestSellingProducts() {
 		LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
@@ -251,6 +219,26 @@ public class OrderService {
 				)).collect(Collectors.toList());
 	}
 
-	
-    
+	public List<SaleChartDto> getTotalSaleByMonth(int year) {
+		return orderRepo.getTotalSalesByMonth(year).stream()
+				.map(obj -> new SaleChartDto((String) obj[0], obj[1] != null ? ((Number) obj[1]).intValue() : 0))
+				.collect(Collectors.toList());
+	}
+
+	public int getPending() {
+		return orderRepo.getPendingCount();
+	}
+
+	public int getDelivered() {
+		return orderRepo.getDeliveredCount();
+	}
+
+	public int getTotalStock() {
+		return orderRepo.getTotalStock();
+	}
+
+	public int getSoldProducts() {
+		return orderRepo.getSoldProducts();
+	}
+
 }
