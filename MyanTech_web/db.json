@@ -26,6 +26,59 @@
       "user_name": "sales",
       "password": "asdffdsa"
     }
+    },
+
+  "assign_truck": [
+    {
+      "0": {
+        "assign_truck_id": 1739421636816,
+        "order_id": "79eb",
+        "driver_id": 3,
+        "delivery_date": "2025-02-15"
+      },
+      "id": "79b3"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739423503382,
+        "order_id": "89fe",
+        "driver_id": 1,
+        "delivery_date": "2025-02-15"
+      },
+      "1": {
+        "assign_truck_id": 1739345725492,
+        "order_id": "a114",
+        "driver_id": 3,
+        "delivery_date": "2025-02-28"
+      },
+      "id": "be3e"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739348997183,
+        "order_id": "5393",
+        "driver_id": 3,
+        "delivery_date": "2025-02-13"
+      },
+      "id": "2e78"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739365651658,
+        "order_id": "1691",
+        "driver_id": 3,
+        "delivery_date": "2025-02-06"
+      },
+      "id": "1168"
+    },
+    {
+      "0": {
+        "assign_truck_id": 1739454568387,
+        "order_id": "e59c",
+        "driver_id": 3,
+        "delivery_date": "2025-01-29"
+      },
+      "id": "8976"
+    }
   ]
- 
-}
+

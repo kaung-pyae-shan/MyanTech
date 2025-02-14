@@ -17,6 +17,13 @@ public interface OrderRepo extends JpaRepository<Order, Integer>, OrderRepoCusto
 	@Query("SELECT MAX(o.invoiceNo) FROM Order o")
     Optional<Integer> findMaxInvoiceNo();
 
+	
+	 @Query("SELECT o FROM Order o WHERE o.status = :status AND o.id NOT IN (SELECT a.order.id FROM AssignTruck a)")
+	 List<Order> findOrdersWithPendingStatusAndNotAssigned(@Param("status") Order.Status status);
+	
+	List<Order> findByStatus(Order.Status status);
+	
+
 	@Query("SELECT o FROM Order o LEFT JOIN FETCH o.shop s LEFT JOIN FETCH o.createdUser cu LEFT JOIN FETCH o.updatedUser uu")
 	List<Order> findAllOrdersWithDetails();
 
@@ -57,6 +64,4 @@ public interface OrderRepo extends JpaRepository<Order, Integer>, OrderRepoCusto
 		        ORDER BY ds.orderDate
 		    """, nativeQuery = true)
 		    List<Object[]> findSalesForCurrentMonth();
-
-
 }

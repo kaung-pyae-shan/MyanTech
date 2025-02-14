@@ -4,10 +4,10 @@ public record ProductInfo(
 		int product_id,
 	    String name,
 	    String brand,
-//	    "type": "Accessories ",
+	    String type,          
 	    int price,
 	    int stock,
-	    int cashback,
+	    int cashback,        
 	    String serialNo
 		) {
 	

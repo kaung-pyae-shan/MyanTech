@@ -91,36 +91,36 @@ insert into orders (created_date, created_user_id, invoice_no, product_segment, 
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-04', 1, '7127', 'CONSUMER', 7, "gray", 'DELIVERED');
 insert into orders (created_date, created_user_id, invoice_no, product_segment, shop_id, remarks, status) values ('2025-02-04', 1, '7126', 'CONSUMER', 2, "black", 'DELIVERED');
 
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Dell XPS 13', 13, 6, 1800000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Lenovo IdeaPad 5', 4, 6, 800000, 0, 30);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('HP EliteBook 840', 2, 6, 2000000, 0, 10);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Asus TUF Gaming F15 ', 12, 1, 700000, 0, 5);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Acer Aspire 5 ', 5, 9, 600000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Apple MacBook Pro 14-inch', 9, 5, 650000, 0, 35);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('MSI Prestige 14', 4, 7, 3000000, 0, 46);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('HP Omen 25L', 6, 6, 1500000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Dell OptiPlex 7090', 8, 8, 1300000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Asus ROG Strix G10', 17, 3, 600000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Microsoft Surface Studio', 18, 2, 500000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('ViewSonic VX3276 Monitor', 19, 4, 400000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('LG UltraGear 27-inch', 20, 3, 6500000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Samsaung Smart Monitor M8', 10, 1, 4500000, 0, 7);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Dell XPS 15', 7, 2, 10000000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Logitech MX Keys Keyboard', 6, 7, 1600000, 0, 26);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Razer Basilisk V3 Mouse ', 5, 6, 1400000, 0, 21);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Kingston NV2 2TB SSD', 4, 3, 1100000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('WD Black SN850X 1TB SSD', 3, 4, 1700000, 0, 17);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Seagate IronWolf 4TB HDD', 2, 4, 900000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Samsung T7 Protabel SSD', 4, 1, 2500000, 0, 9);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('TP-link Deco XE75 Router', 1, 7, 2000000, 0, 10);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Cisco Catalyst 9200 Switch', 6, 6, 450000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Epson EcoTank ET-3850', 15, 3, 650000, 0, 18);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Canon Image CLASS MF644 CDW', 16, 7, 700000, 0, 15);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Adobe Photoshop CC', 17, 9, 6000000, 0, 14);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Microsoft Office 2021', 20, 6, 7000000, 0, 13);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('Kaspersky Total Security', 13, 5, 1400000, 0, 10);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('NVIDIA RTZ 4060 GPU', 11, 8, 1800000, 0, 20);
-insert into product (name, brand_id, category_id, price, cashback, stock) values ('G.Skill Trident Z RAM 32 GB', 14, 6, 1800000, 0, 8);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Dell XPS 13', 13, 6, 'DELL-XPS-13', 0, 1800000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Lenovo IdeaPad 5', 4, 6, 'LENOVO-IDEA-5112', 0, 800000, 0, 30);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('HP EliteBook 840', 2, 6, 'HP840-G8-12AB34CD56', 0, 2000000, 0, 10);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Asus TUF Gaming F15 ', 12, 1, 'ASUS-F15-TUF12345GH', 0, 700000, 0, 5);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Acer Aspire 5 ', 5, 9, 'ACER-A515-X123YZ4567', 0, 600000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Apple MacBook Pro 14-inch', 9, 5, 'APPLE-MACPRO-14INC', 0, 650000, 0, 35);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('MSI Prestige 14', 4, 7, 'MSI-PRES14-123', 0, 3000000, 0, 46);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('HP Omen 25L', 6, 6, 'HP-OMEN25L-123XYZ4567', 0, 1500000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Dell OptiPlex 7090', 8, 8, 'DELL-OPT7090-1234', 0, 1300000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Asus ROG Strix G10', 17, 3, 'ASUS-ROG1-G10', 0, 600000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Microsoft Surface Studio', 18, 2, 'MICRO-SUF1-STUD1', 0, 500000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('ViewSonic VX3276 Monitor', 19, 4, 'VIEWSON-VX3276-1024', 0, 400000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('LG UltraGear 27-inch', 20, 3, 'LGUG-27GP950-ABC12345D', 0, 6500000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Samsaung Smart Monitor M8', 10, 1, 'SAMSASUNG-SMARTM8-1024', 0, 4500000, 0, 7);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Dell XPS 15', 7, 2, 'DELL-XPS-15', 0, 10000000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Logitech MX Keys Keyboard', 6, 7, 'LOGITECH-MXKE-1234', 0, 1600000, 0, 26);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Razer Basilisk V3 Mouse ', 5, 6, 'RAZER-BASIV3-MOU', 0, 1400000, 0, 21);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Kingston NV2 2TB SSD', 4, 3, 'KINGSTON-NV2TB-SSD', 0, 1100000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('WD Black SN850X 1TB SSD', 3, 4, 'WBBLACK-SN850X-1TBSD', 0, 1700000, 0, 17);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Seagate IronWolf 4TB HDD', 2, 4, 'SEA-IW4TB-1234GHIJK', 0, 900000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Samsung T7 Protabel SSD', 4, 1, 'SAMSUNG-T7PRO-SSD', 0, 2500000, 0, 9);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('TP-link Deco XE75 Router', 1, 7, 'TP-DECO-XE75', 0, 2000000, 0, 10);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Cisco Catalyst 9200 Switch', 6, 6, 'CISCO-CATS-9200', 0, 450000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Epson EcoTank ET-3850', 15, 3, 'EPS-ET3850-QWERT12345', 0, 650000, 0, 18);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Canon Image CLASS MF644 CDW', 16, 7, 'CAN-MF644CDW-PQR12345', 0, 700000, 0, 15);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Adobe Photoshop CC', 17, 9, 'ADOBE-PHOTO-CC', 0, 6000000, 0, 14);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Microsoft Office 2021', 20, 6, 'MICROSOFT-OFFICE-2021', 0, 7000000, 0, 13);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('Kaspersky Total Security', 13, 5, 'KASPER-SKY-SE123', 0, 1400000, 0, 10);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('NVIDIA RTZ 4060 GPU', 11, 8, 'NVIDIA-RTX-4060', 0, 1800000, 0, 20);
+insert into product (name, brand_id, category_id, serial_number, stock_faulty, price, cashback, stock) values ('G.Skill Trident Z RAM 32 GB', 14, 6, 'GSKILL-TRI-Z32GB', 0, 1800000, 0, 8);
 
 insert into service_center (name, contact, address, available_status) values ('Access Spectrum Co., Ltd', '+951-376448 ', '364-366, Maha Bandoola Garden Street, Kyauktada Township, Yangon', 'OPEN');
 insert into service_center (name, contact, address, available_status) values ('COMPUTER TECHNICAL TEAM (Trading) Co., Ltd', '+951-8398792', 'No. 11/13, 45th Street, Botahtaung Township, Yangon', 'OPEN');
@@ -133,6 +133,14 @@ insert into service_center (name, contact, address, available_status) values ('H
 insert into service_center (name, contact, address, available_status) values ('Dell Service Center', '+951-556677', 'Pyay Road, Sanchaung Township, Yangon', 'OPEN');
 insert into service_center (name, contact, address, available_status) values ('Zawgyi Electronics  goods and ICT product repairs', '+951-394095', 'Anawrahta Road, Downtown Yangon', 'OPEN');
 
+<<<<<<< HEAD
+insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Tun Lin', '09313485321', 'YGN-1A/3456');
+insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Min Thant', '09399485321', 'MDY-4B/7890');
+insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Hla Oo', '09432485321', 'BGO-6D/4852');
+insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Soe Aung', '0987485321', 'NPT-2C/1789');
+
+=======
+>>>>>>> branch 'main' of https://github.com/kaung-pyae-shan/MyanTech.git
 INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 1, 5, 'early bird', 75000);
 INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (12, 13, 10, 'bulk order', 120000);
 INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 7, 50, 'special request', 202020);

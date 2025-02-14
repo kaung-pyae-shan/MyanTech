@@ -62,6 +62,7 @@ public class OrderService {
 		order.setCreatedDate(LocalDate.now());
 		// Order Created User ID
 		var savedOrder = orderRepo.save(order);
+
 		List<ProductOrder> productOrders = form.products().stream().map(p -> {
 			Product product = productRepo.findById(p.productId()).get();
 			var productOrder = new ProductOrder();
@@ -75,7 +76,6 @@ public class OrderService {
 		productOrderRepo.saveAll(productOrders);
 
 		productService.subtractProductQty(productOrders);
-
 		return savedOrder != null;
 	}
 

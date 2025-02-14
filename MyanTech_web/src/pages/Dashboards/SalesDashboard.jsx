@@ -7,7 +7,6 @@ import Popular from '../../components/Dashboard/Popular';
 import PieChart from '../../components/Dashboard/PieChart';
 import axios from '../../api/axios';
 
-
 const SalesDashboard = () => {
 
 
@@ -45,6 +44,15 @@ const SalesDashboard = () => {
             <Popular items={dashboard.bestSellingItems} />
         </div>
 
+
+                <LineChartC />
+        </div>
+
+    {/* </div> */}
+
+    <div className=" w-[400px]">
+        <PieChart />
+
         {
           // role == 'sales' ?
           <div className=" w-[60%]">
@@ -59,10 +67,7 @@ const SalesDashboard = () => {
         // <PieChart /> 
         // </div> 
         }
-      
-
-        
-
+    
     </div>
 
    

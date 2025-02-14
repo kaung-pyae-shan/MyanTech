@@ -19,6 +19,7 @@ import com.byteriders.myantech.model.dto.input.ProductOrderStatusUpdateDTO;
 import com.byteriders.myantech.model.dto.output.OrderDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.ShopInfo;
+import com.byteriders.myantech.model.repo.OrderRepo;
 import com.byteriders.myantech.model.service.OrderService;
 
 @RestController
@@ -27,6 +28,8 @@ public class OrderController {
 	
 	@Autowired
 	private OrderService service;
+	@Autowired
+	private OrderRepo repo;
 	
 	@GetMapping("/form/shops")
 	public List<ShopInfo> getShopFormData() {
@@ -40,7 +43,6 @@ public class OrderController {
 	
 	@GetMapping("/list")
 	public List<OrderDetails> getAllOrders(OrderSearch search) {
-		
 		return service.getAllOrderDetails(search);
 	}
 	

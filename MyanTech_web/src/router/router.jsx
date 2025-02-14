@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import Layout from "../Layout/Layout";
 import ProductTablePage from "../pages/ProductTablePage";
 import CreateOrder from "../pages/Order/CreateOrder";
+// import DeliAssign from "../pages/delivery/DeliAssign";
 import OrderList from "../pages/Order/OrderList";
 import DriverPage from "../pages/AssignTruck/DriverPage";
 import EditOrder from "../pages/Order/EditOrder";
@@ -11,8 +12,10 @@ import EditOrder from "../pages/Order/EditOrder";
 
 import OrderTable from "../pages/AssignTruck/OrderTable";
 import SalesDashboard from "../pages/Dashboards/SalesDashboard";
-import Login from "../pages/User/Login";
+// import Login from "../pages/User/Login";
+
 import LoginTest from "../pages/User/LoginTest";
+
 
 const Router = () => {
     const config = createBrowserRouter([
@@ -44,11 +47,16 @@ const Router = () => {
                     element: <EditOrder />
                 },  
                 {
-                    path: '/product',  // Route for ProductTablePage
+                    path: '/products/all',  // Route for ProductTablePage
                     element: <ProductTablePage />
                 }, 
 
                 {
+
+                    // path: '/order-list',  // Route for ProductTablePage
+                    // element: <OrderPage />
+                }, 
+                {   
                     path: '/assign/truck',  // Route for ProductTablePage
                     element: <OrderTable />
                 }, 
@@ -85,7 +93,10 @@ const Router = () => {
         // },
         {
             path:"/login",
+
+
             element : <LoginTest/>
+
         },
         // {
         //     path:"*",
