@@ -2,16 +2,16 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     order: {
-        invoice_no: 0,
-        shop_id: 0,
-        shop_name: '',
-        shop_address: '',
-        contact: '',
-        township_id: 0,
-        township_name: '',
-        region_id: 0,
-        region_name: '',
-        order_status: 'PENDING',
+        // invoice_no: 0,
+        shopId: 0,
+        // shop_name: '',
+        // shop_address: '',
+        // contact: '',
+        // township_id: 0,
+        // township_name: '',
+        // region_id: 0,
+        // region_name: '',
+        // order_status: 'PENDING',
         
         products: []
     },
@@ -43,15 +43,15 @@ export const orderSlice = createSlice({
         },
         addShop: (state, action) => {
             console.log(action.payload);
-            state.order.invoice_no = `INV-${new Date().toISOString().slice(0,10).replace(/-/g,"")}-${Math.floor(1000 + Math.random() * 9000)}`;
-            state.order.shop_id = action.payload.shop_id;
-            state.order.shop_name = action.payload.shop_name;
-            state.order.shop_address = action.payload.shop_address;
-            state.order.township_id = action.payload.township_id;
-            state.order.township_name = action.payload.township_name;
-            state.order.contact = action.payload.contact;
-            state.order.region_id = action.payload.region_id;
-            state.order.region_name = action.payload.region_name;           
+            // state.order.invoice_no = `INV-${new Date().toISOString().slice(0,10).replace(/-/g,"")}-${Math.floor(1000 + Math.random() * 9000)}`;
+             state.order.shopId = action.payload.shopId;
+            // state.order.shop_name = action.payload.shop_name;
+            // state.order.shop_address = action.payload.shop_address;
+            // state.order.township_id = action.payload.township_id;
+            // state.order.township_name = action.payload.township_name;
+            // state.order.contact = action.payload.contact;
+            // state.order.region_id = action.payload.region_id;
+            // state.order.region_name = action.payload.region_name;           
             // state.order.shop = action.payload;
         },
         oldOrder:(state, action) =>{

@@ -1,18 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import GeneralCard from '../../components/Dashboard/GeneralCard'
 import LineChartC from '../../components/Dashboard/LineChart'
 
 import HomeCard from '../../components/Dashboard/HomeCard';
 import Popular from '../../components/Dashboard/Popular';
 import PieChart from '../../components/Dashboard/PieChart';
-
-
-
+import axios from '../../api/axios';
 
 
 const SalesDashboard = () => {
 
+
+  const [dashboard, setDashboard] = useState([])
+
+     useEffect(() => {
+           const fetchDashboard = async () => {
+               try {
+                   const response = await axios.get(`/home`);
+                   console.log(response.data);
+                   
+                   setDashboard(response.data);
+               } catch (error) {
+                   console.error("Error fetching orders:", error);
+               }
+           };
+           
+          fetchDashboard()
+       }, []);
+
    const role = localStorage.getItem('user').role
+
 
   return (
     <>
