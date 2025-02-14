@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 // import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const DeliveringOrders = () => {
+const OrderDelivering = ({activeKey}) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -22,32 +22,33 @@ const DeliveringOrders = () => {
                 console.log(response.data);
                 
                 setOrders(response.data);
-            } catch (error) {
+            } catch (error) { 
                 console.error("Error fetching orders:", error);
             }
         };
+        if (activeKey == '2') {
+            fetchOrders();
+        }
+        
+    }, [activeKey,currentPage, pageSize]);
 
-       
-        fetchOrders();
-    }, [currentPage, pageSize, orders]);
+    const exportToExcel = () => {
+        const dataForExcel = orders.map(order => {
+            const shop = shops.find(s => s.id === order.shop_id);
+            return {
+                'Invoice No': order.invoice_no,
+                'Shop Name': shop ? shop.shop_name : 'Unknown',
+                'Total Quantity': order.products.reduce((sum, product) => sum + product.quantity, 0),
+                'Total Price': order.products.reduce((sum, product) => sum + product.subtotal, 0),
+                'Order Status': order.order_status,
+            };
+        });
 
-    // const exportToExcel = () => {
-    //     const dataForExcel = orders.map(order => {
-    //         const shop = shops.find(s => s.id === order.shop_id);
-    //         return {
-    //             'Invoice No': order.invoice_no,
-    //             'Shop Name': shop ? shop.shop_name : 'Unknown',
-    //             'Total Quantity': order.products.reduce((sum, product) => sum + product.quantity, 0),
-    //             'Total Price': order.products.reduce((sum, product) => sum + product.subtotal, 0),
-    //             'Order Status': order.order_status,
-    //         };
-    //     });
-
-    //     const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
-    //     const workbook = XLSX.utils.book_new();
-    //     XLSX.utils.book_append_sheet(workbook, worksheet, 'Orders');
-    //     XLSX.writeFile(workbook, 'orders.xlsx');
-    // };
+        const worksheet = XLSX.utils.json_to_sheet(dataForExcel);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Orders');
+        XLSX.writeFile(workbook, 'orders.xlsx');
+    };
 
     const columns = [
         { title: 'Invoice No', dataIndex: 'invoiceNo', key: 'invoice_no' },
@@ -78,32 +79,25 @@ const DeliveringOrders = () => {
     ];
     console.log(openOrder);
     
-    // const onSearch = async (value) =>{
-    //       console.log(value);
+    const onSearch = async (value) =>{
+      console.log(value);
 
-    //       if (value == '' || value == null) {
-    //         const response = await axios.get(`/order/list`);
-    //          console.log(response.data);
-             
-    //          setOrders(response.data);
-    //       }
-    
-    //       try {
-    //          const response = await axios.get(`/order/list?shopName=${value}&invoiceNo=${value}&orderStatus=${value}`);
-    //          console.log(response.data);
-             
-    //          setOrders(response.data);
-    //      } catch (error) {
-    //          console.error("Error fetching orders:", error);
-    //      }
-          
-    //     }
+      try {
+         const response = await axios.get(`/order/list?shopName=${value}&invoiceNo=${value}&orderStatus=${value}`);
+         console.log(response.data);
+         
+         setOrders(response.data);
+     } catch (error) {
+         console.error("Error fetching orders:", error);
+     }
+      
+    }
 
     return (
         <div>
             <div className='flex items-center justify-between mb-4'>
-                {/* <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} />  */}
-                {/* <Button className='border border-purple-900' onClick={exportToExcel}>
+                {/* <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} />
+                <Button className='border border-purple-900' onClick={exportToExcel}>
                     Export to Excel <AiOutlineArrowUp className='ml-2' />
                 </Button> */}
             </div>
@@ -137,4 +131,4 @@ const DeliveringOrders = () => {
     );
 };
 
-export default DeliveringOrders;
+export default OrderDelivering;

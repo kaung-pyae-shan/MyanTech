@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const Delivering = () => {
+const DeliveringOrders = (activeKey) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
@@ -15,30 +15,24 @@ const Delivering = () => {
     const [pageSize] = useState(10);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchOrders = async () => {
-            try {
-                const response = await axios.get(`/order/list?shopName=DELIVERED&invoiceNo=DELIVERED&orderStatus=DELIVERED`);
-                console.log(response.data);
-                
-                setOrders(response.data);
-            } catch (error) {
-                console.error("Error fetching orders:", error);
-            }
-        };
-
-        const fetchShops = async () => {
-            try {
-                const response = await axios.get("/shops");
-                setShops(response.data);
-            } catch (error) {
-                console.error("Error fetching shops:", error);
-            }
-        };
-
-        fetchShops();
-        fetchOrders();
-    }, [currentPage, pageSize, orders]);
+         useEffect(() => {
+            console.log(activeKey);
+            
+            const fetchOrders = async () => {
+                try {
+                      const response = await axios.get(`/order/list?shopName=DELIVERING&invoiceNo=DELIVERING&orderStatus=DELIVERING`);
+                    console.log(response.data);
+                    
+                    setOrders(response.data);
+                } catch (error) { 
+                    console.error("Error fetching orders:", error);
+                }
+            };
+    
+            if (activeKey.activeKey === '4') {
+                fetchOrders();
+              }
+        }, [activeKey]);
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {
@@ -88,25 +82,18 @@ const Delivering = () => {
     console.log(openOrder);
     
     const onSearch = async (value) =>{
-          console.log(value);
+      console.log(value);
 
-          if (value == '' || value == null) {
-            const response = await axios.get(`/order/list`);
-             console.log(response.data);
-             
-             setOrders(response.data);
-          }
-    
-          try {
-             const response = await axios.get(`/order/list?shopName=${value}&invoiceNo=${value}&orderStatus=${value}`);
-             console.log(response.data);
-             
-             setOrders(response.data);
-         } catch (error) {
-             console.error("Error fetching orders:", error);
-         }
-          
-        }
+      try {
+         const response = await axios.get(`/order/list?shopName=${value}&invoiceNo=${value}&orderStatus=${value}`);
+         console.log(response.data);
+         
+         setOrders(response.data);
+     } catch (error) {
+         console.error("Error fetching orders:", error);
+     }
+      
+    }
 
     return (
         <div>
@@ -146,4 +133,4 @@ const Delivering = () => {
     );
 };
 
-export default Delivering;
+export default DeliveringOrders;
