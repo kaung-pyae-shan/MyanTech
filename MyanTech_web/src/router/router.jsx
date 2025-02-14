@@ -85,8 +85,7 @@ const Router = () => {
         // },
         {
             path:"/login",
-            element : <LoginTest />
-
+            element : <LoginTest/>
         },
         // {
         //     path:"*",
