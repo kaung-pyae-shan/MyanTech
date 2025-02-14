@@ -3,79 +3,56 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, Alert } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { login, addAuth } from '../../redux/services/AuthSlice';
 
-const LOGIN_URL = 'http://localhost:3001/users'; // JSON Server URL
+const LOGIN_URL = 'http://localhost:8080';
 
 const LoginTest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const userRef = useRef();
-  const [user, setUser] = useState('');
-  const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
-  useEffect(() => {
-    setErrMsg('');
-  }, [user, pwd]);
+  useEffect(() => setErrMsg(''), []);
 
-  const onFinish = async (values) => {
-    setUser(values.username);
-    setPwd(values.password);
+  const onFinish = async ({ username, password }) => {
     try {
-      const response = await axios.get(`${LOGIN_URL}?username=${values.username}&password=${values.password}`);
-      
-      if (response.data.length > 0) {
-        const userData = response.data[0];
-        
-        dispatch(login(userData.username));
-        dispatch(addAuth(userData));
-        
-        localStorage.setItem('user', JSON.stringify(userData));
+      const { data } = await axios.post(`${LOGIN_URL}/auth/login`, { username, password });
+      // if (data && data.token) {
+        dispatch(login(username));
+        dispatch(addAuth(data));
+        localStorage.setItem('user', JSON.stringify(data));
         setSuccess(true);
-        navigate('/');
-      } else {
-        setErrMsg('Invalid Username or Password');
-      }
-    } catch (error) {
+        navigate('/sales/dashboard');
+      // } else {
+      //   setErrMsg('Invalid Username or Password');
+      // }
+    } catch {
       setErrMsg('Login Failed');
     }
   };
 
+ 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-[50%] flex justify-center items-center">
-        <div className="w-[400px] shadow-md px-8 py-6 bg-white">
-          <h2 className='text-2xl font-bold text-center'>Sign In</h2>
-          {errMsg && <Alert className='mt-3' message={errMsg} type="error" />}
-          {success && <Alert message="You are logged in" type="success" />}
-          
-          <Form name="login" onFinish={onFinish} className="mt-6">
-            <label htmlFor="username">Username</label>
-            <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!' }]}>
-              <Input ref={userRef} prefix={<UserOutlined />} placeholder="Username" className='mt-1'/>
-            </Form.Item>
-            
-            <label htmlFor="password">Password</label>
-            <Form.Item name="password" rules={[{ required: true, message: 'Please input your Password!' }]}>
-              <Input prefix={<LockOutlined />} type="password" placeholder="Password" className='mt-1' />
-            </Form.Item>
-            
-            <Form.Item>
-              <Button block type="primary" htmlType="submit" className='mt-2'>
-                Sign In
-              </Button>
-            </Form.Item>
-          </Form>
-          <div className="text-center">
-            <Link to={'/register'} className='text-blue-500'>Don't have an account? Sign Up</Link>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-br from-blue-100 to-white">
+       <div className="w-[498px] shadow-md px-12 py-10 bg-white">
+         <h2 className='text-[40px] font-bold bg-button bg-clip-text text-transparent'>Sign In</h2>
+         {errMsg && <Alert className='mt-5' message={errMsg} type="error" />}
+         <Form name="login" onFinish={onFinish} className='mt-6'>
+           <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!' }]}>
+             <Input prefix={<UserOutlined />} placeholder="Username" className='h-[55px] text-[14px]' />
+           </Form.Item>
+           <Form.Item name="password" rules={[{ required: true, message: 'Please input your Password!' }]}>
+             <Input.Password prefix={<LockOutlined />} placeholder="Password" className='h-[55px] text-[14px]' />
+           </Form.Item>
+           <Form.Item>
+             <Button type="primary" htmlType="submit" block className='h-[55px] text-[20px] bg-button text-white'>Sign In</Button>
+           </Form.Item>
+         </Form>
+       </div>
+     </div>
   );
 };
 

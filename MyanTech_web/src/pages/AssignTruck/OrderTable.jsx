@@ -125,6 +125,7 @@ const OrderTable = () => {
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">
             <input type="checkbox" />
           </th>
+          {/* <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Driver Name</th> */}
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Invoice No</th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-end">Shop Name</th>
           <th className="px-6 py-3 text-xs font-medium text-white uppercase text-start">Township</th>
@@ -162,12 +163,12 @@ const OrderTable = () => {
   return (
     <div className="flex flex-col">
       <div className="p-4">
-        <Button type="primary" onClick={() => setModalOpen(true)} disabled={selectedOrders.length === 0}>
+        <Button className=" bg-button" onClick={() => setModalOpen(true)} disabled={selectedOrders.length === 0}>
           Assign It
         </Button>
-        <div className="px-4 py-2 font-semibold bg-gray-100 border rounded-md">
+        {/* <div className="px-4 py-2 font-semibold bg-gray-100 border rounded-md">
           Total Quantity: {totalQuantity}
-        </div>
+        </div> */}
       </div>
       <Tabs defaultActiveKey="1" onChange={handleTabChange} >
         <TabPane tab="Pending Orders" key="1" >{renderOrdersTable("PENDING")}</TabPane>

@@ -5,6 +5,7 @@ import CanceledOrders from './CanceledOrders';
 import CompletedOrders from './CompletedOrders';
 import DeliveringOrders from './DeliveringOrders';
 import { Link } from 'react-router-dom';
+import Delivered from './DeliveredOrders';
 
 const OrderTab = () => {
   const [activeKey, setActiveKey] = useState('1');
@@ -33,6 +34,11 @@ const OrderTab = () => {
       key: '4',
       label: 'Delivering',
       children: <DeliveringOrders activeKey={activeKey} />,
+    },
+    {
+      key: '5',
+      label: 'Delivered',
+      children: <Delivered activeKey={activeKey} />,
     },
   ];
 

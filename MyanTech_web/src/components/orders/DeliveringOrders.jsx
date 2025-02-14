@@ -4,7 +4,7 @@ import { Table, Button, Drawer, Pagination } from 'antd';
 import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
-import SearchForm from '../SearchForm';
+// import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
 const DeliveringOrders = (activeKey) => {
@@ -98,7 +98,7 @@ const DeliveringOrders = (activeKey) => {
     return (
         <div>
             <div className='flex items-center justify-between mb-4'>
-                <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} />
+                {/* <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} /> */}
                 <Button className='border border-purple-900' onClick={exportToExcel}>
                     Export to Excel <AiOutlineArrowUp className='ml-2' />
                 </Button>

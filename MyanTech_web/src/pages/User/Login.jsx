@@ -1,226 +1,61 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Flex, Alert, Card } from 'antd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Button, Form, Input, Alert } from 'antd';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addAuth, login } from '../../redux/services/AuthSlice';
 import axios from '../../api/axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { addAuth, login, selectIsAuthenticated } from '../../redux/services/AuthSlice';
-// import img from '../../assets/image 2.png'
-
-
-
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [errMsg, setErrMsg] = useState('');
 
-  
+  useEffect(() => setErrMsg(''), []);
 
-  const auth = useSelector((state) => state.auth)
+  const handleLogin = async (values) => {
 
-  const dispatch = useDispatch()
-
-  const navigate = useNavigate()
-
-  const userRef = useRef();
-  
-  const [user, setUser] = useState('')
-  const [pwd, setPwd] = useState('')
-  const [errMsg, setErrMsg] = useState('')
-  const [success, setSuccess] = useState(false)
-
-  // useEffect(() => {
-  //   userRef.current.focus();
-  // },[])
-
-  useEffect(() => {
-    setErrMsg('')
-  },[user, pwd])
-
-  const onFinish = async (values) => {
-    setUser(values.username);
-    setPwd(values.password);
+    
     try {
-      const response = await axios.post(LOGIN_URL, 
-        JSON.stringify({
-          username : values.username, 
-           password: values.password
-          }),
-           {
-            headers : {'Content-Type': 'application/json'}
-          }
-      );      
-      if (response.data.length > 0) {
-        const userData = response.data[0];
-        
+      const { data } = await axios.post('/auth/login', values, {
+        // headers: { 'Content-Type': 'application/json' }
+      });
+
+      
+      
+      if (data.length) {
+        const userData = data[0];
         dispatch(login(userData.username));
         dispatch(addAuth(userData));
-        
         localStorage.setItem('user', JSON.stringify(userData));
-        setSuccess(true);
         navigate('/');
       } else {
         setErrMsg('Invalid Username or Password');
       }
-    } catch (error) {
+    } catch {
       setErrMsg('Login Failed');
     }
   };
 
-  // const onFinish = async (values) => {
-
-  //   console.log(values);
-  //   setUser(values.username)
-  //   setPwd(values.password)
-  //   try {
-  //     const response = await axios.post(LOGIN_URL, 
-  //       JSON.stringify({
-  //         username : values.username, 
-  //          password: values.password
-  //         }),
-  //          {
-  //           headers : {'Content-Type': 'application/json'}
-  //         }
-  //     );
-  //     console.log(JSON.stringify(response?.data));
-
-  //     // const accessToken = response?.data?.token;
-  //     // console.log(accessToken);
-
-  //     setAuth({user,pwd})
-  //     dispatch(login(user))
-  //     dispatch(addAuth({user, pwd}))
-  //     console.log(auth.auth);
-      
-
-
-      
-  //     // localStorage.setItem('token', accessToken)
-  //     localStorage.setItem('user',user)
-
-      
-
-  //     setUser('')
-  //     setPwd('')
-  //     setSuccess(true)
-
-     navigate('/')
-    } catch (error) {
-      console.log(error.response);
-
-  //    navigate('/')
-  //   } catch (error) {
-  //     console.log(error.response);
-
-      
-      
-  //        if (error) {
-         
-  //         setErrMsg(error.response?.data.message)
-  //        }else{
-  //         setErrMsg("Registration Failed")
-  //        }
-
-       
-        
-  //   }
-
-   
-  // };
-
-  if (success) {
-    return (<Alert message="You are logged in" type="success" />)
-  }
-
-  console.log(errMsg);
-  
-
   return (
-    <>
-
-    
-    <div className="flex items-center justify-center min-h-screen px-4 py-12 bg-gradient-to-br from-blue-100 to-white sm:px-6 lg:px-8">
-         {/* <div className="  w-[47%]">
-             <img src={img} alt="" className='w-full h-full ' /> 
-        </div> */}
-        <div className="w-[50%] flex justify-center items-center">
-          <div className="w-[498px] shadow-md px-[50px] py-[40px] bg-white">
-            <h2 className='  text-[40px] leading-[68px] font-bold bg-button bg-clip-text text-transparent'>Sign In</h2>
-                    {
-              errMsg !== ''
-              ? 
-              <Alert className='mt-5' message={errMsg} type="error" /> : ''
-            }
-    
-            <Form
-              name="login"
-              initialValues={{
-                remember: true,
-              }}
-              style={{
-                
-                margin: '0 auto',
-                marginTop: '40px'
-              }}
-              onFinish={(e) => onFinish(e)}
-            >
-                <label htmlFor="username" className=' text-[16px] '>User Name (required)</label>
-              <Form.Item
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please input your Username!',
-                  },
-                ]}
-              >
-              
-                <Input 
-                ref={userRef}
-                onChange={(e)=> setUser(e.target.value)} 
-                value={user}
-                required
-                prefix={<UserOutlined />} placeholder="Username" 
-                className='w-full h-[55px] text-[14px] mt-[8px]'/>
-              </Form.Item>
-
-              <label htmlFor="password" className=' text-[16px] '>Password (required)</label>
-              <Form.Item
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Please input your Password!',
-                  },
-                ]}
-              >
-                
-                <Input
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                required
-                prefix={<LockOutlined />} type="password" placeholder="Password"
-                className='w-full h-[55px] text-[14px] mt-[8px]' />
-              </Form.Item>
-            
-              <Form.Item>
-                <Button block type="primary" htmlType="submit"
-                 className='w-full h-[55px] text-[20px] mt-[8px]  bg-button text-white'
-                >
-                  Sign In
-                </Button>
-              </Form.Item>
-
-              {/* <div className="text-right ">
-                 <Link className='text-right text-[16px] ' to={'/register'}>Don't have an account? <span className='font-semibold text-blue-500'>Sign Up</span></Link>
-
-              </div> */}
-            </Form>
-          </div>
-        
-        </div>
+    <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-br from-blue-100 to-white">
+      <div className="w-[498px] shadow-md px-12 py-10 bg-white">
+        <h2 className='text-[40px] font-bold bg-button bg-clip-text text-transparent'>Sign In</h2>
+        {errMsg && <Alert className='mt-5' message={errMsg} type="error" />}
+        <Form name="login" onFinish={handleLogin} className='mt-6'>
+          <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!' }]}>
+            <Input prefix={<UserOutlined />} placeholder="Username" className='h-[55px] text-[14px]' />
+          </Form.Item>
+          <Form.Item name="password" rules={[{ required: true, message: 'Please input your Password!' }]}>
+            <Input.Password prefix={<LockOutlined />} placeholder="Password" className='h-[55px] text-[14px]' />
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType="submit" block className='h-[55px] text-[20px] bg-button text-white'>Sign In</Button>
+          </Form.Item>
+        </Form>
+      </div>
     </div>
-   
-
-    </>
   );
 };
+
 export default Login;

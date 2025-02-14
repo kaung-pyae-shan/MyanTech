@@ -1,26 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import axios from '../../api/axios';
-import { Table, Button, Drawer, Pagination, Select, Tag } from 'antd';
+import { Table, Button, Drawer, Pagination, Tag, Spin, Select } from 'antd';
 import { AiOutlineArrowRight, AiOutlineArrowUp } from "react-icons/ai";
 import * as XLSX from 'xlsx';
 import { useNavigate } from 'react-router-dom';
-// import SearchForm from '../SearchForm';
+import SearchForm from '../SearchForm';
 import OrderDetail from '../../pages/Order/OrderDetail';
 
-const OrderDelivering = ({activeKey}) => {
+const Delivered = ({activeKey}) => {
     const [orders, setOrders] = useState([]);
     const [shops, setShops] = useState([]);
     const [openOrder, setOpenOrder] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [driverOrders, setDriverOrders] = useState()
     const [pageSize] = useState(10);
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false)
 
     const statusOptions = [
-        // { value: 'PENDING', label: 'Pending' },
+        { value: 'PENDING', label: 'Pending' },
          { value: 'DELIVERING', label: 'Delivering' },
          { value: 'DELIVERED', label: 'Delivered' },
-        // { value: 'COMPLETED', label: 'Completed' },
+        { value: 'COMPLETED', label: 'Completed' },
         { value: 'CANCELED', label: 'Canceled' },
       ];
 
@@ -34,35 +34,63 @@ const OrderDelivering = ({activeKey}) => {
 
     useEffect(() => {
         const fetchOrders = async () => {
+            setLoading(true)
             try {
-                const response = await axios.get(`/order/list?shopName=DELIVERING&invoiceNo=DELIVERING&orderStatus=DELIVERING`);
+                const response = await axios.get(`/order/list?shopName=DELIVERED&invoiceNo=DELIVERED&orderStatus=DELIVERED`);
                 console.log(response.data);
                 
                 setOrders(response.data);
-            } catch (error) { 
+                setLoading(false)
+            } catch (error) {
                 console.error("Error fetching orders:", error);
+                setLoading(false)
+
             }
         };
 
-        const fetchDriverOrders = async () =>{
-        try {
-                    const response = await axios.get(`/assign_truck/list`);
-                    console.log(response.data);
-                    
-                    setDriverOrders(response.data.orders);
-                    
-                } catch (error) {
-                    console.error("Error fetching orders:", error);
-                
-    
-                }
-        }
-        if (activeKey == '2') {
+        const fetchShops = async () => {
+            try {
+                const response = await axios.get("/shops");
+                setShops(response.data);
+            } catch (error) {
+                console.error("Error fetching shops:", error);
+            }
+        };
+
+        fetchShops();
+        if (activeKey === '5') {
             fetchOrders();
-            fetchDriverOrders()
         }
-        
-    }, [activeKey,currentPage, pageSize]);
+      
+    }, [currentPage, pageSize]);
+
+    if (loading) {
+        return (
+      
+            <div className="flex justify-center items-center h-[500px]">
+                <Spin size="large" />
+            </div>
+        )
+      }
+
+      const handleStatusChange = async (orderId, newStatus) => {
+        try {
+          // Send API request to update order status
+          await axios.put(`/order/status`, { status: newStatus, orderId: orderId });
+            
+          console.log('success');
+          
+          // Update local state after successful API call
+          setOrders(prevOrders =>
+            prevOrders.map(order =>
+              order.orderId === orderId ? { ...order, orderStatus: newStatus } : order
+            )
+          );
+        } catch (error) {
+          console.error("Error updating order status:", error);
+        }
+      };
+      
 
     const exportToExcel = () => {
         const dataForExcel = orders.map(order => {
@@ -82,24 +110,6 @@ const OrderDelivering = ({activeKey}) => {
         XLSX.writeFile(workbook, 'orders.xlsx');
     };
 
-     const handleStatusChange = async (orderId, newStatus) => {
-            try {
-              // Send API request to update order status
-              await axios.put(`/order/status`, { status: newStatus, orderId: orderId });
-                
-              console.log('success');
-              
-              // Update local state after successful API call
-              setOrders(prevOrders =>
-                prevOrders.map(order =>
-                  order.orderId === orderId ? { ...order, orderStatus: newStatus } : order
-                )
-              );
-            } catch (error) {
-              console.error("Error updating order status:", error);
-            }
-          };
-
     const columns = [
         { title: 'Invoice No', dataIndex: 'invoiceNo', key: 'invoice_no' },
         { 
@@ -118,6 +128,7 @@ const OrderDelivering = ({activeKey}) => {
             key: 'total_price',
             render: (_, order) => order.products.reduce((sum, product) => sum + product.subTotal, 0)
         },
+
         { title: 'Order Status', 
             dataIndex: 'orderStatus',
              key: 'orderS   tatus',
@@ -129,11 +140,11 @@ const OrderDelivering = ({activeKey}) => {
                 >
                   {statusOptions.map(option => (
                     <Select.Option key={option.value} value={option.value}>
-                      <Tag
-                        color={option.value == 'DELIVERING'? 'blue':
-                            // option.value == 'PENDING'? 'yellow':
-                        option.value == 'DELIVERED'?'green':
-                        // option.value == 'COMPLETED'?'green':
+                      <Tag 
+                      color={option.value == 'DELIVERING'? 'blue':
+                        option.value == 'PENDING'? 'yellow':
+                        option.value == 'DELIVERED'?'blue':
+                        option.value == 'COMPLETED'?'green':
                         option.value == 'CANCELED' ? 'red': ''
                       }
                       >{option.label}</Tag>
@@ -142,14 +153,7 @@ const OrderDelivering = ({activeKey}) => {
                 </Select>
               ),
              },
-        {
-            title: 'Driver Name',
-            key: 'driver_name',
-            render: (_, order) => {
-              const driver = driverOrders?.find(driverOrder => driverOrder.invoice_no === order.invoiceNo);
-              return driver ? driver.driver_name : 'Unknown';
-            }
-          },
+
         {
             title: 'Details',
             key: 'details',
@@ -160,27 +164,14 @@ const OrderDelivering = ({activeKey}) => {
     ];
     console.log(openOrder);
     
-    const onSearch = async (value) =>{
-      console.log(value);
-
-      try {
-         const response = await axios.get(`/order/list?shopName=${value}&invoiceNo=${value}&orderStatus=${value}`);
-         console.log(response.data);
-         
-         setOrders(response.data);
-     } catch (error) {
-         console.error("Error fetching orders:", error);
-     }
-      
-    }
 
     return (
         <div>
             <div className='flex items-center justify-between mb-4'>
-                {/* <SearchForm orders={orders} setOrders={setOrders} onSearch={onSearch} />
+                <SearchForm onSearch={() => {}} />
                 <Button className='border border-purple-900' onClick={exportToExcel}>
                     Export to Excel <AiOutlineArrowUp className='ml-2' />
-                </Button> */}
+                </Button>
             </div>
             <Table 
                 columns={columns} 
@@ -200,9 +191,11 @@ const OrderDelivering = ({activeKey}) => {
                 onClose={() => setOpenOrder(null)}
                 open={openOrder !== null}
             >
+
                 {openOrder && <OrderDetail order={orders.find(order => order.orderId === openOrder)} />}
-               { orders.find(order => order.orderId === openOrder)?.orderStatus == 'pending'&& <Button 
+               { orders.find(order => order.orderId === openOrder)?.orderStatus == 'PENDING'&& <Button 
                     onClick={() => navigate(`/edit-order`, { state: { orderData: orders.find(order => order.orderId === openOrder) } })} 
+
                     className='absolute mt-3 border-2 border-yellow-600 rounded-md right-4 text-blue top-1'
                 >
                     Edit Order
@@ -212,4 +205,4 @@ const OrderDelivering = ({activeKey}) => {
     );
 };
 
-export default OrderDelivering;
+export default Delivered;
