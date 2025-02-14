@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.byteriders.myantech.model.dto.output.TotalProductsByCategoryDto;
 import com.byteriders.myantech.model.entity.ProductOrder;
 import com.byteriders.myantech.model.repo.ProductRepo;
 
@@ -33,6 +34,6 @@ public class ProductService {
 	}
 	
 	public List<TotalProductsByCategoryDto> getProductsByCategory() {
-		return productRepo.getTotalProductsByCategory();
+		return repo.getTotalProductsByCategory();
 	}
 }

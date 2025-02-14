@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import com.byteriders.myantech.model.dto.output.ProductInfo;
+import com.byteriders.myantech.model.dto.output.TotalProductsByCategoryDto;
 import com.byteriders.myantech.model.entity.Product;
 
 public interface ProductRepo extends JpaRepository<Product, Integer> {

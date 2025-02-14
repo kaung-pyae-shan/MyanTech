@@ -11,8 +11,10 @@ import com.byteriders.myantech.model.dto.input.OrderForm;
 import com.byteriders.myantech.model.dto.input.OrderSearch;
 import com.byteriders.myantech.model.dto.input.OrderStatusUpdateDTO;
 import com.byteriders.myantech.model.dto.input.ProductOrderStatusUpdateDTO;
+import com.byteriders.myantech.model.dto.output.BestSellingProductDto;
 import com.byteriders.myantech.model.dto.output.OrderDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
+import com.byteriders.myantech.model.dto.output.SaleChartDto;
 import com.byteriders.myantech.model.dto.output.ShopInfo;
 import com.byteriders.myantech.model.entity.Order;
 import com.byteriders.myantech.model.entity.Order.Segment;
@@ -114,20 +116,25 @@ public class OrderService {
 	public boolean updateProductOrderStatus(ProductOrderStatusUpdateDTO statusUpdate) {
 		switch (statusUpdate.status()) {
 		case WRONG: {
-			restockInventoryProductOrder(com.byteriders.myantech.model.entity.ProductOrder.Status.WRONG, statusUpdate.productOrderId(), statusUpdate.qty());
-			updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status.WRONG, statusUpdate.productOrderId());
+			restockInventoryProductOrder(com.byteriders.myantech.model.entity.ProductOrder.Status.WRONG,
+					statusUpdate.productOrderId(), statusUpdate.qty());
+			updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status.WRONG,
+					statusUpdate.productOrderId());
 			break;
 		}
 		case FAULTY: {
 			var productOrder = productOrderRepo.findById(statusUpdate.productOrderId()).orElseThrow();
 			productOrder.setFaultyQty(statusUpdate.qty());
 			productOrderRepo.save(productOrder);
-			updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status.FAULTY, statusUpdate.productOrderId());
+			updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status.FAULTY,
+					statusUpdate.productOrderId());
 			break;
 		}
 		case CANCELED: {
-			restockInventoryProductOrder(com.byteriders.myantech.model.entity.ProductOrder.Status.CANCELED, statusUpdate.productOrderId(), statusUpdate.qty());
-			updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status.CANCELED, statusUpdate.productOrderId());
+			restockInventoryProductOrder(com.byteriders.myantech.model.entity.ProductOrder.Status.CANCELED,
+					statusUpdate.productOrderId(), statusUpdate.qty());
+			updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status.CANCELED,
+					statusUpdate.productOrderId());
 			break;
 		}
 		default:
@@ -140,10 +147,11 @@ public class OrderService {
 			int productOrderId, int returnedQty) {
 		var productOrder = productOrderRepo.findById(productOrderId).orElseThrow();
 		com.byteriders.myantech.model.entity.ProductOrder.Status currentStatus = productOrder.getStatus();
-		
+
 		// no need to restock
-		if (updatedStatus == currentStatus) return;
-		
+		if (updatedStatus == currentStatus)
+			return;
+
 		var product = productRepo.findById(productOrder.getProduct().getId()).orElseThrow();
 		product.setStock(product.getStock() + returnedQty);
 		productRepo.save(product);
@@ -178,43 +186,35 @@ public class OrderService {
 		order.setStatus(status);
 		orderRepo.save(order);
 	}
-	
-	private void updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status status, int productOrderId) {
+
+	private void updateProductOrderStatus(com.byteriders.myantech.model.entity.ProductOrder.Status status,
+			int productOrderId) {
 		var productOrder = productOrderRepo.findById(productOrderId).orElseThrow();
 		productOrder.setStatus(status);
 		productOrderRepo.save(productOrder);
 	}
 
-	
-		
-		public int getTodayOrders(LocalDate today) {
-			int[] todayOrders = orderRepo.getTodayOrders(today);
-			int total = 0;
-			for (int i : todayOrders) {
-				System.out.println("i : " + i);
-				total += orderRepo.getTotalSaleForOrder(i);
-			} 
-			return total;
+	public int getTodayOrders(LocalDate today) {
+		int[] todayOrders = orderRepo.getTodayOrders(today);
+		int total = 0;
+		for (int i : todayOrders) {
+			System.out.println("i : " + i);
+			total += orderRepo.getTotalSaleForOrder(i);
 		}
-		
-		
-		public List<BestSellingProductDto> getBestSellingProducts() {
-			LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
-			return orderRepo.getBestSelling(threeMonthsAgo);
-			
-		}
+		return total;
+	}
 
-		public List<SaleChartDto> getSaleByDay() {
-		    return orderRepo.findSalesForCurrentMonth().stream()
-		        .map(obj -> new SaleChartDto(
-		            (String) obj[0],  
-		            obj[1] != null ? ((Number) obj[1]).intValue() : 0
-		            
-		        ))
-		        .collect(Collectors.toList());
-		}
+	public List<BestSellingProductDto> getBestSellingProducts() {
+		LocalDate threeMonthsAgo = LocalDate.now().minusMonths(3);
+		return orderRepo.getBestSelling(threeMonthsAgo);
 
-	
-	
-    
+	}
+
+	public List<SaleChartDto> getSaleByDay() {
+		return orderRepo.findSalesForCurrentMonth().stream()
+				.map(obj -> new SaleChartDto((String) obj[0], obj[1] != null ? ((Number) obj[1]).intValue() : 0
+
+				)).collect(Collectors.toList());
+	}
+
 }

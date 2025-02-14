@@ -1,6 +1,5 @@
 package com.byteriders.myantech.model.dto.output;
 
-<<<<<<< HEAD
 import com.byteriders.myantech.model.entity.ProductOrder;
 import com.byteriders.myantech.model.entity.ProductOrder.Status;
 
@@ -28,16 +27,4 @@ public record ProductOrderDetails(
             root.get("status")
         );
     }
-=======
-import lombok.Data;
-
-@Data
-public class ProductOrderDetails {
-    private String productId;
-    private String productName;
-    private int quantity;
-    private int unitPrice;
-    private int subtotal;
-    private String remark;
->>>>>>> refs/heads/Dashboard
 }
