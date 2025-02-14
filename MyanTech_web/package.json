@@ -9,6 +9,7 @@
     "antd": "^5.23.4",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
+    "framer-motion": "^12.4.2",
     "haversine-distance": "^1.2.3",
     "html2canvas": "^1.4.1",
     "json-server": "^1.0.0-beta.3",

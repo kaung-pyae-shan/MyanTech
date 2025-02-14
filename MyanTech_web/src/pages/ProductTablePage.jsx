@@ -24,16 +24,17 @@ const ProductTablePage = () => {
   }, [dispatch]);
 
   const fetchBrands = async () => {
-    const response = await fetch("http://localhost:3001/brand");
+    const response = await fetch("http://localhost:8081/brands");
     const data = await response.json();
     setBrands(data);
   };
 
   const fetchCategories = async () => {
-    const response = await fetch("http://localhost:3001/category");
+    const response = await fetch("http://localhost:8081/categories");
     const data = await response.json();
     setCategories(data);
   };
+
 
   const handleAddProduct = async (values) => {
     console.log("Updating product:", values);
@@ -47,9 +48,11 @@ const ProductTablePage = () => {
         })
         .catch((error) => console.error("Update error:", error));
     } else {
-      dispatch(addProduct({ product_id: Date.now(), ...values }))
+      console.log(values);
+      
+      dispatch(addProduct({ ...values }))
         .unwrap()
-        .then(() => console.log("Product added successfully"))
+        .then(() => console.log("Product added successfully" + [...values]))
         .catch((error) => console.error("Add error:", error));
     }
   
@@ -70,11 +73,11 @@ const ProductTablePage = () => {
   const columns = [
     { title: "No.", dataIndex: "product_id", key: "product_id" },
     { title: "Product Name", dataIndex: "name", key: "name" },
-    { title: "Brand", dataIndex: "brand", key: "brand" },
-    { title: "Type", dataIndex: "type", key: "type" },
+    { title: "Brand", dataIndex: "brand_name", key: "brand_name" },
+    { title: "Type", dataIndex: "type_name", key: "type_name" },
     { title: "Unit Price", dataIndex: "price", key: "price" },
-    { title: "Stock", dataIndex: "stock", key: "stock" },
-    { title: "Cash Back", dataIndex: "cashBack", key: "cashBack" },
+    { title: "Stock", dataIndex: "stocck", key: "stocck" },
+    { title: "Cash Back", dataIndex: "cashback", key: "cashback" },
     { title: "Serial No", dataIndex: "serialNo", key: "serialNo" },
     {
       title: "Actions",
@@ -118,7 +121,7 @@ const ProductTablePage = () => {
           <Form.Item name="brand" label="Choose Brand" rules={[{ required: true }]}>
             <Select placeholder="Select a brand">
               {brands.map((brand) => (
-                <Option key={brand.id} value={brand.brand_name}>{brand.brand_name}</Option>
+                <Option key={brand.brand_id} value={brand.brand_id}>{brand.brand_name}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -126,7 +129,7 @@ const ProductTablePage = () => {
           <Form.Item name="type" label="Choose Type" rules={[{ required: true }]}>
             <Select placeholder="Select a category">
               {categories.map((category) => (
-                <Option key={category.id} value={category.category_name}>{category.category_name}</Option>
+                <Option key={category.category_id} value={category.category_id}>{category.category_name}</Option>
               ))}
             </Select>
           </Form.Item>
@@ -135,11 +138,11 @@ const ProductTablePage = () => {
             <InputNumber min={1} style={{ width: "100%" }} />
           </Form.Item>
 
-          <Form.Item name="stock" label="Stock" rules={[{ required: true }]}>
+          <Form.Item name="stocck" label="Stock" rules={[{ required: true }]}>
             <InputNumber min={0} style={{ width: "100%" }} />
           </Form.Item>
 
-          <Form.Item name="cashBack" label="Cash Back">
+          <Form.Item name="cashback" label="Cash Back">
             <InputNumber min={0} style={{ width: "100%" }} />
           </Form.Item>
 

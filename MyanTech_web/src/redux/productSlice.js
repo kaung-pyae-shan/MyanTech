@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Fetch products from JSON Server
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
   try {
-    const response = await fetch("http://localhost:8081/products/list");
+    const response = await fetch("http://localhost:8081/products/all");
 
     // Check if the response is ok (status 200-299)
     if (!response.ok) {
@@ -24,41 +24,69 @@ export const fetchProducts = createAsyncThunk("products/fetchProducts", async ()
 });
 
 // Add new product to JSON Server
-export const addProduct = createAsyncThunk("products/addProduct", async (newProduct, { dispatch }) => {
-  const response = await fetch("http://localhost:3001/products", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newProduct),
-  });
+export const addProduct = createAsyncThunk("products/add", async (newProduct, { dispatch }) => {
+  try {
+    console.log("Adding product:", newProduct); // Log the product data to inspect it
 
-  if (response.ok) {
-    dispatch(fetchProducts()); // Refresh product list after adding
+    const response = await fetch("http://localhost:8081/products/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(newProduct),
+    });
+
+    if (response.ok) {
+      const data = await response.json(); // Get the new product from the server response
+      dispatch(fetchProducts()); // Refresh the product list
+      console.log("Product added successfully:", data);
+      return data; // Return the new product to be added to the state
+    } else {
+      console.log("Something went wrong with adding the product");
+      return null; // You can return null or an empty object if there was an error
+    }
+  } catch (error) {
+    console.log("Error:", error.message);
+    return null;
   }
-
-  return response.json();
 });
+
 
 // Update existing product on JSON Server
 export const updateProduct = createAsyncThunk(
-  "products/updateProduct",
+  "products/update",
   async (updatedProduct, { dispatch }) => {
-    console.log("update product id" + " " + updatedProduct.id);
-    
-    const response = await fetch(`http://localhost:3001/products/${updatedProduct.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(updatedProduct),
-    });
+    console.log("Updating product:", updatedProduct); // Log the product data for debugging
 
-    const data = await response.json();
-    if (response.ok) {
-      dispatch(fetchProducts()); // Ensure updated data is fetched
-      console.log("after update product id" + " " + updatedProduct.id);
+    try {
+      const response = await fetch(`http://localhost:8081/products/update/${updatedProduct.product_id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: updatedProduct.name,
+          brand: updatedProduct.brand,
+          type: updatedProduct.type,
+          price: updatedProduct.price,
+          stocck: updatedProduct.stocck, // Ensure the field name is correct
+          cashback: updatedProduct.cashback,
+          serialNo: updatedProduct.serialNo,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update product.");
+      }
+
+      const data = await response.json();
+      console.log("Product updated:", data); // Log the updated data
+
+      // Optionally, you can dispatch another action to refetch products, but it's already handled in the reducer
+      return data; // Return the updated product data
+    } catch (error) {
+      console.error("Error updating product:", error);
+      throw error; // Propagate the error to be caught in the reducer
     }
-
-    return data; // Ensure it returns the updated product
   }
 );
+
 
 
 
@@ -82,7 +110,7 @@ const productSlice = createSlice({
         state.products.push(action.payload);
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
-        const index = state.products.findIndex((p) => p.id === action.payload.id);
+        const index = state.products.findIndex((p) => p.product_id === action.payload.product_id);
         if (index !== -1) {
           state.products[index] = action.payload;
         }

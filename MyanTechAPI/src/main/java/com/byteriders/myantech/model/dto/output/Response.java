@@ -27,7 +27,7 @@ public class Response {
 
 	private ProductInfo productInfo;
 	private List<ProductInfo> productInfos;
-
+	
 	private BrandDTO brand;
 	private List<BrandDTO> brands;
 

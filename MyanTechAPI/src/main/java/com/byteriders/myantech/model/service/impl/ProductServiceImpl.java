@@ -6,7 +6,8 @@ import java.util.List;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
-import com.byteriders.myantech.model.dto.output.ProductDTO;
+import com.byteriders.myantech.model.dto.input.ProductRequest;
+import com.byteriders.myantech.model.dto.output.ProductDetails;
 import com.byteriders.myantech.model.dto.output.ProductInfo;
 import com.byteriders.myantech.model.dto.output.Response;
 import com.byteriders.myantech.model.entity.Brand;
@@ -29,68 +30,80 @@ public class ProductServiceImpl implements ProductService {
 
 	private final ProductRepository productRepository;
 	private final ModelMapper modelMapper;
-	private final CategoryRepo categoryRepository;
-	private final BrandRepo brandRepository;
+	private final CategoryRepo categoryRepo;
+	private final BrandRepo brandRepo;
 	private final ProductRepo productRepo;
 
-	@Override
-	public Response saveProduct(ProductDTO productDTO) {
-
-		Category category = categoryRepository.findById(productDTO.getCategoryId())
-				.orElseThrow(() -> new NotFoundException("Category Not Found"));
-
-		Brand brand = brandRepository.findById(productDTO.getBrandId())
-				.orElseThrow(() -> new NotFoundException("Category Not Found"));
-
-		if (productRepository.existsBySerialNumber(productDTO.getSerialNumber())) {
-			throw new IllegalArgumentException("Serial number already exists.");
-		}
-
-		// map our dto to product entity
-		Product productToSave = Product.builder()
-				.name(productDTO.getName())
-				.price(productDTO.getPrice())
-				.cashback(productDTO.getCashback())
-				.serialNumber(productDTO.getSerialNumber())
-				.stock(productDTO.getStock())
-				.stockFaulty(productDTO.getStockFaulty())
-				.category(category)
-				.createdDate(LocalDate.now())
-				.brand(brand).build();
-
-		// save the product entity
-		productRepository.save(productToSave);
-
-		return Response.builder().status(200).message("Product successfully saved.").build();
-	}
 
 	@Override
-	public Response updateProduct(ProductDTO productDTO) {
-		// check if product exist
-		Product existingProduct = productRepository.findById(productDTO.getProductId())
-				.orElseThrow(() -> new NotFoundException("Product Not Found"));
-
-		Category category = categoryRepository.findById(productDTO.getCategoryId())
-				.orElseThrow(() -> new NotFoundException("Category Not Found"));
+	public Response saveProduct(ProductRequest productRequest) {
+		int brandId = productRequest.getBrand();
+		int categoryId = productRequest.getType();
 		
-		Brand brand = brandRepository.findById(productDTO.getBrandId())
+		Brand brand = brandRepo.findById(brandId)
 				.orElseThrow(() -> new NotFoundException("Brand Not Found"));
 		
-		existingProduct.setCategory(category);
-		existingProduct.setBrand(brand);
-		existingProduct.setName(productDTO.getName());
-		existingProduct.setPrice(productDTO.getPrice());
-		existingProduct.setCashback(productDTO.getCashback());
-		existingProduct.setSerialNumber(productDTO.getSerialNumber());
-		existingProduct.setStock(productDTO.getStock());
-		existingProduct.setStockFaulty(productDTO.getStockFaulty());
-		existingProduct.setUpdatedDate(LocalDate.now());
-
-		// update the product
+		Category category = categoryRepo.findById(categoryId)				
+				.orElseThrow(() -> new NotFoundException("Category Not Found"));
+		
+		if(productRepository.existsBySerialNumber(productRequest.getSerialNo())) {
+			throw new IllegalArgumentException("Serial number already exists.");
+		}
+		
+		
+		Product product = Product.builder()
+				.name(productRequest.getName())
+				.category(category)
+				.brand(brand)
+				.price(productRequest.getPrice())
+				.stock(productRequest.getStock())
+				.cashback(productRequest.getCashback())
+				.serialNumber(productRequest.getSerialNo())
+				.stockFaulty(0)
+				.createdDate(LocalDate.now())
+				.build();
+		
+		productRepository.save(product);
+		
+		return Response.builder()
+				.status(200)
+				.message("Product Successfully Saved.")
+				.build();
+	}
+	
+	@Override
+	public Response updateProduct(int id, ProductRequest productRequest) {
+		
+		Product existingProduct = productRepository.findById(id)
+				.orElseThrow(() -> new NotFoundException("Product Not Found"));
+		
+		int brandId = productRequest.getBrand();
+		int categoryId = productRequest.getType();
+		
+		Brand brand = brandRepo.findById(brandId)
+				.orElseThrow(() -> new NotFoundException("Brand Not Found"));
+		
+		Category category = categoryRepo.findById(categoryId)				
+				.orElseThrow(() -> new NotFoundException("Category Not Found"));
+		
+		Product product = Product.builder()
+				.name(productRequest.getName())
+				.category(category)
+				.brand(brand)
+				.price(productRequest.getPrice())
+				.stock(productRequest.getStock())
+				.cashback(productRequest.getCashback())
+				.serialNumber(productRequest.getSerialNo())
+				.stockFaulty(0)
+				.createdDate(LocalDate.now())
+				.build();
+		
 		productRepository.save(existingProduct);
-
-		// Build our response
-		return Response.builder().status(200).message("Proudct Updated successfully.").build();
+		
+		return Response.builder()
+				.status(200)
+				.message("Product Was Successfully Updated")
+				.build();
 	}
 	
 	@Override
@@ -150,32 +163,10 @@ public class ProductServiceImpl implements ProductService {
 	        .build();
 	}
 
-	
-
-//	@Override
-//	public Response getProductById(int id) {
-//
-//		Product product = productRepository.findById(id).orElseThrow(() -> new NotFoundException("Product Not Found"));
-//
-//		return Response.builder().status(200).message("success").product(modelMapper.map(product, ProductDTO.class))
-//				.build();
-//	}
+	@Override
+	public List<ProductDetails> getAllProductDetails() {
+		return productRepo.getAllProductDetails();
+	}
 
 	
-
-//	@Override
-//	public Response searchProduct(String input) {
-//
-//		List<Product> products = productRepository.searchProducts(input);
-//
-//		if (products.isEmpty()) {
-//			throw new NotFoundException("Product Not Found");
-//		}
-//
-//		List<ProductDTO> prdouctDTOList = modelMapper.map(products, new TypeToken<List<ProductDTO>>() {
-//		}.getType());
-//
-//		return Response.builder().status(200).message("success").products(prdouctDTOList).build();
-//	}
-
 }

@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AssignTruckRequest {
 	
-	private List<Integer> orderId;
-    private int driverId;
-    private LocalDate deliveryDate; 
+	private int order_id;
+	private List<Integer> orderIds;
+    private int driver_id;
+    private LocalDate delivery_date; 
+    private String status;
 }

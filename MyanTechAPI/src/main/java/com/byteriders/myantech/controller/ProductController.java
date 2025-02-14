@@ -1,19 +1,24 @@
 package com.byteriders.myantech.controller;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.byteriders.myantech.model.dto.output.ProductDTO;
+import com.byteriders.myantech.model.dto.input.ProductRequest;
+import com.byteriders.myantech.model.dto.output.ProductDetails;
 import com.byteriders.myantech.model.dto.output.Response;
 import com.byteriders.myantech.model.service.ProductService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -24,62 +29,18 @@ public class ProductController {
 	private final ProductService productService;
 	
 	@PostMapping("/add")
-	public ResponseEntity<Response> saveProduct(
-			@RequestParam("name")String name,
-			@RequestParam("price")int price,
-			@RequestParam(value = "cashback", required = false, defaultValue = "0")int cashback,
-			@RequestParam("serialNumber")String serialNumber,
-			@RequestParam("stock")Integer stock,
-			@RequestParam(value = "stockFaulty", required = false, defaultValue = "0" )int stockFaulty,
-			@RequestParam("categoryId")int categoryId,
-			@RequestParam("brandId")int brandId
-			){
-		
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setName(name);
-		productDTO.setPrice(price);
-		productDTO.setCashback(cashback);
-		productDTO.setSerialNumber(serialNumber);
-		productDTO.setStock(stock);
-		productDTO.setStockFaulty(stockFaulty);
-		productDTO.setCategoryId(categoryId);
-		productDTO.setBrandId(brandId);
-		
-		return ResponseEntity.ok(productService.saveProduct(productDTO));
-		
+	public ResponseEntity<Response> createProduct(@RequestBody ProductRequest productRequest) {
+		return ResponseEntity.ok(productService.saveProduct(productRequest));
 	}
 	
-	@PutMapping("/update")
-	public ResponseEntity<Response> updateProduct(
-			@RequestParam(value = "name", required = false)String name,
-			@RequestParam(value = "price", required = false)int price,
-			@RequestParam(value = "cashback", required = false, defaultValue = "0")int cashback,
-			@RequestParam(value = "serialNumber", required = false)String serialNumber,
-			@RequestParam(value = "stock", required = false)Integer stock,
-			@RequestParam(value = "stockFaulty", required = false, defaultValue = "0" )int stockFaulty,
-			@RequestParam(value = "categoryId", required = false)int categoryId,
-			@RequestParam(value = "brandId", required = false)int brandId,
-			@RequestParam(value = "productId")int productId
-			){
-		
-		ProductDTO productDTO = new ProductDTO();
-		productDTO.setProductId(productId);
-		productDTO.setName(name);
-		productDTO.setPrice(price);
-		productDTO.setCashback(cashback);
-		productDTO.setSerialNumber(serialNumber);
-		productDTO.setStock(stock);
-		productDTO.setStockFaulty(stockFaulty);
-		productDTO.setCategoryId(categoryId);
-		productDTO.setBrandId(brandId);
-		
-		return ResponseEntity.ok(productService.updateProduct(productDTO));
-		
+	@PutMapping("/update/{product_id}")
+	public ResponseEntity<Response> updateProduct(@PathVariable int product_id, @RequestBody @Valid ProductRequest productRequest) {
+		return ResponseEntity.ok(productService.updateProduct(product_id, productRequest));
 	}
 	
 	@GetMapping("/all")
-    public ResponseEntity<Response> getAllProducts() {
-        return ResponseEntity.ok(productService.getAllProducts());
+    public List<ProductDetails> getAllProducts() {
+        return productService.getAllProductDetails();
     }
 	
 	@GetMapping("/{id}")

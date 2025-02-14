@@ -8,7 +8,7 @@ public record ProductInfo(
 	    int price,
 	    int stock,
 	    int cashback,        
-	    String serialNo  
+	    String serialNo
 		) {
 	
 }

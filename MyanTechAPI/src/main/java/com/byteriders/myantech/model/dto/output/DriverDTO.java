@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DriverDTO {
 	
-	private int driverId;
-    private String driverName;
+	private int driver_id;
+	private String vehicle_plate_no;
+    private String driver_name;
     private String contact;
-    private String vehiclePlateNo;
+    
 }

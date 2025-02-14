@@ -120,6 +120,19 @@
       "id": "2b99"
     }
   ],
+  "products": [
+    {
+      "id": "4b73",
+      "product_id": 1739420864981,
+      "name": "Admin",
+      "brand": "Canon ",
+      "type": "Laptop",
+      "price": 4254,
+      "stock": 3433,
+      "cashBack": 4324,
+      "serialNo": "5555-55555-5555-55555"
+    }
+  ],
   "brand": [
     {
       "brand_id": 1,
@@ -223,8 +236,10 @@
       "id": "4e92",
       "product_id": 1739161756298,
       "name": "A",
-      "brand": "Acer",
-      "type": "Accessories ",
+      "brand": 1,
+      "type": 2,
+      "brand_name": "Acer",
+      "type_name": "Accessories ",
       "price": 100,
       "stock": 500,
       "cashBack": 20,
@@ -407,73 +422,10 @@
       "id": "1a08"
     }
   ],
-  "products": [
-    {
-      "id": "cb3c",
-      "product_id": 1739248377486,
-      "name": "Acer Aspire X",
-      "brand": "Acer",
-      "type": "Desktop PC ",
-      "price": 5000,
-      "stock": 50,
-      "cashBack": 1,
-      "serialNo": "XXXX-XXXXX-XXXX-XXXXX"
-    },
-    {
-      "id": "88a7",
-      "product_id": 1739248404078,
-      "name": "Mac 14",
-      "brand": "Apple",
-      "type": "Laptop",
-      "price": 3000,
-      "stock": 78,
-      "serialNo": "AAAA-XXXXX-XXXX"
-    },
-    {
-      "id": "7e67",
-      "product_id": 1739251554907,
-      "name": "fdsxxcds",
-      "brand": "Canon ",
-      "type": "Laptop",
-      "price": 34,
-      "stock": 343,
-      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
-    },
-    {
-      "id": "cf7e",
-      "product_id": 1739251568850,
-      "name": "User",
-      "brand": "Asus",
-      "type": "Memory ",
-      "price": 3432,
-      "stock": 32,
-      "cashBack": 4343,
-      "serialNo": "5555-55555-5555-55555"
-    },
-    {
-      "id": "43b1",
-      "product_id": 1739251590733,
-      "name": "Admin",
-      "brand": "APC",
-      "type": "Power Supply ",
-      "price": 52000,
-      "stock": 10,
-      "cashBack": 25,
-      "serialNo": "XXXX-XXXXX-XXXX-XXXBXX"
-    },
-    {
-      "id": "808e",
-      "product_id": 1739251658170,
-      "name": "sdsd",
-      "brand": "Dell ",
-      "type": "Monitor ",
-      "price": 343,
-      "stock": 32,
-      "cashBack": 13,
-      "serialNo": "xcxxxxxxxxxxxx"
-    }
-  ],
+
+
   "orders": [ ],
   "assign_truck": [ ]
-  
 }
+  
+ 

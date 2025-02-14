@@ -20,5 +20,7 @@ public class AssignTruckDTO {
     private int order_id;
     private int driver_id;
     private LocalDate delivery_date;
+    private String driver_name;
+    private String vehicle_plate_no;
     private String status;
 }

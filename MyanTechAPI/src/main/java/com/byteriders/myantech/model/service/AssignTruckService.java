@@ -1,22 +1,28 @@
 package com.byteriders.myantech.model.service;
 
 import java.time.LocalDate;
-import java.util.List;
 
+import com.byteriders.myantech.model.dto.input.AssignTruckRequest;
 import com.byteriders.myantech.model.dto.output.Response;
-import com.byteriders.myantech.model.enums.AssignTruckStatus;
+import com.byteriders.myantech.model.entity.AssignTruck;
 
 public interface AssignTruckService {
 	
-    Response assignSingleOrderToDriver(int orderId, int driverId, LocalDate deliveryDate);
+    Response assignSingleOrderToDriver(AssignTruckRequest assignTruckRequest);
     
-    Response assignMultipleOrdersToDriver(List<Integer> orderId, int driverId, LocalDate deliveryDate);
-    
-    Response getAllOrdersToBeAssigned();
-    
-    Response updateTransactionStatus(int assignTruckId, AssignTruckStatus status);
+    Response assignMultipleOrdersToDriver(AssignTruckRequest assignTruckRequest);
     
     Response searchAssignTrucks(String status, String township, LocalDate fromDate, LocalDate toDate, int driverId, String keyword);
     
     Response getOrderStatusPending();
+    
+    Response getOrdersByAssignTruckStatusDelivering();
+    
+    Response getOrdersByAssignTruckStatusDelivered();
+    
+    Response getOrdersByAssignTruckStatusCanceled();
+
+    Response updateAssignTruckStatus(int assignTruckId, AssignTruck request);
+
+	Response getAllAssignTrucks();
 }

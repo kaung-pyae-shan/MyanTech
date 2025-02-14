@@ -1,7 +1,4 @@
-package com.byteriders.myantech.model.dto.output;
-
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
+package com.byteriders.myantech.model.dto.input;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,9 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonIgnoreProperties(ignoreUnknown = true)
-public class ProductDTO {
+public class ProductRequest {
 	
 	private int id;
 	private String name;
@@ -23,6 +18,6 @@ public class ProductDTO {
 	private int cashback;
 	private String serialNo;
 	private String brand_name;
-	private String category_name;
+	private String type_name;
 
 }
