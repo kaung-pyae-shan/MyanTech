@@ -2,9 +2,6 @@ package com.byteriders.myantech.model.entity;
 
 import java.time.LocalDate;
 
-import com.byteriders.myantech.model.entity.User.Role;
-
-import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
