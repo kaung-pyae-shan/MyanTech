@@ -29,6 +29,8 @@ const SalesDashboard = () => {
 
    const role = localStorage.getItem('user').role
 
+  
+
 
   return (
     <>
@@ -36,10 +38,10 @@ const SalesDashboard = () => {
       <HomeCard />  
       
     </div>
-    <div className="flex justify-between my-5">
+    <div className="flex justify-between my-5 gap-6">
           <div className=" w-[40%]">
             <h2 className='mb-3 text-xl font-semibold text-gradient'>Popular Products</h2>
-            <Popular />
+            <Popular items={dashboard.bestSellingItems} />
         </div>
 
 
@@ -52,18 +54,18 @@ const SalesDashboard = () => {
         <PieChart />
 
         {
-          role == 'sales' ?
+          // role == 'sales' ?
           <div className=" w-[60%]">
           <h2 className='mb-3 text-xl font-semibold text-gradient'>Monthly Sales</h2>
 
-              <LineChartC />
+              <LineChartC record={dashboard.saleChartRecord} />
         
           
-      </div>
-         :
-        <div className=" w-[400px]">
-        <PieChart /> 
-        </div> 
+         </div>
+        //  :
+        // <div className=" w-[400px]">
+        // <PieChart /> 
+        // </div> 
         }
     
     </div>

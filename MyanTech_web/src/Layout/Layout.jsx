@@ -42,7 +42,7 @@ const AppLayout = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken()
 
-  const username = localStorage.getItem("user")
+  // const username = localStorage.getItem("user")
   const storedUser = JSON.parse(localStorage.getItem("user"))
   const userRole = storedUser?.role || "" // Get user role, default to empty if null
 
