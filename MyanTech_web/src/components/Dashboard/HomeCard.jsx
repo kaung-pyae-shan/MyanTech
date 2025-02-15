@@ -5,7 +5,7 @@ import { CiShop } from "react-icons/ci";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { MdOutlineAssignmentReturn } from "react-icons/md";
 
-const HomeCard = () => 
+const HomeCard = ({data}) => 
 { 
     const cards = [
         {
@@ -76,11 +76,11 @@ const HomeCard = () =>
        >
          <div className='flex justify-between'>
          <div className='text-center '>
-            <p className='text-lg font-bold'>210</p>
+            <p className='text-lg font-bold'>{data?.pendingOrders}</p>
             <span className='font-semibold text-gray-600 text-normal '>Pending</span>
          </div>
          <div className='text-center'>
-            <p className='text-lg font-bold'>210</p>
+            <p className='text-lg font-bold'>{data?.deliveredOrders}</p>
             <span className='font-semibold text-gray-600 text-normal '>Completed</span>
          </div>
          </div>
@@ -95,11 +95,11 @@ const HomeCard = () =>
        >
          <div className='flex justify-between'>
          <div className='text-center '>
-            <p className='text-lg font-bold'>210</p>
+            <p className='text-lg font-bold'>{data?.totalProducts}</p>
             <span className='font-semibold text-gray-600 text-normal '>Total</span>
          </div>
          <div className='text-center'>
-            <p className='text-lg font-bold '>210</p>
+            <p className='text-lg font-bold '>{data?.productsSold}</p>
             <span className='font-semibold text-gray-600 text-normal '>Sold Out</span>
          </div>
          </div>
@@ -114,11 +114,11 @@ const HomeCard = () =>
        >
          <div className='flex justify-between'>
          <div className='text-center '>
-            <p className='text-lg font-bold'>210</p>
+            <p className='text-lg font-bold'>8</p>
             <span className='font-semibold text-gray-600 text-normal '>On Delivery</span>
          </div>
          <div className='text-center'>
-            <p className='text-lg font-bold '>210</p>
+            <p className='text-lg font-bold '>{data?.deliveredOrders}</p>
             <span className='font-semibold text-gray-600 text-normal '>Delivered</span>
          </div>
          </div>
@@ -132,11 +132,11 @@ const HomeCard = () =>
        variant="borderless">
          <div className='flex justify-between'>
          <div className='text-center '>
-            <p className='text-lg font-bold'>210</p>
+            <p className='text-lg font-bold'>2100000</p>
             <span className='font-semibold text-gray-600 text-normal '>Total</span>
          </div>
          <div className='text-center'>
-            <p className='text-lg font-bold '>210</p>
+            <p className='text-lg font-bold '>{data?.productsSold}   </p>
             <span className='font-semibold text-gray-600 text-normal '>Sold Out</span>
          </div>
          </div>

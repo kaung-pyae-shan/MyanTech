@@ -266,7 +266,7 @@ const AppLayout = () => {
                 </h2>
           </div>
           <div className="mr-[3rem]">
-            <Button onClick={handleLogout} className="mr-[8px] h-10 rounded-xl mt-3 bg-button px-[25px] hover:bg-none">
+            <Button onClick={handleLogout} className="mr-[8px] h-10 rounded-xl mt-3 bg-button px-[25px] hover:bg-none text-white">
               Logout
               <LogoutOutlined />
             </Button>

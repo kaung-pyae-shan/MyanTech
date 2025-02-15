@@ -14,6 +14,7 @@ const SalesDashboard = () => {
     const fetchDashboard = async () => {
       try {
         const response = await axios.get(`/home`);
+        console.log(response.data)
         setDashboard(response.data);
       } catch (error) {
         console.error('Error fetching orders:', error);
@@ -25,7 +26,7 @@ const SalesDashboard = () => {
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
       <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.6 }}>
-        <HomeCard />
+        <HomeCard data={dashboard.data} />
       </motion.div>
       <div className="flex justify-between gap-6 my-5">
         <motion.div initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6 }} className="w-[40%]">

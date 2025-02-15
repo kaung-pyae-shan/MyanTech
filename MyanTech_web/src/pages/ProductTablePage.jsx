@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Table, Button, Modal, Form, Input, InputNumber, Select } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts, addProduct, updateProduct } from "../redux/productSlice";
+import { Col, Row } from 'antd';
+import { motion } from 'framer-motion';
 
 const { Option } = Select;
 
 const ProductTablePage = () => {
   const dispatch = useDispatch();
   const { products, loading } = useSelector((state) => state.products);
+  
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isEditMode, setIsEditMode] = useState(false);
@@ -115,56 +118,60 @@ const ProductTablePage = () => {
       <Table columns={columns} dataSource={products} loading={loading} rowKey="product_id" locale={{ emptyText: "No items yet" }} 
         pagination={{ pageSize: 5 }} />
 
-      <Modal
-        title={isEditMode ? "Edit Product" : "Create Product"}
-        open={isModalVisible}
-        onCancel={() => setIsModalVisible(false)}
-        footer={null}
-      >
-        <Form form={form} onFinish={handleAddProduct} layout="vertical">
-          <Form.Item name="name" label="Enter Product Name" rules={[{ required: true }]}>
-            <Input />
+<Modal
+  title={isEditMode ? "Edit Product" : "Create Product"}
+  open={isModalVisible}
+  onCancel={() => setIsModalVisible(false)}
+  footer={null}
+>
+  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+    <Form form={form} onFinish={handleAddProduct} layout="vertical">
+      <Row gutter={16}>
+        <Col span={12}>
+          <Form.Item name="name" label="Product Name" rules={[{ required: true }]}>
+            <Input placeholder="Enter product name" />
           </Form.Item>
-
-          <Form.Item name="brand" label="Choose Brand" rules={[{ required: true }]}>
+          <Form.Item name="brand" label="Brand" rules={[{ required: true }]}>
             <Select placeholder="Select a brand">
-              {brands.map((brand) => (
-                <Option key={brand.brand_id} value={brand.brand_id}>{brand.brand_name}</Option>
+              {brands.map(({ brand_id, brand_name }) => (
+                <Option key={brand_id} value={brand_id}>{brand_name}</Option>
               ))}
             </Select>
           </Form.Item>
-
-          <Form.Item name="type" label="Choose Type" rules={[{ required: true }]}>
-            <Select placeholder="Select a category">
-              {categories.map((category) => (
-                <Option key={category.category_id} value={category.category_id}>{category.category_name}</Option>
-              ))}
-            </Select>
-          </Form.Item>
-
           <Form.Item name="price" label="Price" rules={[{ required: true }]}>
-            <InputNumber min={1} style={{ width: "100%" }} />
+            <InputNumber min={1} style={{ width: '100%' }} />
           </Form.Item>
-
+        </Col>
+        
+        <Col span={12}>
+          <Form.Item name="type" label="Category" rules={[{ required: true }]}>
+            <Select placeholder="Select a category">
+              {categories.map(({ category_id, category_name }) => (
+                <Option key={category_id} value={category_id}>{category_name}</Option>
+              ))}
+            </Select>
+          </Form.Item>
           <Form.Item name="stocck" label="Stock" rules={[{ required: true }]}>
-            <InputNumber min={0} style={{ width: "100%" }} />
+            <InputNumber min={0} style={{ width: '100%' }} />
           </Form.Item>
-
           <Form.Item name="cashback" label="Cash Back">
-            <InputNumber min={0} style={{ width: "100%" }} />
+            <InputNumber min={0} style={{ width: '100%' }} />
           </Form.Item>
-
-          <Form.Item name="serialNo" label="Serial No" rules={[{ required: true }]}>
-            <Input />
-          </Form.Item>
-
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              {isEditMode ? "Update Product" : "Add Product"}
-            </Button>
-          </Form.Item>
-          </Form> 
-      </Modal> 
+        </Col>
+      </Row>
+      
+      <Form.Item name="serialNo" label="Serial No" rules={[{ required: true }]}>
+        <Input placeholder="Enter serial number" />
+      </Form.Item>
+      
+      <Form.Item>
+        <Button  htmlType="submit" className="w-full text-white bg-button">
+          {isEditMode ? "Update Product" : "Add Product"}
+        </Button>
+      </Form.Item>
+    </Form>
+  </motion.div>
+</Modal>
     </div>
   );
 };
