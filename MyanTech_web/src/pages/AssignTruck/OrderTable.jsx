@@ -27,7 +27,9 @@ const OrderTable = () => {
     const fetchOrders = async () => {
       try {
         const response = await axios.get(`/order/list?shopName=PENDING&invoiceNo=PENDING&orderStatus=PENDING`);
-        setOrders(response.data);
+        const sortedOrders = response.data.sort((a, b) => a.township.localeCompare(b.township));
+
+        setOrders(sortedOrders);
       } catch (error) {
         console.error("Error fetching orders:", error);
       }
