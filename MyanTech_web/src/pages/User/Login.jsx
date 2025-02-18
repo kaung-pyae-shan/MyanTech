@@ -40,7 +40,9 @@ const Login = () => {
   return (
     <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-br from-blue-100 to-white">
       <div className="w-[498px] shadow-md px-12 py-10 bg-white">
-        <h2 className='text-[40px] font-bold bg-button bg-clip-text text-transparent'>Sign In</h2>
+       <h2 className='text-[40px] font-bold bg-button bg-clip-text text-transparent'>MyanTech</h2>
+
+        <h4 className='text-[40px] font-bold bg-button bg-clip-text text-transparent'>Sign In</h4>
         {errMsg && <Alert className='mt-5' message={errMsg} type="error" />}
         <Form name="login" onFinish={handleLogin} className='mt-6'>
           <Form.Item name="username" rules={[{ required: true, message: 'Please input your Username!' }]}>
