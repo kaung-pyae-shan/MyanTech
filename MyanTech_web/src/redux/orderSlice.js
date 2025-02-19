@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Fetch orders
 export const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
-  const response = await fetch("http://localhost:3001/orders");
+  const response = await fetch("https://myantech-fye5.onrender.com/order/list");
   return response.json();
 });
 

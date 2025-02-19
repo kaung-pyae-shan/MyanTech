@@ -6,7 +6,7 @@ import axios from "axios";
 import { Provider } from "react-redux";
 
 const { Option } = Select;
-const API_URL = "http://localhost:3001";
+const API_URL = "https://myantech-fye5.onrender.com";
 
 export const fetchOrders = createAsyncThunk("orders/fetchOrders", async () => {
   const response = await axios.get(`${API_URL}/orders`);

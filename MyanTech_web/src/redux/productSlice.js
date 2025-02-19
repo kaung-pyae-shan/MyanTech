@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 // Fetch products from JSON Server
 export const fetchProducts = createAsyncThunk("products/fetchProducts", async () => {
   try {
-    const response = await fetch("http://localhost:8080/products/all");
+    const response = await fetch("https://myantech-fye5.onrender.com/products/all");
 
     // Check if the response is ok (status 200-299)
     if (!response.ok) {
@@ -28,7 +28,7 @@ export const addProduct = createAsyncThunk("products/add", async (newProduct, { 
   try {
     console.log("Adding product:", newProduct); // Log the product data to inspect it
 
-    const response = await fetch("http://localhost:8080/products/add", {
+    const response = await fetch("https://myantech-fye5.onrender.com/products/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(newProduct),
@@ -57,7 +57,7 @@ export const updateProduct = createAsyncThunk(
     console.log("Updating product:", updatedProduct); // Log the product data for debugging
 
     try {
-      const response = await fetch(`http://localhost:8080/products/update/${updatedProduct.product_id}`, {
+      const response = await fetch(`https://myantech-fye5.onrender.com/products/update/${updatedProduct.product_id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

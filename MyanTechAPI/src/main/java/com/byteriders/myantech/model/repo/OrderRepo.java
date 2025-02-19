@@ -57,12 +57,22 @@ public interface OrderRepo extends JpaRepository<Order, Integer>, OrderRepoCusto
 			""", nativeQuery = true)
 	List<Object[]> findSalesForCurrentMonth();
 
-	@Query(value = "SELECT " + "    MONTHNAME(o.created_date) AS monthName, "
-			+ "    COALESCE(SUM(po.qty * p.price), 0) AS totalSales " + "FROM " + "    product_order po " + "JOIN "
-			+ "    orders o ON po.order_id = o.id " + "JOIN " + "    product p ON po.product_id = p.id " + "WHERE "
-			+ "    YEAR(o.created_date) = :year " + "GROUP BY " + "    MONTH(o.created_date) " + "ORDER BY "
-			+ "    MONTH(o.created_date)", nativeQuery = true)
-	List<Object[]> getTotalSalesByMonth(@Param("year") int year);
+	@Query(value = "SELECT " +
+	          "    MIN(MONTHNAME(o.created_date)) AS monthName, " +
+	          "    COALESCE(SUM(po.qty * p.price), 0) AS totalSales " +
+	          "FROM " +
+	          "    product_order po " +
+	          "JOIN " +
+	          "    orders o ON po.order_id = o.id " +
+	          "JOIN " +
+	          "    product p ON po.product_id = p.id " +
+	          "WHERE " +
+	          "    YEAR(o.created_date) = :year " +
+	          "GROUP BY " +
+	          "    MONTH(o.created_date) " +
+	          "ORDER BY " +
+	          "    MONTH(o.created_date)", nativeQuery = true)
+	  List<Object[]> getTotalSalesByMonth(@Param("year") int year);
 
 	@Query("SELECT COUNT(o) FROM Order o WHERE o.status = 'PENDING'")
 	int getPendingCount();

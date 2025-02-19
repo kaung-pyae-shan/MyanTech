@@ -6,7 +6,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { login, addAuth } from '../../redux/services/AuthSlice';
 
-const LOGIN_URL = 'http://localhost:8080';
+const LOGIN_URL = 'https://myantech-fye5.onrender.com';
 
 const LoginTest = () => {
   const dispatch = useDispatch();

@@ -28,13 +28,13 @@ const ProductTablePage = () => {
   }, [dispatch]);
 
   const fetchBrands = async () => {
-    const response = await fetch("http://localhost:8080/brands");
+    const response = await fetch("https://myantech-fye5.onrender.com/brands");
     const data = await response.json();
     setBrands(data);
   };
 
   const fetchCategories = async () => {
-    const response = await fetch("http://localhost:8080/categories");
+    const response = await fetch("https://myantech-fye5.onrender.com/categories");
     const data = await response.json();
     setCategories(data);
   };
