@@ -3,7 +3,6 @@ package com.byteriders.myantech.model.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.output.DriverDTO;
@@ -19,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 public class DriverServiceImpl implements DriverService {
 	
 	private final DriverRepo driverRepo;
-	private final ModelMapper modelMapper;
 
 	@Override
 	public List<DriverDTO> getAllDrivers() {

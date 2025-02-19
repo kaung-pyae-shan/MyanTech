@@ -1,5 +1,5 @@
-insert into user (username, password, role) values ('John', 'john123', 'SALE');
-insert into user (username, password, role) values ('Susan', 'susan123', 'WAREHOUSE');
+insert into user (username, password, role) values ('sales', 'sales123', 'SALE');
+insert into user (username, password, role) values ('warehouse', 'warehouse123', 'WAREHOUSE');
 
 insert into region (name) values ('YGN');
 
@@ -133,14 +133,11 @@ insert into service_center (name, contact, address, available_status) values ('H
 insert into service_center (name, contact, address, available_status) values ('Dell Service Center', '+951-556677', 'Pyay Road, Sanchaung Township, Yangon', 'OPEN');
 insert into service_center (name, contact, address, available_status) values ('Zawgyi Electronics  goods and ICT product repairs', '+951-394095', 'Anawrahta Road, Downtown Yangon', 'OPEN');
 
-<<<<<<< HEAD
 insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Tun Lin', '09313485321', 'YGN-1A/3456');
 insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Min Thant', '09399485321', 'MDY-4B/7890');
 insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Hla Oo', '09432485321', 'BGO-6D/4852');
 insert into driver (driver_name, contact, vehicle_plate_no) VALUES ('Ko Soe Aung', '0987485321', 'NPT-2C/1789');
 
-=======
->>>>>>> branch 'main' of https://github.com/kaung-pyae-shan/MyanTech.git
 INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 1, 5, 'early bird', 75000);
 INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (12, 13, 10, 'bulk order', 120000);
 INSERT INTO product_order (order_id, product_id, qty, remark, sub_total) VALUES (5, 7, 50, 'special request', 202020);

@@ -3,7 +3,6 @@ package com.byteriders.myantech.model.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.ProductRequest;
@@ -29,7 +28,6 @@ import lombok.extern.slf4j.Slf4j;
 public class ProductServiceImpl implements ProductServices {
 
 	private final ProductRepository productRepository;
-	private final ModelMapper modelMapper;
 	private final CategoryRepo categoryRepo;
 	private final BrandRepo brandRepo;
 	private final ProductRepo productRepo;

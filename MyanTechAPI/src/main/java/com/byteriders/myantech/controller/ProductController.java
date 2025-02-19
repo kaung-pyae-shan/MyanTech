@@ -18,7 +18,6 @@ import com.byteriders.myantech.model.dto.output.ProductDetails;
 import com.byteriders.myantech.model.dto.output.Response;
 import com.byteriders.myantech.model.service.ProductServices;
 
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
@@ -34,7 +33,7 @@ public class ProductController {
 	}
 	
 	@PutMapping("/update/{product_id}")
-	public ResponseEntity<Response> updateProduct(@PathVariable int product_id, @RequestBody @Valid ProductRequest productRequest) {
+	public ResponseEntity<Response> updateProduct(@PathVariable int product_id, @RequestBody ProductRequest productRequest) {
 		return ResponseEntity.ok(productService.updateProduct(product_id, productRequest));
 	}
 	

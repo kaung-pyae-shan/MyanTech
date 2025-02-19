@@ -3,7 +3,6 @@ package com.byteriders.myantech.model.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.output.BrandDTO;
@@ -19,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
 public class BrandServiceImpl implements BrandService {
 
 	private final BrandRepo brandRepo;
-	private final ModelMapper modelMapper;
 	
 	
 //	@Override

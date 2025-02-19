@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.byteriders.myantech.model.dto.input.AssignTruckRequest;
@@ -31,7 +30,6 @@ public class AssignTruckServiceImpl implements AssignTruckService {
 	private final AssignTruckRepo assignTruckRepo;
     private final OrderRepo orderRepo;
     private final DriverRepo driverRepo;
-    private final ModelMapper modelMapper;
 	
 	@Override
 	public Response assignSingleOrderToDriver(AssignTruckRequest request) {
